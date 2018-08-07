@@ -1,0 +1,15 @@
+1. Upload TX tract and national urban area shapefiles.
+
+Tract shapefiles are easy to download from TIGER/LINE. 2010 national UA file is at https://www2.census.gov/geo/tiger/TIGER2010/UA/2010
+
+2. Clip national urban area shapefile to state of TX.
+
+Input parameters:
+{ 'INPUT' : 'D:\\AP LARSON\\DallasCommuting\\tl_2010_us_uac10.shp', 'OUTPUT' : 'D:/AP LARSON/DallasCommuting/ua_TX_clip.shp', 'OVERLAY' : 'D:\\AP LARSON\\DallasCommuting\\tl_2015_48_tract.shx' }
+
+3. Run an intersection of TX urban areas and TX tracts.
+
+Input parameters:
+{ 'INPUT' : 'D:\\AP LARSON\\DallasCommuting\\tl_2015_48_tract.shx', 'INPUT_FIELDS' : ['COUNTYFP','GEOID','NAMELSAD','ALAND'], 'OUTPUT' : 'memory:', 'OVERLAY' : 'D:\\AP LARSON\\DallasCommuting\\ua_TX_clip.shp', 'OVERLAY_FIELDS' : [] }
+
+4. In R, use the ALAND field to determine which tracts have more than 50% of their area as UA; these will be final qualifying tracts.
