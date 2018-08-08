@@ -7,11 +7,17 @@ pack <- function(pkg){
 }
 packages <- c("foreign", "tidycensus", "tidyverse", "rgdal")
 pack(packages)
-setwd("D:/AP LARSON/DallasCommuting")
+setwd("D:/AP LARSON/DallasCommutingV2")
+# I want to test whether I can run this in a loop.
+cityInfo <- read.csv("cityInfo.csv")
+city <- cityInfo[1,1]
+countyList <- as.character(cityInfo[1,2])
+countyList <- as.numeric(strsplit(countyList, split = ",",fixed = TRUE)[[1]])
+
 # census_api_key("2f424d72af52408f49ed24e0608d6f5c583af625", install = TRUE)
-countyList <- c(113, 321, 251, 425, 367, 379, 467,
-                181, 139, 439, 257, 349, 497, 213,
-                217, 85, 147, 97, 121, 397)
+# countyList <- c(113, 321, 251, 425, 367, 379, 467,
+#                 181, 139, 439, 257, 349, 497, 213,
+#                 217, 85, 147, 97, 121, 397)
 popData <- get_acs(geography = "tract",
                    variables = "B01001_001E",
                    state = "TX",
@@ -31,6 +37,12 @@ colnames(popData)[2] <- "pop"
 popData$pop1000 <- popData$pop / 1000 # Population, thousands
 popData$popDens1000 <- popData$popDens / 1000 # Population density, 1000s/sq mi
 popData$logPopDens <- log(popData$popDens) # Log density, population / sq mi
+
+# Distance to city center
+# Add this later. Would be best to employ a gravity model
+# where the "city center" you go do depends on where you live
+# and the magnitude of the destination. Because there is
+# Dallas *and* Fort Worth, for example.
 
 # Log median income
 incomeData <- get_acs(geography = "tract",
@@ -80,20 +92,114 @@ povData$pct149 <- povData$p149 / povData$universe * 100
 povData$pct150 <- povData$p150 / povData$universe * 100
 povData <- povData[c(1,6:8)]
 
-# Median rent
-# Feeling impatient.
-# Table was B25064, median gross rent
+# Should add race and ethnicity, plurality
+# Consider white black Hispanic and Asian
+racUniverse <- get_acs(geography = "tract",
+                       variables = "B02001_001E", # total obs
+                       state = "TX",
+                       county = countyList,
+                       geometry = FALSE)
+racWhite <- get_acs(geography = "tract",
+                    variables = "B02001_002E", # white obs
+                    state = "TX",
+                    county = countyList,
+                    geometry = FALSE)
+racBlack <- get_acs(geography = "tract",
+                    variables = "B02001_003E", # Black obs
+                    state = "TX",
+                    county = countyList,
+                    geometry = FALSE)
+racAsian <- get_acs(geography = "tract",
+                    variables = "B02001_005E", # Asian obs
+                    state = "TX",
+                    county = countyList,
+                    geometry = FALSE)
+hispUniverse <- get_acs(geography = "tract",
+                        variables = "B03001_001E", # total obs
+                        state = "TX",
+                        county = countyList,
+                        geometry = FALSE)
+hisp <- get_acs(geography = "tract",
+                variables = "B03001_003E", # Hispanic/Latino obs
+                state = "TX",
+                county = countyList,
+                geometry = FALSE)
+head(racUniverse)
+colnames(racUniverse)[4] <- "universe"
+colnames(racWhite)[4] <- "white"
+colnames(racBlack)[4] <- "black"
+colnames(racAsian)[4] <- "asian"
+colnames(hispUniverse)[4] <- "universe"
+colnames(hisp)[4] <- "hisp"
+colnames(hispUniverse)[4] <- "hispuniverse"
+raceData <- merge(racUniverse, racWhite, by = "GEOID")
+raceData <- raceData[c(1,4,8)]
+raceData <- merge(raceData, racBlack, by = "GEOID")
+raceData <- raceData[c(1:3,6)]
+raceData <- merge(raceData, racAsian, by = "GEOID")
+raceData <- raceData[c(1:4,7)]
+raceData <- merge(raceData, hispUniverse, by = "GEOID")
+raceData <- raceData[c(1:5,8)]
+raceData <- merge(raceData, hisp, by = "GEOID")
+raceData <- raceData[c(1:6,9)]
 
-# Mean household size
-setwd("D:/AP LARSON/wtf/for git") # there is a story as to why this file is called wtf
-# I messed up a GitHub push and deleted all the work below...which was already done once
-hhSize <- read.csv("ACS_16_5YR_S1101_with_ann.csv")
-hhSize <- hhSize[c(2,4)]
-colnames(hhSize) < - c("GEOID", "medHHsize")
+raceData$pctWht <- raceData$white / raceData$universe
+raceData$pctBlk <- raceData$black / raceData$universe
+raceData$pctAsn <- raceData$asian / raceData$universe
+raceData$pctHisp <- raceData$hisp / raceData$hispuniverse
 
-# Mean home value
-# Feeling impatient.
-# Table was B25077, median home value
+raceData$pluWht <- NA
+raceData$pluWht <- ifelse(raceData$pctWht > raceData$pctBlk &
+                            raceData$pctWht > raceData$pctAsn &
+                            raceData$pctWht > raceData$pctHisp,
+                          1, 0)
+raceData$pluBlk <- ifelse(raceData$pctBlk > raceData$pctWht &
+                            raceData$pctBlk > raceData$pctAsn &
+                            raceData$pctBlk > raceData$pctHisp,
+                          1, 0)
+raceData$pluAsn <- ifelse(raceData$pctAsn > raceData$pctBlk &
+                            raceData$pctAsn > raceData$pctWht &
+                            raceData$pctAsn > raceData$pctHisp,
+                          1, 0)
+raceData$pluHisp <- ifelse(raceData$pctHisp > raceData$pctBlk &
+                             raceData$pctHisp > raceData$pctAsn &
+                             raceData$pctHisp > raceData$pctWht,
+                           1, 0)
+raceData <- raceData[complete.cases(raceData),]
+
+# Median Rent
+medRent <- get_acs(geography = "tract",
+                   variables = "B25064_001E",
+                   state = "TX",
+                   county = countyList,
+                   geometry = FALSE)
+head(medRent)
+medRent <- medRent[c(1,4)]
+medRent[medRent == 0] <- NA; medRent <- na.omit(medRent)
+
+# Household size has to be a control variable
+# Not easily available through ACS API so I'm downloading
+housSize <- read.csv("ACS_16_5YR_S1101_with_ann.csv")
+head(housSize)
+housSize <- housSize[c(2,4)]
+colnames(housSize) <- c("GEOID", "meanHHsz")
+head(housSize)
+housSize <- housSize[complete.cases(housSize),]
+housSize <- subset(housSize, GEOID %in% popData$GEOID)
+
+# Housing values
+medValue <- get_acs(geography = "tract",
+                    variables = "B25077_001E",
+                    state = "TX",
+                    county = countyList,
+                    geometry = FALSE)
+head(medValue)
+medValue <- medValue[c(1,4)]
+medValue[medValue == 0] <- NA; medValue <- na.omit(medValue)
+medValue$logHousVal <- log(medValue$estimate)
+medValue$thouHousVal <- medValue$estimate/1000
+summary(medValue$thouHousVal)
+medValue <- medValue[c(1,3,4)]
 
 # Median year structure built
 medianAge <- get_acs(geography = "tract",
@@ -124,10 +230,15 @@ tenureData <- tenureData[c(1,4,8)]
 tenureData$pctOwn <- tenureData$own / tenureData$universe * 100
 tenureData <- tenureData[c(1,4)]
 
-# Race/ethnicity
-# Feeling impatient.
-# Tables were B02001 (Race) and B03001 (Hispanic or Latino origin)
-# Adopted a plurality rule: Boolean 1-0 for largest
-# Racial or ethnic group in dataset.
+# popData, povData, raceData, incomeData, tenureData, housSize, medianHousAge, medValue, medRent
+fullDemographic <- merge(popData, povData, by = "GEOID", all = TRUE)
+head(fullDemographic)
+fullDemographic <- merge(fullDemographic, raceData, by = "GEOID", all = TRUE)
+fullDemographic <- merge(fullDemographic, incomeData, by = "GEOID", all = TRUE)
+fullDemographic <- merge(fullDemographic, tenureData, by = "GEOID", all = TRUE)
+fullDemographic <- merge(fullDemographic, housSize, by = "GEOID", all = TRUE)
+fullDemographic <- merge(fullDemographic, medianAge, by = "GEOID", all = TRUE)
+fullDemographic <- merge(fullDemographic, medValue, by = "GEOID", all = TRUE)
+fullDemographic <- merge(fullDemographic, medRent, by = "GEOID", all = TRUE)
 
-# All data was exported into fullDemographic.csv
+write.csv(fullDemographic, file = paste0("fulldemographic",city,".csv"), row.names = FALSE)
