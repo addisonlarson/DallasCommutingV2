@@ -1,3 +1,8 @@
+# A couple of notes.
+# The rbind may be a problem.
+# Individual data pulls are correct.
+# Still doesn't look good. May call for another loop to manage repetition
+
 rm(list=ls())
 pack <- function(pkg){
   newpkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
@@ -95,8 +100,8 @@ for (i in 1){
                      state = stateList,
                      county = countyList,
                      geometry = FALSE)
-  popData <- rbind(testDf, popData)
-  testDf <- NULL
+  # popData <- rbind(testDf, popData)
+  # testDf <- NULL
   
   # MISSING POPULATION DENSITY. EASY TO PULL LAND AREA FROM ANYWHERE?
   
@@ -107,8 +112,8 @@ for (i in 1){
                         county = countyList,
                         geometry = FALSE)
   incomeData$loginc <- log(incomeData$estimate)
-  incomeData <- rbind(testDf, incomeData)
-  testDf <- NULL
+  # incomeData <- rbind(testDf, incomeData)
+  # testDf <- NULL
   incomeData <- incomeData[c(1,6)]
   
   # Percentage residents in different FPL categories
@@ -117,29 +122,29 @@ for (i in 1){
                          state = stateList,
                          county = countyList,
                          geometry = FALSE)
-  povUniverse <- rbind(testDf, povUniverse)
-  testDf <- NULL
+  # povUniverse <- rbind(testDf, povUniverse)
+  # testDf <- NULL
   pov100 <- get_acs(geography = "tract",
                     variables = "B08122_002E", # obs below 100% FPL
                     state = stateList,
                     county = countyList,
                     geometry = FALSE)
-  pov100 <- rbind(testDf, pov100)
-  testDf <- NULL
+  # pov100 <- rbind(testDf, pov100)
+  # testDf <- NULL
   pov149 <- get_acs(geography = "tract",
                     variables = "B08122_003E", # obs 100-149% FPL
                     state = stateList,
                     county = countyList,
                     geometry = FALSE)
-  pov149 <- rbind(testDf, pov149)
-  testDf <- NULL
+  # pov149 <- rbind(testDf, pov149)
+  # testDf <- NULL
   pov150 <- get_acs(geography = "tract",
                     variables = "B08122_004E", # obs 150%+ FPL
                     state = stateList,
                     county = countyList,
                     geometry = FALSE)
-  pov150 <- rbind(testDf, pov150)
-  testDf <- NULL
+  # pov150 <- rbind(testDf, pov150)
+  # testDf <- NULL
   colnames(povUniverse)[4] <- "universe" # there has to be a better way to merge across datasets...
   colnames(pov100)[4] <- "p100"
   colnames(pov149)[4] <- "p149"
@@ -160,89 +165,90 @@ for (i in 1){
   
   # Should add race and ethnicity, plurality
   # Consider white black Hispanic and Asian
-  racUniverse <- get_acs(geography = "tract",
-                         variables = "B02001_001E", # total obs
-                         state = stateList,
-                         county = countyList,
-                         geometry = FALSE)
-  racUniverse <- rbind(testDf, racUniverse)
+  # racUniverse <- get_acs(geography = "tract",
+  #                        variables = "B02001_001E", # total obs
+  #                        state = stateList,
+  #                        county = countyList,
+  #                        geometry = FALSE)
+  # # racUniverse <- rbind(testDf, racUniverse)
+  # # testDf <- NULL
+  # racWhite <- get_acs(geography = "tract",
+  #                     variables = "B02001_002E", # white obs
+  #                     state = stateList,
+  #                     county = countyList,
+  #                     geometry = FALSE)
+  # # racWhite <- rbind(testDf, racWhite)
+  # # testDf <- NULL
+  # racBlack <- get_acs(geography = "tract",
+  #                     variables = "B02001_003E", # Black obs
+  #                     state = stateList,
+  #                     county = countyList,
+  #                     geometry = FALSE)
+  # # racBlack <- rbind(testDf, racBlack)
+  # # testDf <- NULL
+  # racAsian <- get_acs(geography = "tract",
+  #                     variables = "B02001_005E", # Asian obs
+  #                     state = stateList,
+  #                     county = countyList,
+  #                     geometry = FALSE)
+  # # racAsian <- rbind(testDf, racAsian)
+  # # testDf <- NULL
+  # hispUniverse <- get_acs(geography = "tract",
+  #                         variables = "B03001_001E", # total obs
+  #                         state = stateList,
+  #                         county = countyList,
+  #                         geometry = FALSE)
+  # # hispUniverse <- rbind(testDf, hispUniverse)
+  # # testDf <- NULL
+  # hisp <- get_acs(geography = "tract",
+  #                 variables = "B03001_003E", # Hispanic/Latino obs
+  #                 state = stateList,
+  #                 county = countyList,
+  #                 geometry = FALSE)
+  # # hisp <- rbind(testDf, hisp)
+  # # testDf <- NULL
+  # colnames(racUniverse)[4] <- "universe"
+  # colnames(racWhite)[4] <- "white"
+  # colnames(racBlack)[4] <- "black"
+  # colnames(racAsian)[4] <- "asian"
+  # colnames(hispUniverse)[4] <- "universe"
+  # colnames(hisp)[4] <- "hisp"
+  # colnames(hispUniverse)[4] <- "hispuniverse"
+  # raceData <- merge(racUniverse, racWhite, by = "GEOID")
+  # raceData <- raceData[c(1,4,8)]
+  # raceData <- merge(raceData, racBlack, by = "GEOID")
+  # raceData <- raceData[c(1:3,6)]
+  # raceData <- merge(raceData, racAsian, by = "GEOID")
+  # raceData <- raceData[c(1:4,7)]
+  # raceData <- merge(raceData, hispUniverse, by = "GEOID")
+  # raceData <- raceData[c(1:5,8)]
+  # raceData <- merge(raceData, hisp, by = "GEOID")
+  # raceData <- raceData[c(1:6,9)]
+  # 
+  # raceData$pctWht <- raceData$white / raceData$universe
+  # raceData$pctBlk <- raceData$black / raceData$universe
+  # raceData$pctAsn <- raceData$asian / raceData$universe
+  # raceData$pctHisp <- raceData$hisp / raceData$hispuniverse
+  # 
+  # raceData$pluWht <- NA
+  # raceData$pluWht <- ifelse(raceData$pctWht > raceData$pctBlk &
+  #                             raceData$pctWht > raceData$pctAsn &
+  #                             raceData$pctWht > raceData$pctHisp,
+  #                           1, 0)
+  # raceData$pluBlk <- ifelse(raceData$pctBlk > raceData$pctWht &
+  #                             raceData$pctBlk > raceData$pctAsn &
+  #                             raceData$pctBlk > raceData$pctHisp,
+  #                           1, 0)
+  # raceData$pluAsn <- ifelse(raceData$pctAsn > raceData$pctBlk &
+  #                             raceData$pctAsn > raceData$pctWht &
+  #                             raceData$pctAsn > raceData$pctHisp,
+  #                           1, 0)
+  # raceData$pluHisp <- ifelse(raceData$pctHisp > raceData$pctBlk &
+  #                              raceData$pctHisp > raceData$pctAsn &
+  #                              raceData$pctHisp > raceData$pctWht,
+  #                            1, 0)
+  # raceData <- raceData[complete.cases(raceData),]
   testDf <- NULL
-  racWhite <- get_acs(geography = "tract",
-                      variables = "B02001_002E", # white obs
-                      state = stateList,
-                      county = countyList,
-                      geometry = FALSE)
-  racWhite <- rbind(testDf, racWhite)
-  testDf <- NULL
-  racBlack <- get_acs(geography = "tract",
-                      variables = "B02001_003E", # Black obs
-                      state = stateList,
-                      county = countyList,
-                      geometry = FALSE)
-  racBlack <- rbind(testDf, racBlack)
-  testDf <- NULL
-  racAsian <- get_acs(geography = "tract",
-                      variables = "B02001_005E", # Asian obs
-                      state = stateList,
-                      county = countyList,
-                      geometry = FALSE)
-  racAsian <- rbind(testDf, racAsian)
-  testDf <- NULL
-  hispUniverse <- get_acs(geography = "tract",
-                          variables = "B03001_001E", # total obs
-                          state = stateList,
-                          county = countyList,
-                          geometry = FALSE)
-  hispUniverse <- rbind(testDf, hispUniverse)
-  testDf <- NULL
-  hisp <- get_acs(geography = "tract",
-                  variables = "B03001_003E", # Hispanic/Latino obs
-                  state = stateList,
-                  county = countyList,
-                  geometry = FALSE)
-  hisp <- rbind(testDf, hisp)
-  testDf <- NULL
-  colnames(racUniverse)[4] <- "universe"
-  colnames(racWhite)[4] <- "white"
-  colnames(racBlack)[4] <- "black"
-  colnames(racAsian)[4] <- "asian"
-  colnames(hispUniverse)[4] <- "universe"
-  colnames(hisp)[4] <- "hisp"
-  colnames(hispUniverse)[4] <- "hispuniverse"
-  raceData <- merge(racUniverse, racWhite, by = "GEOID")
-  raceData <- raceData[c(1,4,8)]
-  raceData <- merge(raceData, racBlack, by = "GEOID")
-  raceData <- raceData[c(1:3,6)]
-  raceData <- merge(raceData, racAsian, by = "GEOID")
-  raceData <- raceData[c(1:4,7)]
-  raceData <- merge(raceData, hispUniverse, by = "GEOID")
-  raceData <- raceData[c(1:5,8)]
-  raceData <- merge(raceData, hisp, by = "GEOID")
-  raceData <- raceData[c(1:6,9)]
-  
-  raceData$pctWht <- raceData$white / raceData$universe
-  raceData$pctBlk <- raceData$black / raceData$universe
-  raceData$pctAsn <- raceData$asian / raceData$universe
-  raceData$pctHisp <- raceData$hisp / raceData$hispuniverse
-  
-  raceData$pluWht <- NA
-  raceData$pluWht <- ifelse(raceData$pctWht > raceData$pctBlk &
-                              raceData$pctWht > raceData$pctAsn &
-                              raceData$pctWht > raceData$pctHisp,
-                            1, 0)
-  raceData$pluBlk <- ifelse(raceData$pctBlk > raceData$pctWht &
-                              raceData$pctBlk > raceData$pctAsn &
-                              raceData$pctBlk > raceData$pctHisp,
-                            1, 0)
-  raceData$pluAsn <- ifelse(raceData$pctAsn > raceData$pctBlk &
-                              raceData$pctAsn > raceData$pctWht &
-                              raceData$pctAsn > raceData$pctHisp,
-                            1, 0)
-  raceData$pluHisp <- ifelse(raceData$pctHisp > raceData$pctBlk &
-                               raceData$pctHisp > raceData$pctAsn &
-                               raceData$pctHisp > raceData$pctWht,
-                             1, 0)
-  raceData <- raceData[complete.cases(raceData),]
   
   # Median Rent
   medRent <- get_acs(geography = "tract",
@@ -250,8 +256,8 @@ for (i in 1){
                      state = stateList,
                      county = countyList,
                      geometry = FALSE)
-  medRent <- rbind(testDf, medRent)
-  testDf <- NULL
+  # medRent <- rbind(testDf, medRent)
+  # testDf <- NULL
   medRent <- medRent[c(1,4)]
   medRent[medRent == 0] <- NA; medRent <- na.omit(medRent)
   
@@ -271,8 +277,8 @@ for (i in 1){
                       state = stateList,
                       county = countyList,
                       geometry = FALSE)
-  medValue <- rbind(testDf, medValue)
-  testDf <- NULL
+  # medValue <- rbind(testDf, medValue)
+  # testDf <- NULL
   medValue <- medValue[c(1,4)]
   medValue[medValue == 0] <- NA; medValue <- na.omit(medValue)
   medValue$logHousVal <- log(medValue$estimate)
@@ -286,8 +292,8 @@ for (i in 1){
                        state = stateList,
                        county = countyList,
                        geometry = FALSE)
-  medianAge <- rbind(testDf, medianAge)
-  testDf <- NULL
+  # medianAge <- rbind(testDf, medianAge)
+  # testDf <- NULL
   medianAge$estimate <- 2018 - medianAge$estimate
   medianAge <- medianAge[c(1,4)]
   colnames(medianAge)[2] <- "medAge"
@@ -299,15 +305,15 @@ for (i in 1){
                             state = stateList,
                             county = countyList,
                             geometry = FALSE)
-  tenureUniverse <- rbind(testDf, tenureUniverse)
-  testDf <- NULL
+  # tenureUniverse <- rbind(testDf, tenureUniverse)
+  # testDf <- NULL
   tenureOwn <- get_acs(geography = "tract",
                        variables = "B25003_002E",
                        state = stateList,
                        county = countyList,
                        geometry = FALSE)
-  tenureOwn <- rbind(testDf, tenureOwn)
-  testDf <- NULL
+  # tenureOwn <- rbind(testDf, tenureOwn)
+  # testDf <- NULL
   colnames(tenureUniverse)[4] <- "universe"
   colnames(tenureOwn)[4] <- "own"
   tenureData <- merge(tenureUniverse, tenureOwn, by = "GEOID")
@@ -317,13 +323,13 @@ for (i in 1){
   
   # popData, povData, raceData, incomeData, tenureData, housSize, medianHousAge, medValue, medRent
   fullDemographic <- merge(popData, povData, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, raceData, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, incomeData, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, tenureData, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, housSize, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, medianAge, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, medValue, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, medRent, by = "GEOID", all = TRUE)
+  # fullDemographic <- merge(fullDemographic, raceData, by = "GEOID", all = TRUE)
+  # fullDemographic <- merge(fullDemographic, incomeData, by = "GEOID", all = TRUE)
+  # fullDemographic <- merge(fullDemographic, tenureData, by = "GEOID", all = TRUE)
+  # fullDemographic <- merge(fullDemographic, housSize, by = "GEOID", all = TRUE)
+  # fullDemographic <- merge(fullDemographic, medianAge, by = "GEOID", all = TRUE)
+  # fullDemographic <- merge(fullDemographic, medValue, by = "GEOID", all = TRUE)
+  # fullDemographic <- merge(fullDemographic, medRent, by = "GEOID", all = TRUE)
   
   # write.csv(fullDemographic, file = paste0("fulldemographic",city,".csv"), row.names = FALSE)
   write.csv(fullDemographic, file = paste0("d",myCity,".csv"), row.names = FALSE)
