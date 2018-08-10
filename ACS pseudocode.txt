@@ -1,0 +1,34 @@
+the general idea
+
+load packages
+setwd
+load crosswalks
+load MSA names
+subset county crosswalk based on MSA name
+merge county crosswalk with state crosswalk
+extract county FIPS as numeric
+create final county subset containing city, stateFP, countyFP
+
+split county subset into a list; each item corresponds to a city
+
+BEGIN OUTER LOOP
+
+iterate through each list item
+extract city, state, and county
+put this into a data frame called stCty
+
+create empty lists (no. lists = no. ACS variables)
+
+BEGIN INNER LOOP
+
+iterate through each row of stCty, since state-county FIPS are pairwise
+extract each output and create a corresponding list item, ie, a 11-county MSA will have 11 list items
+
+END INNER LOOP
+
+do.call / rbind to collapse lists into large data frames
+again, no. lists/data frames = no. ACS variables
+merge and clean each data frame according to old ACS script
+export each file into a fresh directory
+
+END OUTER LOOP
