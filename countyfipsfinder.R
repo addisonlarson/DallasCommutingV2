@@ -14,12 +14,12 @@ statexwalk <- read.csv("ssa_fips_state_county2017.csv")
 mynames <- c("ALBANY-SCHENECTADY-TROY, NY",
              "ASHEVILLE, NC",
              "ATLANTA, GA",
-             "ATLANTIC-CAPE MAY, NJ",
+             # "ATLANTIC-CAPE MAY, NJ", # problem city?
              "AUGUSTA-AIKEN, GA-SC",
              "BALTIMORE, MD",
-             "BIRMINGHAM, AL",
+             # "BIRMINGHAM, AL", # problem city?
              "BOSTON-WORCESTER-LAWRENCE-LOWELL-BROCKTON, MA",
-             "BUFFALO-NIAGARA FALLS, NY",
+             # "BUFFALO-NIAGARA FALLS, NY", # problem city?
              "CHARLOTTE-GASTONIA-ROCK HILL, NC-SC",
              "CLEVELAND-LORAIN-ELYRIA, OH",
              "COLUMBUS, OH",
@@ -83,8 +83,9 @@ countyList$city <- as.factor(as.character(countyList$city))
 listOfCities <- split(countyList, countyList$city)
 
 setwd("D:/AP LARSON/DallasCommutingV2/censusData")
-for (i in 1:length(listOfCities)){
-  myItem <- meep[[i]]
+for (i in 7:11){
+# for (i in 1:length(listOfCities)){
+  myItem <- listOfCities[[i]]
   myCity <- myItem$city[[i]]
   stateList <- myItem$st
   countyList <- myItem$cty
