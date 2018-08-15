@@ -11,15 +11,18 @@ setwd("D:/AP LARSON/DallasCommutingV2")
 xwalk <- read.csv("cbsatocountycrosswalk.csv")
 statexwalk <- read.csv("ssa_fips_state_county2017.csv")
 
-mynames <- c("ALBANY-SCHENECTADY-TROY, NY",
-             "ASHEVILLE, NC",
-             "ATLANTA, GA",
-             # "ATLANTIC-CAPE MAY, NJ", # problem city?
-             "AUGUSTA-AIKEN, GA-SC",
-             "BALTIMORE, MD",
-             # "BIRMINGHAM, AL", # problem city?
-             "BOSTON-WORCESTER-LAWRENCE-LOWELL-BROCKTON, MA",
-             # "BUFFALO-NIAGARA FALLS, NY", # problem city?
+# There are no "problem cities,"
+# but my internet provider doesn't like the volume of queries
+
+mynames <- c(#"ALBANY-SCHENECTADY-TROY, NY",
+             # "ASHEVILLE, NC",
+             # "ATLANTA, GA",
+             # "ATLANTIC-CAPE MAY, NJ",
+             # "AUGUSTA-AIKEN, GA-SC",
+             # "BALTIMORE, MD",
+             # "BIRMINGHAM, AL",
+             # "BOSTON-WORCESTER-LAWRENCE-LOWELL-BROCKTON, MA",
+             "BUFFALO-NIAGARA FALLS, NY",
              "CHARLOTTE-GASTONIA-ROCK HILL, NC-SC",
              "CLEVELAND-LORAIN-ELYRIA, OH",
              "COLUMBUS, OH",
@@ -83,8 +86,8 @@ countyList$city <- as.factor(as.character(countyList$city))
 listOfCities <- split(countyList, countyList$city)
 
 setwd("D:/AP LARSON/DallasCommutingV2/censusData")
-for (i in 7:11){
-# for (i in 1:length(listOfCities)){
+# for (i in 1){
+for (i in 1:length(listOfCities)){
   myItem <- listOfCities[[i]]
   myCity <- myItem$city[[i]]
   stateList <- myItem$st
