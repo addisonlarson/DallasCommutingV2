@@ -1,0 +1,657 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0061)http://www.nber.org/data/ssa-fips-state-county-crosswalk.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>CMS' SSA to FIPS State and County Crosswalk</title>
+
+<script async="" src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/analytics.js.download"></script><script type="text/javascript">
+        var djConfig = {
+            parseOnLoad: true,
+            isDebug: false
+        };
+</script>
+<script type="text/javascript" src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/dojo.js.download"></script>
+<link rel="stylesheet" href="./CMS&#39; SSA to FIPS State and County Crosswalk_files/tundra.css">
+<link rel="stylesheet" href="./CMS&#39; SSA to FIPS State and County Crosswalk_files/2009.css" type="text/css">
+<link rel="image_src" href="http://www.nber.org/img_2009/NBER_logo_2014.jpg"><!--formatted-->
+<script language="JavaScript" type="text/javascript" src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/top.js.download"></script>
+<!--style applied-->
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+ga('create', 'UA-28569388-1', 'auto');  // Replace with your property ID.
+// the following was interpolated by NBER::Style.pm
+
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+<style>
+body.waiting {
+  cursor: wait !important;
+}
+</style>
+
+</head>
+<body>
+<div id="printTopDiv">NATIONAL BUREAU OF ECONOMIC RESEARCH</div>
+<div id="topDiv"><a href="http://www.nber.org/" title="Return to Home Page">
+<img border="0" src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/main_top.jpg" height="95" width="997" alt="NATIONAL BUREAU OF ECONOMIC RESEARCH">
+</a></div>
+    
+<div id="currentDate">Thursday, August 9, 2018</div>
+
+<div id="homeLink">
+<a href="http://www.nber.org/" title="return to home">HOME PAGE</a></div>
+
+<div id="searchBoxDiv">
+
+<div id="loginTopDiv"><a href="https://www.nber.org/login.pl?post_login_url=http://www.nber.org/data/ssa-fips-state-county-crosswalk.html">log in</a>&nbsp;&nbsp;</div>
+
+<form action="http://www.nber.org/xsearch" name="siteSearchForm" id="searchBoxForm" method="GET" onsubmit="if ( verifySearchForm() ) {
+ document.body.classList.add(&#39;waiting&#39;);
+ return true;
+} else {
+ return false;
+};" style="vertical-align:top">
+
+<input type="text" name="q" id="mainSearchBoxId" class="yellowInput" value="Search the NBER site" onclick="if (this.value == &#39;Search the NBER site&#39;) 
+                  {this.value =&#39;&#39;; this.style.textAlign = &#39;left&#39;}" onkeypress="if (this.value.length &gt; 1) {
+ this.oninput();
+}" oninput="var themenu = document.getElementById(&#39;whichsearch&#39;);
+         themenu.size=4;
+         if (themenu.value == &#39;&#39;) {
+            document.getElementById(&#39;ws-ftpub&#39;).selected=true;
+         }
+" onpaste="this.oninput();" onchange="this.oninput();" style="vertical-align:top">
+
+<select id="whichsearch" name="whichsearch" style="font-family: Tahoma, Calibri, Verdana, Helvetica, Arial, sans-serif;font-size: 13px; " onchange="searchMenuClick();">
+<option id="ws-default" selected="" value="">Select one
+</option>
+<option id="ws-ftpub" value="ftpub" onclick="searchMenuClick();">
+Research</option>
+
+<option id="ws-dbauth" value="dbauth" onclick="searchMenuClick();">
+Researchers</option>
+
+<option id="ws-ftsite" value="ftsite" onclick="searchMenuClick();">
+Institutional</option>
+</select>
+
+</form>
+
+</div><!-- end searchBoxDiv -->
+
+
+<div id="mainNewsDiv">
+<table border="0" cellspacing="0" cellpadding="0" id="mainTable"><tbody><tr>
+   <td id="mainContentTd" valign="top" style="padding-bottom: 10px;">
+<h1 class="title">CMS' SSA to FIPS State and County Crosswalk</h1>
+
+<meta name="description" content="SSA to FIPS State and County Crosswalk">
+<meta name="keywords" lang="en-us" content="ssa county,fips county" ,"fips="" state","ssa="" state","crosswalk""="">
+
+
+<p> 
+CMS periodically produces SSA to FIPS state and county crosswalk files.
+Some CMS data files have SSA state and county codes or county name rather than FIPS state and county codes.
+The data files below are processed to be easier for SAS and Stata use.
+</p>
+<!--
+ResDAC offers a simple list of
+<a href="http://www.resdac.org/sites/resdac.org/files/STATE_TB.txt">SSA state codes and names</A>.
+-->
+<p>
+The Medicare Advantage (MA) 
+<a href="http://www.nber.org/data/medicare-advantage-ratebooks.html">Ratebook</a> also contains SSA and FIPS county codes.
+</p><p>
+</p><p><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/errata.txt">Updates and changes</a>.</p>
+<br>
+<table border="" cols="4" width="100%" nosave="">
+<!--
+<tr>
+<td colspan="6"><b><center>FY 2013  SSA and FIPS State and County Crosswalk</center></b></td>
+</tr>
+<tr>
+-->
+<tbody><tr><td><b><center>Fiscal Year or Date</center></b></td>
+
+<td><b><center>Source</center></b></td>
+<td><b><center>Stata</center></b></td>
+<td><b><center>SAS</center></b></td>
+<td><b><center>CSV</center></b></td>
+<td><b><center>Desc</center></b></td>
+</tr>
+
+<tr>
+<td><b><center>2017</center></b></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2017/ssa_fips_state_county2017.zip"><center><b>xls</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2017/ssa_fips_state_county2017.dta"><center><b>dta</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2017/ssa_fips_state_county2017.sas7bdat"><center><b>sas7bdat</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2017/ssa_fips_state_county2017.csv"><center><b>csv</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2017/desc/ssa_fips_state_county2017/"><center><b>desc</b></center></a></td>
+</tr>
+<tr>
+<td><b><center>2016</center></b></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2016/ssa_fips_state_county2016.zip"><center><b>xls</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2016/ssa_fips_state_county2016.dta"><center><b>dta</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2016/ssa_fips_state_county2016.sas7bdat"><center><b>sas7bdat</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2016/ssa_fips_state_county2016.csv"><center><b>csv</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2016/desc/ssa_fips_state_county2016/"><center><b>desc</b></center></a></td>
+</tr>
+<tr>
+<td><b><center>2015</center></b></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2015/ssa_fips_state_county2015.zip"><center><b>xls</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2015/ssa_fips_state_county2015.dta"><center><b>dta</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2015/ssa_fips_state_county2015.sas7bdat"><center><b>sas7bdat</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2015/ssa_fips_state_county2015.csv"><center><b>csv</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2015/desc/ssa_fips_state_county2015/"><center><b>desc</b></center></a></td>
+</tr>
+<tr>
+<td><b><center>2014</center></b></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2014/ssa_fips_state_county2014.zip"><center><b>xls</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2014/ssa_fips_state_county2014.dta"><center><b>dta</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2014/ssa_fips_state_county2014.sas7bdat"><center><b>sas7bdat</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2014/ssa_fips_state_county2014.csv"><center><b>csv</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2014/desc/ssa_fips_state_county2014/"><center><b>desc</b></center></a></td>
+</tr>
+<tr>
+<td><b><center>2013</center></b></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2013/ssa_fips_state_county2013.zip"><center><b>xls</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2013/ssa_fips_state_county2013.dta"><center><b>dta</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2013/ssa_fips_state_county2013.sas7bdat"><center><b>sas7bdat</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2013/ssa_fips_state_county2013.csv"><center><b>csv</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2013/desc/ssa_fips_state_county2013/"><center><b>desc</b></center></a></td>
+</tr>
+<tr>
+<td><b><center>2012</center></b></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2012/ssa_fips_state_county2012.zip"><center><b>xls</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2012/ssa_fips_state_county2012.dta"><center><b>dta</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2012/ssa_fips_state_county2012.sas7bdat"><center><b>sas7bdat</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2012/ssa_fips_state_county2012.csv"><center><b>csv</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2012/desc/ssa_fips_state_county2012/"><center><b>desc</b></center></a></td>
+</tr>
+<tr>
+<td><b><center>2011</center></b></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2011/ssa_fips_state_county2011.zip"><center><b>xls</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2011/ssa_fips_state_county2011.dta"><center><b>dta</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2011/ssa_fips_state_county2011.sas7bdat"><center><b>sas7bdat</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2011/ssa_fips_state_county2011.csv"><center><b>csv</b></center></a></td>
+<td><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/2011/desc/ssa_fips_state_county2011/"><center><b>desc</b></center></a></td>
+</tr>
+<tr>
+<td colspan="6"><center>CMS did not produce  SSA to FIPS state and county crosswalk files between the 2003-08-19 and 2011.</center> </td>
+</tr>
+<tr>
+<td><b><center>2003-08-19</center></b></td>
+<td rowspan="1" colspan="1"><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/msabea.zip"><center><b>zip</b></center></a></td>
+<td rowspan="1" colspan="1"><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/msabea.dta"><center><b>dta</b></center></a></td>
+<td rowspan="1" colspan="1"><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/msabea.sas7bdat"><center><b>sas7bdat</b></center></a></td>
+<td rowspan="1" colspan="1"><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/msabea.csv"><center><b>csv</b></center></a></td>
+<td rowspan="1" colspan="1"><a href="http://www.nber.org/ssa-fips-state-county-crosswalk/desc/msabea/"><center><b>desc</b></center></a></td>
+</tr>
+</tbody></table>
+<br>
+<br>
+In the 2003-08-19 Source crosswalk file, Angoon, Alaska with SSA county code 02030 has a fips county code of 02031.
+This FIPS county code does not seem to exist elsewhere, and it appears that the 
+fips county value should be 02231, so this change has been made to the SAS and Stata files.
+<br>
+<br>
+<br>
+
+<p>To report errors, or if you have comments or suggestions e-mail
+<i><a href="mailto:jroth@nber.org">jroth@nber.org</a></i>
+</p>
+<p>
+</p><table width="100%"> <tbody><tr><td>Last Update:  March 6, 2018  </td>
+<td align="right">Created by Jean Roth September 19, 2012</td></tr> </tbody></table>
+<p></p>
+
+
+<!-- td changed to /td to close the td that is started in top.html
+ by Alex 2016-09 -->
+</td>
+<td style="height: 250px; min-height: 250px">&nbsp;</td>
+</tr></tbody></table>
+
+<div id="leftNav">
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav1_pubs.gif" alt="Publications" onmouseover="this.src=&#39;http://www.nber.org/img_2009/nav1_pubs_active.gif&#39;" onmouseout="this.src=&#39;http://www.nber.org/img_2009/nav1_pubs.gif&#39;" onclick="showNav(1,0)"><br>
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav2_activities.gif" alt="Activities" onmouseover="this.src=&#39;http://www.nber.org/img_2009/nav2_activities_active.gif&#39;" onmouseout="this.src=&#39;http://www.nber.org/img_2009/nav2_activities.gif&#39;" onclick="showNav(2,0)"><br>
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav3_meetings.gif" alt="Meetings" onmouseover="this.src=&#39;http://www.nber.org/img_2009/nav3_meetings_active.gif&#39;" onmouseout="this.src=&#39;http://www.nber.org/img_2009/nav3_meetings.gif&#39;" onclick="showNav(3,0)"><br>
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav8_video.gif" alt="NBER Videos" onmouseover="this.src=&#39;http://www.nber.org/img_2009/nav8_video_active.gif&#39;" onmouseout="this.src=&#39;http://www.nber.org/img_2009/nav8_video.gif&#39;" onclick="showNav(8,0)"><br>
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav9_themes_4.gif" alt="Themes" onmouseover="this.src=&#39;http://www.nber.org/img_2009/nav9_themes_4_active.gif&#39;" onmouseout="this.src=&#39;http://www.nber.org/img_2009/nav9_themes_4.gif&#39;" onclick="showNav(9,0)"><br>
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav4_data.gif" alt="Data" onmouseover="this.src=&#39;http://www.nber.org/img_2009/nav4_data_active.gif&#39;" onmouseout="this.src=&#39;http://www.nber.org/img_2009/nav4_data.gif&#39;" onclick="showNav(4,0)"><br>
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav5_people.gif" alt="People" onmouseover="this.src=&#39;http://www.nber.org/img_2009/nav5_people_active.gif&#39;" onmouseout="this.src=&#39;http://www.nber.org/img_2009/nav5_people.gif&#39;" onclick="showNav(5,0)"><br>
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav6_about.gif" alt="About" onmouseover="this.src=&#39;http://www.nber.org/img_2009/nav6_about_active.gif&#39;" onmouseout="this.src=&#39;http://www.nber.org/img_2009/nav6_about.gif&#39;" onclick="showNav(6,0)"><br>
+
+<!--<img src="http://www.nber.org/img_2009/nav7_support.gif" alt="Support" 
+    onMouseOver="this.src='http://www.nber.org/img_2009/nav7_support_active.gif'" 
+    onMouseOut="this.src='http://www.nber.org/img_2009/nav7_support.gif'" 
+    onClick="showNav(7,0)"><br>-->
+
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav_bottom.gif" alt=""><br>
+<div style="display: none">
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav1_pubs_active.gif" height="1" width="1.5" alt="">
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav2_activities_active.gif" height="1" width="1" alt="">
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav3_meetings_active.gif" height="1" width="1" alt="">
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav8_video_active.gif" height="1" width="1" alt="">
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav9_themes_4_active.gif" height="1" width="1" alt="">
+
+
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav4_data_active.gif" height="1" width="1" alt="">
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav5_people_active.gif" height="1" width="1" alt="">
+<img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/nav6_about_active.gif" height="1" width="1" alt="">
+
+
+
+
+<!--height="1" width="1" alt=""><img src="http://www.nber.org/img_2009/nav7_support_active.gif"-->
+
+
+</div>
+</div>
+<div id="middleSeparator"><img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/middle_sep.jpg" alt=""></div>
+<div id="bottomSectionBackground">
+<div id="bottomSection">
+  <div id="bottomSectionContent"></div>
+<div align="center" id="nberContactInfo">
+National Bureau of Economic Research, 1050 Massachusetts Ave.,
+Cambridge, MA 02138;  <a href="callto:+16178683900">617-868-3900</a>; email: info@nber.org<br><br> <a href="http://www.nber.org/contact/">Contact Us</a>
+</div>
+</div> <!-- bottomSection -->
+</div> <!-- bottomSectionBackground -->
+
+<div id="navDiv1_outer" class="navDivOuter"></div>
+<div id="navDiv1_inner" class="navDivInner">
+<h2 class="withinNav">Working Papers &amp; Publications</h2>
+
+<form action="http://www.nber.org/s/search" name="wpSearchForm" method="GET">
+<div style="background-image:url(&#39;http://www.nber.org/img_2009/wp_washed.gif&#39;); background-repeat:no-repeat; background-position: center right;">
+<h2>&nbsp;<a href="http://www.nber.org/papers.html">Working Papers</a> &nbsp; 
+  <a href="http://www.nber.org/papers.html" style="font-size: 6pt; color: #134656">(MORE SEARCH OPTIONS)</a></h2>
+<div id="wpSearchCaption" style="display:
+                                 none">&nbsp; <span style="font-size:
+                                                           6pt;">
+  AUTHOR OR TITLE SEARCH OF WORKING PAPERS</span></div>
+<input type="hidden" name="restrict_papers" value="yes">
+<input type="hidden" name="whichsearch" value="db">
+<input type="hidden" name="client" value="test3_fe">
+<input type="hidden" name="proxystylesheet" value="test3_fe">
+<input type="hidden" name="site" value="default_collection">
+<input type="hidden" name="entqr" value="0">
+<input type="hidden" name="ud" value="1">
+<input type="hidden" name="output" value="xml_no_dtd">
+<input type="hidden" name="oe" value="UTF-8">
+<input type="hidden" name="ie" value="UTF-8">
+<input type="hidden" name="sort" value="date%3AD%3AL%3Ad1">
+<input type="text" name="q" id="wpSearchBoxId" size="40" style="text-align: left" class="yellowInput" value="Search Author or Title of Working Papers" onclick="if (this.value == &#39;Search Author or Title of Working Papers&#39;) 
+                  {this.value =&#39;&#39;; dojo.byId(&#39;wpSearchCaption&#39;).style.display = &#39;block&#39;}"><br>
+&nbsp; <a href="http://www.nber.org/new.html">This Week's Working Papers</a><br>
+&nbsp; <a href="http://www.nber.org/help/wp/free.html">Check to see if you are eligible for Free Downloads</a><br>
+&nbsp; <a href="http://www.nber.org/wpsubscribe.html">Become a subscriber</a><br>
+</div>
+</form>
+&nbsp;<br>
+<!-- <a href="/wpsubmit/eligibilitytosubmit.html">Submit to WP Series</a><BR><BR>-->
+
+<form action="http://www.nber.org/s/search" name="booksSearchForm" method="GET">
+<div style="padding-left: 140px; background-image:url(&#39;http://www.nber.org/img_2009/books_washed.gif&#39;); background-repeat:no-repeat">
+<h2>&nbsp;Books</h2>
+<div id="booksSearchCaption" style="display: none">&nbsp; <span style="font-size: 6pt;">SEARCH NBER BOOKS</span></div>
+<input type="hidden" name="restrict_books" value="yes">
+<input type="hidden" name="client" value="test3_fe">
+<input type="hidden" name="proxystylesheet" value="test3_fe">
+<input type="hidden" name="site" value="default_collection">
+<input type="hidden" name="entqr" value="0">
+<input type="hidden" name="ud" value="1">
+<input type="hidden" name="output" value="xml_no_dtd">
+<input type="hidden" name="oe" value="UTF-8">
+<input type="hidden" name="ie" value="UTF-8">
+<input type="hidden" name="sort" value="date%3AD%3AL%3Ad1">
+<input type="text" name="q" id="bookSearchBoxId" size="40" style="text-align: left" class="yellowInput" value="Search NBER Books" onclick="if (this.value == &#39;Search NBER Books&#39;) 
+                  {this.value =&#39;&#39;; dojo.byId(&#39;booksSearchCaption&#39;).style.display = &#39;block&#39;}"><br>
+&nbsp; <a href="http://www.nber.org/books.html">Recent Books</a><br>
+&nbsp; <a href="http://www.nber.org/booksbyyear/">Earlier Books (by decade)</a><br>
+&nbsp; <a href="http://www.nber.org/booksbyseries/">Browse books by Series</a><br>
+&nbsp; <a href="http://www.nber.org/books_in_progress/">Chapters from Books In Process</a><br>
+
+<!--<a href="">New Chapters</a><br>-->
+</div>
+</form>
+&nbsp;<br>
+
+<h2>Free Publications</h2>
+<a href="http://www.nber.org/aginghealth/">Bulletin on Aging and Health</a><br>
+<a href="http://www.nber.org/digest/">Digest</a> — Non-technical summaries of 4-8 working papers per month<br>
+<a href="http://www.nber.org/reporter/">Reporter</a> — News about the Bureau and its activities.<br>
+<a href="http://www.nber.org/othersubscribe.html">Become a subscriber</a><br><br><br>
+
+<h2><a href="http://www.nber.org/researchdisclosurepolicy.html">NBER Research Disclosure Policy</a></h2>
+
+
+<div class="bottomRight" onclick="hideNavs(0)">Close</div>
+</div>
+
+<!--<div id="navDiv2_inner" class="navDivInner" style="height: 560px">-->
+<div id="navDiv2_outer" class="navDivOuter" style="height: 630px"></div>
+
+<!--<div id="navDiv2_inner" class="navDivInner" style="height: 440px">-->
+<!--<div id="navDiv2_inner" class="navDivInner" style="height: 500px">-->
+<div id="navDiv2_inner" class="navDivInner" style="height: 580px">
+
+<h2 class="withinNav">Activities</h2>
+<div style="padding-bottom: 10px"><center>NBER activities are organized into
+  <a href="http://www.nber.org/programs/"><b>Programs</b></a> and <a href="http://www.nber.org/workinggroups/">Working Groups.</a></center>  <!--Most NBER research is published in <a href="/papers/">Working Papers</a>.
+
+<span class="smallcaps" style="color: #666666">( bold = NBER Program )</span>-->
+</div>
+<table style="width: 100%"><tbody><tr><td style="padding-left: 10px; padding-right: 10px; width:
+                    45%; min-width:40%">
+<div class="singleHang"><b><a href="http://www.nber.org/programs/ag/">Aging</a></b></div> 
+<div class="singleHang"><b><a href="http://www.nber.org/programs/ap/ap.html">Asset Pricing</a></b></div> 
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/bf/bf.html">Behavioral Finance</a></div>
+<div class="singleHang"><b><a href="http://www.nber.org/programs/ch/ch.html">Children</a></b></div> 
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/ce/ce.html">Chinese Economy</a></div> 
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/cs/cs.html">Cohort Studies</a></div>
+<div class="singleHang"><b><a href="http://www.nber.org/programs/cf/cf.html">Corporate Finance</a></b></div> 
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/cri/cri.html">Economics of Crime</a></div>
+<div class="singleHang"><b><a href="http://www.nber.org/programs/dev/dev.html"> Development Economics </a></b></div> 
+<div class="singleHang"><b><a href="http://www.nber.org/programs/dae/dae.html"> Development of  the American Economy </a></b></div>
+<div class="singleHang"><b><a href="http://www.nber.org/programs/efg/efg.html">Economic Fluctuations and Growth</a></b></div> 
+<div class="singleHang"><b><a href="http://www.nber.org/programs/ed/ed.html">Education</a></b></div> 
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/ent/ent.html">Entrepreneurship</a></div>
+<div class="singleHang"><b><a href="http://www.nber.org/programs/eee/eee.html">Environment and Energy</a></b></div> 
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/fr/fr.html">Financial Risks</a></div>
+<div class="singleHang"><b><a href="http://www.nber.org/programs/hc/hc.html">Health Care</a></b></div> 
+<div class="singleHang"><b><a href="http://www.nber.org/programs/he/he.html">Health Economics</a></b></div>
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/hf/hf.html">Household Finance</a></div>
+</td><td style="padding-left: 10px; width: 50%; min-width: 40%">
+<div class="singleHang"><b><a href="http://www.nber.org/programs/io/io.html">Industrial Organization</a></b></div> 
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/ipe/ipe.html">Innovation Policy</a></div> 
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/ins/ins.html">Insurance</a></div>
+<div class="singleHang"><b><a href="http://www.nber.org/programs/ifm/ifm.html">International Finance and Macroeconomics</a></b></div> 
+<div class="singleHang"><b><a href="http://www.nber.org/programs/iti/iti.html">International Trade and Investment</a></b></div> 
+<div class="singleHang"><b><a href="http://www.nber.org/programs/ls/ls.html">Labor Studies</a></b></div> 
+<div class="singleHang"><b><a href="http://www.nber.org/programs/le/le.html">Law and Economics</a></b></div> 
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/md/md.html">Market Design</a></div>
+<!--<div class="singleHang"><A HREF="/workinggroups/mm/mm.html">Market Microstructure</a></div> commented out on 12/23/2016-->
+<div class="singleHang"><b><a href="http://www.nber.org/programs/me/me.html">Monetary Economics</a></b></div> 
+<!--
+<div class="singleHang"><A HREF="/workinggroups/ens/ens.html">National Security</a></div>
+-->
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/oe/oe.html">Organizational Economics</a></div>
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/per/per.html">Personnel Economics</a></div>
+<div class="singleHang"><b><a href="http://www.nber.org/programs/pol/pol.html">Political Economy</a></b></div> 
+<div class="singleHang"><b><a href="http://www.nber.org/programs/pr/pr.html">Productivity, Innovation, and Entrepreneurship</a></b></div> 
+<div class="singleHang"><b><a href="http://www.nber.org/programs/pe/pe.html">Public
+      Economics</a></b></div>
+<div class="singleHang"><a href="http://www.nber.org/workinggroups/ue/ue.html">Urban Economics</a></div>
+</td></tr></tbody></table>
+<div style="padding-left: 10px;"><h3 style="margin-bottom: 0px">Special Projects:</h3>
+
+
+<div class="singleHang"><a href="http://projects.nber.org/projects/wwl/"><i> The Women Working Longer Project </i></a></div>
+
+<div class="singleHang"><a href="http://www.nber.org/programs/ag/cahr/cahrhome.html"><i>Center for Aging and Health Research <span class="smallcaps">(CAHR)</span></i></a></div> 
+<div class="singleHang"><a href="http://www.nber.org/CEME/"><i>Conference on Econometrics
+      and Mathematical Economics <span class="smallcaps">(CEME)</span></i></a></div>
+<div class="singleHang"><a href="http://www.nber.org/CRIW/"><i>Conference on Research in
+      Income and Wealth <span class="smallcaps">(CRIW)</span></i></a></div>
+<div class="singleHang"><a href="http://projects.nber.org/projects/drc/"><i>Disability Research Center<span class="smallcaps"> (DRC)</span></i></a></div> 
+<div class="singleHang"><a href="http://projects.nber.org/projects/rrc/"><i>Retirement Research Center <span class="smallcaps">(RRC)</span></i></a></div> 
+<div class="singleHang"><a href="http://www.nber.org/workplacewellness"><i>Illinois Workplace Wellness Study </i></a></div>
+<div class="singleHang"><a href="http://www.nber.org/oregon/index.html"><i>The Oregon Health Insurance Experiment</i></a></div>
+
+<div class="singleHang"><a href="http://www.nber.org/~sewp/"><i> Science &amp; Engineering Workforce <span class="smallcaps">(SEWP)</span></i></a></div>
+
+<div class="bottomRight" onclick="hideNavs(0)">Close</div>
+</div>
+
+
+
+
+<div id="navDiv3_outer" class="navDivOuter" style="height: 480px"></div>
+<div id="navDiv3_inner" class="navDivInner" style="height: 420px">
+<h2 class="withinNav">Meetings</h2>
+<center class="withinNav"><font size=".5">(by invitation only)</font></center>
+
+
+<h2>Recent Meetings</h2>
+&nbsp;
+<table>
+
+<tbody><tr><td class="padR10"> July 30</td><td>
+<a href="http://www.nber.org/conferences/2018/JPMs18/summary.html">
+Japan Project</a></td></tr>
+
+<tr><td class="padR10">  July 27</td><td>
+<a href="http://www.nber.org/conferences/2018/TRIO18/summary.html">
+The 27th NBER-TCER-CEPR Conference </a></td></tr>
+
+<tr><td class="padR10">  July 19-20</td><td>
+<a href="http://www.nber.org/conferences/2018/SFIs18/summary.html">
+Advancing the Science of Science Funding Workshop</a></td></tr>
+
+<tr><td class="padR10">  July 14</td><td>
+<a href="http://www.nber.org/conferences/2018/EFGs18/summary.html">
+Economic Fluctuations and Growth Research</a></td></tr>
+
+
+</tbody></table>
+<div align="right" style="padding-top: 12px; color: #5386A6;">
+(<a href="http://www.nber.org/meeting_summaries.html">...More summaries of NBER Meetings...</a>)</div>
+<!--<h2 style="margin-bottom: 0px; margin-top: 12px">-->
+
+<h2>Other Meeting Links</h2>
+
+<a href="http://www.nber.org/summer-institute/">
+NBER Summer Institutes</a><br>
+
+<a href="http://www.nber.org/SI_econometrics_lectures.html">
+Summer Institute Econometric Lectures</a><br>
+
+<a href="http://www.nber.org/macroannualconference/MacroAnnualConference.html">
+NBER Annual Conference on Macroeconomics</a><br>
+
+<a href="http://www.nber.org/2018LTAM/2018ltam.html">
+New Developments in Long-Term Asset Management</a><br>
+
+
+<a href="http://www.nber.org/PublicPolicies/publicpolicies.html">
+Public Policies in Canada and the United States</a><br>
+
+<a href="http://www.nber.org/Entrepreneurship/entrepreneurship.html">
+Entrepreneurship and Economic Growth</a><br>
+
+<br>
+<a href="http://www.nber.org/callforpapers/callpapers.html">Calls for Papers</a>
+
+
+
+
+
+
+<div class="bottomRight" onclick="hideNavs(0)">Close</div>
+</div>
+
+
+<div id="navDiv8_outer" class="navDivOuter" style="height: 260px"></div>
+<div id="navDiv8_inner" class="navDivInner" style="height: 200px">
+<h2 class="withinNav">NBER Videos</h2>
+
+
+<a href="http://www.nber.org/SI_econometrics_lectures.html">Summer Institute Methods Lectures</a><br>
+<a href="http://www.nber.org/feldstein_lectures.html">Martin Feldstein Lectures</a><br>
+<a href="http://www.nber.org/video_archives.html">Other NBER Videos</a><br>
+
+<div class="bottomRight" onclick="hideNavs(0)">Close</div>
+</div></div>
+
+
+
+<div id="navDiv9_outer" class="navDivOuter" style="height: 320px"></div>
+<div id="navDiv9_inner" class="navDivInner" style="height: 260px">
+<h2 class="withinNav">Themes in NBER Research</h2>
+
+<a href="http://www.nber.org/themes/africa/africansuccesses.shtml">Africa</a><br>
+<a href="http://www.nber.org/themes/charterschools/charterschoolssummary.shtml">Charter Schools</a><br>
+<a href="http://www.nber.org/themes/childhood/childhoodsummary.shtml">Childhood Interventions</a><br>
+<a href="http://www.nber.org/themes/china2015/chinasummary.shtml">China's Economy</a><br>
+<a href="http://www.nber.org/themes/commodity/commoditysummary.shtml">Commodity Prices</a><br>
+<a href="http://www.nber.org/themes/brexit/brexitsummary.shtml">Developments in the European Economy</a><br>
+<a href="http://www.nber.org/themes/energy/energysummary.shtml">Energy</a><br>
+<a href="http://www.nber.org/themes/entrepreneurship/entrepreneurship.shtml">Entrepreneurship</a><br>
+<a href="http://www.nber.org/themes/immigration/immigrationsummary.shtml">Immigration and Innovation</a><br>
+<a href="http://www.nber.org/themes/inequality/inequalitysummary.shtml">Inequality</a><br>
+<a href="http://www.nber.org/themes/capitalflows/capitalflowssummary.shtml">International Capital Flows</a><br>
+<a href="http://www.nber.org/themes/productivity_growth/productivityandgrowth.shtml">Productivity and Growth</a><br>
+<a href="http://www.nber.org/themes/taxpolicy/taxpolicysummary.shtml">Taxation</a><br>
+<div class="bottomRight" onclick="hideNavs(0)">Close</div>
+</div>
+
+
+
+
+
+<div id="navDiv4_outer" class="navDivOuter" style="height: 280px"></div>
+<div id="navDiv4_inner" class="navDivInner" style="height: 220px">
+<h2 class="withinNav">Data</h2>
+
+<div style="background-image:url(&#39;http://www.nber.org/img_2009/data_washed.gif&#39;); background-repeat:no-repeat; background-position: top right;">
+<div class="singleHang"><a href="http://www.nber.org/brdc/">Boston Census Research Data Center <span class="smallcaps">(BRDC)</span></a></div>
+<a href="http://www.nber.org/data/">Public Use Data Archive</a>&nbsp;<br><br>
+<!--<a href="/data/">&nbsp;Data Created by NBER Researchers </a>&nbsp;<br><BR>-->
+
+<h2>Frequently Requested:</h2>
+<a href="http://www.nber.org/cycles/main.html">Business Cycle Memos, FAQ, Members</a><br>
+<a href="http://www.nber.org/cycles/cyclesmain.html">Business Cycle Dates</a><br>
+<a href="http://www.nber.org/cps/">Current Population Survey</a><br>
+<a href="http://www.nber.org/erp/ERP-2017.pdf"> Economic Report of the President</a><br>
+<a href="http://www.nber.org/releases/">New Economic Releases</a><br>
+<a href="http://www.nber.org/data/#demographic">Vital Statistics</a><br>
+</div>
+
+
+
+		
+<!--<img src="http://www.nber.org/images/pencil_arrow.png"><A HREF="prefs/releases">Register here to receive free
+e-mail notification of new economic releases</A>-->
+<div class="bottomRight" onclick="hideNavs(0)">Close</div>
+</div></div>
+
+
+
+
+<div id="navDiv5_outer" class="navDivOuter" style="height: 400px"></div>
+<div id="navDiv5_inner" class="navDivInner" style="height: 340px">
+<h2 class="withinNav">People</h2>
+<table><tbody><tr><td><!--<img src="http://www.nber.org/img_2009/poterba_pic.jpg" alt="" align="left">-->
+</td><td><h2><a href="http://www.nber.org/poterba.html">James Poterba</a>, president</h2><br>
+James Poterba is President of the National Bureau of Economic Research.
+He is also the Mitsui Professor of Economics at M.I.T. 
+</td></tr></tbody></table>
+<table width="100%"><tbody><tr><td>
+<h2>NBER Researchers</h2>
+<a href="http://www.nber.org/programs/program_members.html">Researchers by NBER Program</a><br>
+<!-- <a href="">Researchers with Recent Working Papers</a><br> -->
+<a href="http://www.nber.org/vitae.html">Complete List of NBER Researchers</a><br>
+</td><td>
+<form action="http://www.nber.org/s/search" name="peopleSearchForm" method="GET">
+<div id="peopleSearchCaption" style="display: none">&nbsp; <span style="font-size: 6pt;">SEARCH NBER RESEARCHERS</span></div>
+<input type="hidden" name="whichsearch" value="dbfam">
+<input type="hidden" name="client" value="default_frontend">
+<input type="hidden" name="proxystylesheet" value="test3_fe">
+<input type="hidden" name="site" value="default_collection">
+<input type="hidden" name="entqr" value="0">
+<input type="hidden" name="ud" value="1">
+<input type="hidden" name="output" value="xml_no_dtd">
+<input type="hidden" name="oe" value="UTF-8">
+<input type="hidden" name="ie" value="UTF-8">
+<input type="text" name="q" id="peopleSearchBoxId" size="20" style="text-align: left" class="yellowInput" value="Search NBER researchers" onclick="if (this.value == &#39;Search NBER researchers&#39;) 
+                  {this.value =&#39;&#39;; dojo.byId(&#39;peopleSearchCaption&#39;).style.display = &#39;block&#39;}"></form>
+
+<!-- <input class="yellowInput" type="text" value="Search NBER researchers"> -->
+</td></tr></tbody></table>
+<table><tbody><tr><td width="80"><img src="./CMS&#39; SSA to FIPS State and County Crosswalk_files/people_sil.gif" alt="image of people"></td><td>
+<h2>Other People Links</h2>
+<a href="http://www.nber.org/staff.html">Staff</a><br>
+<a href="http://www.nber.org/board.html">Board of Directors</a><br>
+</td></tr></tbody></table>
+<div class="bottomRight" onclick="hideNavs(0)">Close</div>
+</div>
+
+<!-- height outer was 377px, inner was was 317px, increased by Alex 2011-06-27 -->
+
+<div id="navDiv6_outer" class="navDivOuter" style="height: 395px"></div>
+<div id="navDiv6_inner" class="navDivInner" style="height: 335px;
+       background-image: url(&#39;/images/lobby_new.jpg&#39;);
+       background-repeat: no-repeat;
+       background-position: 0px 40px;
+">
+<h2 class="withinNav">About</h2>
+<div style="padding-left: 220px; position: relative; top: -10px">
+<p><a href="http://www.nber.org/info.html">About Us</a><br>
+<a href="http://www.nber.org/contact/">Contact Information</a><br>
+<a href="http://www.nber.org/nberhistory/">Historical Archives</a></p>
+<p><a href="http://www.nber.org/programs/">Research Programs</a><br>
+<a href="http://www.nber.org/workinggroups/">Working Groups</a><br>
+<a href="http://www.nber.org/researchdisclosurepolicy.html">Research Disclosure Policy</a><br>
+<a href="http://www.nber.org/jobs/index.html">Employment and Fellowships</a><br>
+<!-- <a href="/fellowships/">Fellowships</a><br> -->
+<a href="http://www.nber.org/siteguide.html">Sitemap</a><br>
+<a href="http://www.nber.org/links/">Links to other Resources</a><br>
+<a href="http://www.nber.org/s/search/">Search</a><br>
+<a href="http://www.nber.org/privacy.html">Privacy Policy</a></p>
+<p>Map/Directions:<br>
+<a href="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=NBER&amp;sll=42.373764,-71.105211&amp;sspn=0.00531,0.013175&amp;ie=UTF8&amp;ll=42.374937,-71.111112&amp;spn=0.010621,0.02635&amp;z=15" title="Directions to NBER" target="_new">1050 Massachusetts Ave., Cambridge, MA 02138</a></p>
+<p>ph: <a href="callto:+16178683900" title="dial the NBER">617-868-3900</a><br>
+email: <a href="mailto:info@nber.org" title="email the NBER">info@nber.org</a></p>
+
+<div class="bottomRight" onclick="hideNavs(0)">Close</div>
+</div>
+
+
+
+
+
+<div id="navDiv7_outer" class="navDivOuter" style="height: 260px"></div>
+<div id="navDiv7_inner" class="navDivInner" style="height: 200px">
+<h2 class="withinNav"></h2>
+
+<h2></h2>
+<!-- The research activities of the NBER are funded by grants from federal research agencies, by private foundations, and by generous donations from our corporate associates and from private individuals.  The NBER is a non-profit, 501(c)(3) organization.  For information on supporting the NBER, please contact:<br><br>
+
+Mr. Denis Healy, Director of Development<br>
+NBER<br>
+1050 Massachusetts Avenue<br>
+Cambridge, MA 02138-5398<br>
+<p>ph: <a href="callto:+16178683900" title="dial the NBER">617-868-3900</a><br>
+email: <a href="mailto:dhealy@nber.org" title="Denis Healy">dhealy@nber.org</a></p>-->
+<br><br><br><br>
+<div class="bottomRight" onclick="hideNavs(0)">Close</div>
+
+</div>
+
+</div> <!-- closes mainNewsDiv -->
+
+<!-- dollar "video_footer" insert when Style.pm supports -->
+
+
+
+</body></html>
