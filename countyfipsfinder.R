@@ -10,62 +10,10 @@ pack(packages)
 setwd("D:/AP LARSON/DallasCommutingV2")
 xwalk <- read.csv("cbsatocountycrosswalk.csv")
 statexwalk <- read.csv("ssa_fips_state_county2017.csv")
+qualifyingMSAs <- read.csv("qualifyingMSAs.csv")
 
-# There are no "problem cities,"
-# but my internet provider doesn't like the volume of queries
-
-mynames <- c(#"ALBANY-SCHENECTADY-TROY, NY",
-             # "ASHEVILLE, NC",
-             # "ATLANTA, GA",
-             # "ATLANTIC-CAPE MAY, NJ",
-             # "AUGUSTA-AIKEN, GA-SC",
-             # "BALTIMORE, MD",
-             # "BIRMINGHAM, AL",
-             # "BOSTON-WORCESTER-LAWRENCE-LOWELL-BROCKTON, MA",
-             "BUFFALO-NIAGARA FALLS, NY",
-             "CHARLOTTE-GASTONIA-ROCK HILL, NC-SC",
-             "CLEVELAND-LORAIN-ELYRIA, OH",
-             "COLUMBUS, OH",
-             "DALLAS, TX",
-             "DENVER, CO",
-             "DULUTH-SUPERIOR, MN-WI",
-             "ERIE, PA",
-             "FRESNO, CA",
-             "HARTFORD, CT",
-             "INDIANAPOLIS, IN",
-             "JACKSONVILLE, FL",
-             "KANSAS CITY, MO-KS",
-             "KNOXVILLE, TN",
-             "LOS ANGELES-LONG BEACH, CA",
-             "LYNCHBURG, VA",
-             "MADISON, WI",
-             "MIAMI, FL",
-             "MINNEAPOLIS-ST. PAUL, MN-WI",
-             "MOBILE, AL",
-             "MONTGOMERY, AL",
-             "NEW HAVEN-BRIDGEPORT-STAMFORD-WATERBURY-DANBU",
-             "NEW ORLEANS, LA",
-             "NEW YORK-NEWARK, NY-NJ-PA",
-             "NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC",
-             "PHILADELPHIA, PA-NJ",
-             "PITTSBURGH, PA",
-             "PORTLAND-VANCOUVER,OR-WA",
-             "RICHMOND-PETERSBURG, VA",
-             "ROANOKE, VA",
-             "SACRAMENTO, CA",
-             "SAN DIEGO, CA",
-             "SAN FRANCISCO, CA",
-             "SEATTLE-BELLEVUE-EVERETT, WA",
-             "SPOKANE, WA",
-             "SPRINGFIELD, IL",
-             "SPRINGFIELD, MA",
-             "SPRINGFIELD, MO",
-             "ST. LOUIS, MO-IL",
-             "SYRACUSE, NY",
-             "TAMPA-ST. PETERSBURG-CLEARWATER, FL",
-             "TRENTON, NJ",
-             "WICHITA, KS"
-)
+mynames <- unique(qualifyingMSAs$x)
+mynames <- as.character(mynames)
 
 countyList <- subset(xwalk, msaname %in% mynames)
 countyList$newfips <- as.numeric(as.character(countyList$fipscounty))
@@ -83,287 +31,84 @@ colnames(countyList) <- c("city", "st", "cty")
 # This helps you get rid of factors that were once in the data frame
 countyList$city <- as.factor(as.character(countyList$city))
 
-listOfCities <- split(countyList, countyList$city)
+# Instead of running separate queries for each MSA, run in a clump and split later
+# listOfCities <- split(countyList, countyList$city)
 
-setwd("D:/AP LARSON/DallasCommutingV2/censusData")
-# for (i in 1){
+setwd("D/AP LARSON/DallasCommutingV2/censusData")
+
+# https://stackoverflow.com/questions/45109241/r-tidycensus-download-all-block-groups
+# "tidycensus can't yet handle multi-state and multi-county calls simultaneously"
+
+collect <- get_acs(geography = "tract",
+                   state = unique(countyList$st),
+                   geometry = FALSE,
+                   output = "wide",
+                   variables = c(popData = "B01001_001E",
+                                 incomeData = "B06011_001E",
+                                 povUniverse = "B08122_001E",
+                                 pov100 = "B08122_002E",
+                                 pov149 = "B08122_003E",
+                                 pov150 = "B08122_004E",
+                                 racUniverse = "B02001_001E",
+                                 racWhite = "B02001_002E",
+                                 racBlack = "B02001_003E",
+                                 racAsian = "B02001_005E",
+                                 hispUniverse = "B03001_001E",
+                                 hisp = "B03001_003E",
+                                 medRent = "B25064_001E",
+                                 # someday incl. hh size here,
+                                 medValue = "B25077_001E",
+                                 medAge = "B25035_001E",
+                                 tenureUniverse = "B25003_001E",
+                                 tenureOwn = "B25003_002E"))
+
+# Clean up fields
+collect <- collect[, -( grep("\\M$" , colnames(collect),perl = TRUE))]
+# Get state/county info so we can split df by MSA
+collect$st <- substr(collect$GEOID, 1, 2)
+collect$cty <- substr(collect$GEOID, 3, 5)
+collect$st <- as.numeric(collect$st); collect$cty <- as.numeric(collect$cty)
+
+fullCensus <- merge(collect, countyList, by = c("st", "cty"))
+# Some calculations can be done in full data frame
+fullCensus$logInc <- log(fullCensus$incomeData)
+fullCensus$thouInc <- fullCensus$incomeData / 1000
+fullCensus$pct100 <- fullCensus$pov100 / fullCensus$povUniverse * 100
+fullCensus$pct149 <- fullCensus$pov100 / fullCensus$povUniverse * 100
+fullCensus$pct150 <- fullCensus$pov100 / fullCensus$povUniverse * 100
+fullCensus$pctWht <- fullCensus$racWhite / fullCensus$racUniverse * 100
+fullCensus$pctBlk <- fullCensus$racBlack / fullCensus$racUniverse * 100
+fullCensus$pctAsn <- fullCensus$racAsian / fullCensus$racUniverse * 100
+fullCensus$pctHisp <- fullCensus$hisp / fullCensus$hispUniverse * 100
+fullCensus$pluWht <- NA
+fullCensus$pluWht <- ifelse(fullCensus$pctWht > fullCensus$pctBlk &
+                               fullCensus$pctWht > fullCensus$pctAsn &
+                               fullCensus$pctWht > fullCensus$pctHisp,
+                             1, 0)
+fullCensus$pluBlk <- ifelse(fullCensus$pctBlk > fullCensus$pctWht &
+                               fullCensus$pctBlk > fullCensus$pctAsn &
+                               fullCensus$pctBlk > fullCensus$pctHisp,
+                             1, 0)
+fullCensus$pluAsn <- ifelse(fullCensus$pctAsn > fullCensus$pctBlk &
+                               fullCensus$pctAsn > fullCensus$pctWht &
+                               fullCensus$pctAsn > fullCensus$pctHisp,
+                             1, 0)
+fullCensus$pluHisp <- ifelse(fullCensus$pctHisp > fullCensus$pctBlk &
+                                fullCensus$pctHisp > fullCensus$pctAsn &
+                                fullCensus$pctHisp > fullCensus$pctWht,
+                              1, 0)
+fullCensus$logMedRent <- log(fullCensus$medRent)
+fullCensus$hunMedRent <- fullCensus$medRent / 100
+fullCensus$logHousVal <- log(fullCensus$medValue)
+fullCensus$thouHousVal <- fullCensus$medValue / 1000
+fullCensus$medAge <- 2018 - fullCensus$medAge
+fullCensus$pctOwn <- fullCensus$tenureOwn / fullCensus$tenureUniverse * 100
+# Remove rows where population is 0
+fullCensus <- fullCensus[apply(fullCensus[c(5)], 1, function(i) ! any(i == 0)),]
+
+listOfCities <- split(fullCensus, fullCensus$city)
 for (i in 1:length(listOfCities)){
   myItem <- listOfCities[[i]]
   myCity <- myItem$city[[i]]
-  stateList <- myItem$st
-  countyList <- myItem$cty
-  stCty <- as.data.frame(cbind(stateList, countyList))
-  
-  popDataL <- list()
-  incomeDataL <- list()
-  povUniverseL <- list()
-  pov100L <- list()
-  pov149L <- list()
-  pov150L <- list()
-  racUniverseL <- list()
-  racWhiteL <- list()
-  racBlackL <- list()
-  racAsianL <- list()
-  hispUniverseL <- list()
-  hispL <- list()
-  medRentL <- list()
-  medValueL <- list()
-  medAgeL <- list()
-  tenureUniverseL <- list()
-  tenureOwnL <- list()
-  
-  for (j in 1:length(stCty$stateList)){
-    popData <- get_acs(geography = "tract",
-                       variables = "B01001_001E",
-                       state = stCty$stateList[[j]],
-                       county = stCty$countyList[[j]],
-                       geometry = FALSE)
-    popDataL[[j]] <- popData
-    
-    # MISSING POPULATION DENSITY. EASY TO PULL LAND AREA FROM ANYWHERE?
-    
-    # Log median income
-    incomeData <- get_acs(geography = "tract",
-                          variables = "B06011_001E",
-                          state = stCty$stateList[[j]],
-                          county = stCty$countyList[[j]],
-                          geometry = FALSE)
-    incomeDataL[[j]] <- incomeData
-    
-    # Percentage residents in different FPL categories
-    povUniverse <- get_acs(geography = "tract",
-                           variables = "B08122_001E", # total obs
-                           state = stCty$stateList[[j]],
-                           county = stCty$countyList[[j]],
-                           geometry = FALSE)
-    povUniverseL[[j]] <- povUniverse
-    
-    pov100 <- get_acs(geography = "tract",
-                      variables = "B08122_002E", # obs below 100% FPL
-                      state = stCty$stateList[[j]],
-                      county = stCty$countyList[[j]],
-                      geometry = FALSE)
-    pov100L[[j]] <- pov100
-    
-    pov149 <- get_acs(geography = "tract",
-                      variables = "B08122_003E", # obs 100-149% FPL
-                      state = stCty$stateList[[j]],
-                      county = stCty$countyList[[j]],
-                      geometry = FALSE)
-    pov149L[[j]] <- pov149
-    
-    pov150 <- get_acs(geography = "tract",
-                      variables = "B08122_004E", # obs 150%+ FPL
-                      state = stCty$stateList[[j]],
-                      county = stCty$countyList[[j]],
-                      geometry = FALSE)
-    pov150L[[j]] <- pov150
-    
-    # Should add race and ethnicity, plurality
-    # Consider white black Hispanic and Asian
-    racUniverse <- get_acs(geography = "tract",
-                           variables = "B02001_001E", # total obs
-                           state = stCty$stateList[[j]],
-                           county = stCty$countyList[[j]],
-                           geometry = FALSE)
-    racUniverseL[[j]] <- racUniverse
-    
-    racWhite <- get_acs(geography = "tract",
-                        variables = "B02001_002E", # white obs
-                        state = stCty$stateList[[j]],
-                        county = stCty$countyList[[j]],
-                        geometry = FALSE)
-    racWhiteL[[j]] <- racWhite
-    
-    racBlack <- get_acs(geography = "tract",
-                        variables = "B02001_003E", # Black obs
-                        state = stCty$stateList[[j]],
-                        county = stCty$countyList[[j]],
-                        geometry = FALSE)
-    racBlackL[[j]] <- racBlack
-    
-    racAsian <- get_acs(geography = "tract",
-                        variables = "B02001_005E", # Asian obs
-                        state = stCty$stateList[[j]],
-                        county = stCty$countyList[[j]],
-                        geometry = FALSE)
-    racAsianL[[j]] <- racAsian
-    
-    hispUniverse <- get_acs(geography = "tract",
-                            variables = "B03001_001E", # total obs
-                            state = stCty$stateList[[j]],
-                            county = stCty$countyList[[j]],
-                            geometry = FALSE)
-    hispUniverseL[[j]] <- hispUniverse
-    
-    hisp <- get_acs(geography = "tract",
-                    variables = "B03001_003E", # Hispanic/Latino obs
-                    state = stCty$stateList[[j]],
-                    county = stCty$countyList[[j]],
-                    geometry = FALSE)
-    hispL[[j]] <- hisp
-    
-    # Median Rent
-    medRent <- get_acs(geography = "tract",
-                       variables = "B25064_001E",
-                       state = stCty$stateList[[j]],
-                       county = stCty$countyList[[j]],
-                       geometry = FALSE)
-    medRentL[[j]] <- medRent
-    
-    # Household size has to be a control variable
-    # Not easily available through ACS API so I'm downloading
-    # housSize <- read.csv("ACS_16_5YR_S1101_with_ann.csv")
-    # head(housSize)
-    # housSize <- housSize[c(2,4)]
-    # colnames(housSize) <- c("GEOID", "meanHHsz")
-    # head(housSize)
-    # housSize <- housSize[complete.cases(housSize),]
-    # housSize <- subset(housSize, GEOID %in% popData$GEOID)
-    
-    # Housing values
-    medValue <- get_acs(geography = "tract",
-                        variables = "B25077_001E",
-                        state = stCty$stateList[[j]],
-                        county = stCty$countyList[[j]],
-                        geometry = FALSE)
-    medValueL[[j]] <- medValue
-    
-    # Median year structure built
-    medAge <- get_acs(geography = "tract",
-                      variables = "B25035_001E",
-                      state = stCty$stateList[[j]],
-                      county = stCty$countyList[[j]],
-                      geometry = FALSE)
-    medAgeL[[j]] <- medAge
-    
-    # Tenure
-    tenureUniverse <- get_acs(geography = "tract",
-                              variables = "B25003_001E",
-                              state = stCty$stateList[[j]],
-                              county = stCty$countyList[[j]],
-                              geometry = FALSE)
-    tenureUniverseL[[j]] <- tenureUniverse
-    
-    tenureOwn <- get_acs(geography = "tract",
-                         variables = "B25003_002E",
-                         state = stCty$stateList[[j]],
-                         county = stCty$countyList[[j]],
-                         geometry = FALSE)
-    tenureOwnL[[j]] <- tenureOwn
-    
-  }
-  popDataL <- do.call(rbind, popDataL)
-  
-  incomeDataL <- do.call(rbind, incomeDataL)
-  incomeDataL$loginc <- log(incomeDataL$estimate)
-  incomeDataL <- incomeDataL[c(1,6)]
-  
-  povUniverseL <- do.call(rbind, povUniverseL)
-  pov100L <- do.call(rbind, pov100L)
-  pov149L <- do.call(rbind, pov149L)
-  pov150L <- do.call(rbind, pov150L)
-  colnames(povUniverseL)[4] <- "universe"
-  colnames(pov100L)[4] <- "p100"
-  colnames(pov149L)[4] <- "p149"
-  colnames(pov150L)[4] <- "p150"
-  povDataL <- merge(povUniverseL, pov100L, by = "GEOID")
-  povDataL <- povDataL[c(1,4,8)]
-  povDataL <- merge(povDataL, pov149L, by = "GEOID")
-  povDataL <- povDataL[c(1:3,6)]
-  povDataL <- merge(povDataL, pov150L, by = "GEOID")
-  povDataL <- povDataL[c(1:4,7)]
-  povDataL[povDataL == 0] <- NA; povDataL <- na.omit(povDataL)
-  # Percent in each bracket
-  povDataL$pct100 <- povDataL$p100 / povDataL$universe * 100
-  povDataL$pct149 <- povDataL$p149 / povDataL$universe * 100
-  povDataL$pct150 <- povDataL$p150 / povDataL$universe * 100
-  povDataL <- povDataL[c(1,6:8)]
-  
-  racUniverseL <- do.call(rbind, racUniverseL)
-  racWhiteL <- do.call(rbind, racWhiteL)
-  racBlackL <- do.call(rbind, racBlackL)
-  racAsianL <- do.call(rbind, racAsianL)
-  hispUniverseL <- do.call(rbind, hispUniverseL)
-  hispL <- do.call(rbind, hispL)
-  colnames(racUniverseL)[4] <- "universe"
-  colnames(racWhiteL)[4] <- "white"
-  colnames(racBlackL)[4] <- "black"
-  colnames(racAsianL)[4] <- "asian"
-  colnames(hispUniverseL)[4] <- "universe"
-  colnames(hispL)[4] <- "hisp"
-  colnames(hispUniverseL)[4] <- "hispuniverse"
-  raceDataL <- merge(racUniverseL, racWhiteL, by = "GEOID")
-  raceDataL <- raceDataL[c(1,4,8)]
-  raceDataL <- merge(raceDataL, racBlackL, by = "GEOID")
-  raceDataL <- raceDataL[c(1:3,6)]
-  raceDataL <- merge(raceDataL, racAsianL, by = "GEOID")
-  raceDataL <- raceDataL[c(1:4,7)]
-  raceDataL <- merge(raceDataL, hispUniverseL, by = "GEOID")
-  raceDataL <- raceDataL[c(1:5,8)]
-  raceDataL <- merge(raceDataL, hispL, by = "GEOID")
-  raceDataL <- raceDataL[c(1:6,9)]
-  
-  raceDataL$pctWht <- raceDataL$white / raceDataL$universe
-  raceDataL$pctBlk <- raceDataL$black / raceDataL$universe
-  raceDataL$pctAsn <- raceDataL$asian / raceDataL$universe
-  raceDataL$pctHisp <- raceDataL$hisp / raceDataL$hispuniverse
-  
-  raceDataL$pluWht <- NA
-  raceDataL$pluWht <- ifelse(raceDataL$pctWht > raceDataL$pctBlk &
-                               raceDataL$pctWht > raceDataL$pctAsn &
-                               raceDataL$pctWht > raceDataL$pctHisp,
-                             1, 0)
-  raceDataL$pluBlk <- ifelse(raceDataL$pctBlk > raceDataL$pctWht &
-                               raceDataL$pctBlk > raceDataL$pctAsn &
-                               raceDataL$pctBlk > raceDataL$pctHisp,
-                             1, 0)
-  raceDataL$pluAsn <- ifelse(raceDataL$pctAsn > raceDataL$pctBlk &
-                               raceDataL$pctAsn > raceDataL$pctWht &
-                               raceDataL$pctAsn > raceDataL$pctHisp,
-                             1, 0)
-  raceDataL$pluHisp <- ifelse(raceDataL$pctHisp > raceDataL$pctBlk &
-                                raceDataL$pctHisp > raceDataL$pctAsn &
-                                raceDataL$pctHisp > raceDataL$pctWht,
-                              1, 0)
-  raceDataL <- raceDataL[complete.cases(raceDataL),]
-  
-  medRentL <- do.call(rbind, medRentL)
-  medRentL <- medRentL[c(1,4)]
-  colnames(medRentL)[2] <- "medRent"
-  medRentL[medRentL == 0] <- NA; medRentL <- na.omit(medRentL)
-  medRentL$logMedRent <- log(medRentL$medRent)
-  
-  medValueL <- do.call(rbind, medValueL)
-  medValueL <- medValueL[c(1,4)]
-  medValueL[medValueL == 0] <- NA; medValueL <- na.omit(medValueL)
-  medValueL$logHousVal <- log(medValueL$estimate)
-  medValueL$thouHousVal <- medValueL$estimate/1000
-  medValueL <- medValueL[c(1,3,4)]
-  colnames(medValueL) <- c("GEOID", "logHousVal", "thouHousVal")
-  
-  medAgeL <- do.call(rbind, medAgeL)
-  medAgeL$estimate <- 2018 - medAgeL$estimate
-  medAgeL <- medAgeL[c(1,4)]
-  colnames(medAgeL)[2] <- "medAge"
-  medAgeL <- medAgeL[complete.cases(medAgeL),]
-  
-  tenureUniverseL <- do.call(rbind, tenureUniverseL)
-  tenureOwnL <- do.call(rbind, tenureOwnL)
-  colnames(tenureUniverseL)[4] <- "universe"
-  colnames(tenureOwnL)[4] <- "own"
-  tenureDataL <- merge(tenureUniverseL, tenureOwnL, by = "GEOID")
-  tenureDataL <- tenureDataL[c(1,4,8)]
-  tenureDataL$pctOwn <- tenureDataL$own / tenureDataL$universe * 100
-  tenureDataL <- tenureDataL[c(1,4)]
-  
-  fullDemographic <- merge(popDataL, povDataL, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, raceDataL, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, incomeDataL, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, tenureDataL, by = "GEOID", all = TRUE)
-  # fullDemographic <- merge(fullDemographic, housSizeL, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, medAgeL, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, medValueL, by = "GEOID", all = TRUE)
-  fullDemographic <- merge(fullDemographic, medRentL, by = "GEOID", all = TRUE)
-  write.csv(fullDemographic, file = paste0("d",myCity,".csv"), row.names = FALSE)
+  write.csv(listOfCities[[i]], file = paste0("d",myCity,".csv"), row.names = FALSE)
 }
