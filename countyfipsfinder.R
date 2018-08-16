@@ -34,7 +34,7 @@ countyList$city <- as.factor(as.character(countyList$city))
 # Instead of running separate queries for each MSA, run in a clump and split later
 # listOfCities <- split(countyList, countyList$city)
 
-setwd("D/AP LARSON/DallasCommutingV2/censusData")
+setwd("D:/AP LARSON/DallasCommutingV2/censusData")
 
 # https://stackoverflow.com/questions/45109241/r-tidycensus-download-all-block-groups
 # "tidycensus can't yet handle multi-state and multi-county calls simultaneously"
