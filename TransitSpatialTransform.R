@@ -163,11 +163,13 @@ writeOGR(currentShp, ".", "res_BAL_MD", driver = "ESRI Shapefile")
 currentCity <- as.data.frame(transitList[3])
 unique(currentCity[,3]) # 1
 colnames(currentCity) <- c("geoid", "jobs", "st", "cty", "city")
+cb_2017_01_tract_500k$GEOID <- as.numeric(as.character(cb_2017_01_tract_500k$GEOID))
 currentShp <- merge(cb_2017_01_tract_500k,
                     currentCity,
                     by.x = "GEOID",
                     by.y = "geoid")
 currentShp <- sp.na.omit(currentShp)
+currentShp$GEOID <- as.factor(currentShp$GEOID)
 writeOGR(currentShp, ".", "res_BIR_AL", driver = "ESRI Shapefile")
 
 # 4. BOSTON, MA
@@ -264,11 +266,13 @@ writeOGR(currentShp, ".", "res_COL_OH", driver = "ESRI Shapefile")
 currentCity <- as.data.frame(transitList[10])
 unique(currentCity[,3]) # 8
 colnames(currentCity) <- c("geoid", "jobs", "st", "cty", "city")
+cb_2017_08_tract_500k$GEOID <- as.numeric(as.character(cb_2017_08_tract_500k$GEOID))
 currentShp <- merge(cb_2017_08_tract_500k,
                     currentCity,
                     by.x = "GEOID",
                     by.y = "geoid")
 currentShp <- sp.na.omit(currentShp)
+currentShp$GEOID <- as.factor(currentShp$GEOID)
 writeOGR(currentShp, ".", "res_DEN_CO", driver = "ESRI Shapefile")
 
 # 11. HAMILTON, OH
@@ -426,11 +430,13 @@ writeOGR(currentShp, ".", "res_RAL_NC", driver = "ESRI Shapefile")
 currentCity <- as.data.frame(transitList[22])
 unique(currentCity[,3]) # 6
 colnames(currentCity) <- c("geoid", "jobs", "st", "cty", "city")
+cb_2017_06_tract_500k$GEOID <- as.numeric(as.character(cb_2017_06_tract_500k$GEOID))
 currentShp <- merge(cb_2017_06_tract_500k,
                     currentCity,
                     by.x = "GEOID",
                     by.y = "geoid")
 currentShp <- sp.na.omit(currentShp)
+currentShp$GEOID <- as.factor(currentShp$GEOID)
 writeOGR(currentShp, ".", "res_SAC_CA", driver = "ESRI Shapefile")
 
 # 23. SAN DIEGO, CA
@@ -442,6 +448,7 @@ currentShp <- merge(cb_2017_06_tract_500k,
                     by.x = "GEOID",
                     by.y = "geoid")
 currentShp <- sp.na.omit(currentShp)
+currentShp$GEOID <- as.factor(currentShp$GEOID)
 writeOGR(currentShp, ".", "res_SAND_CA", driver = "ESRI Shapefile")
 
 # 24. SAN JOSE, CA
@@ -453,6 +460,7 @@ currentShp <- merge(cb_2017_06_tract_500k,
                     by.x = "GEOID",
                     by.y = "geoid")
 currentShp <- sp.na.omit(currentShp)
+currentShp$GEOID <- as.factor(currentShp$GEOID)
 writeOGR(currentShp, ".", "res_SANJ_CA", driver = "ESRI Shapefile")
 
 # 25. ST. LOUIS, MO
@@ -492,4 +500,5 @@ currentShp <- merge(cb_2017_06_tract_500k,
                     by.x = "GEOID",
                     by.y = "geoid")
 currentShp <- sp.na.omit(currentShp)
+currentShp$GEOID <- as.factor(currentShp$GEOID)
 writeOGR(currentShp, ".", "res_YOL_CA", driver = "ESRI Shapefile")
