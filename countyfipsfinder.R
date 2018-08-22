@@ -38,7 +38,7 @@ setwd("D:/AP LARSON/DallasCommutingV2/censusData")
 
 # https://stackoverflow.com/questions/45109241/r-tidycensus-download-all-block-groups
 # "tidycensus can't yet handle multi-state and multi-county calls simultaneously"
-
+# https://api.census.gov/data/2016/acs/acs5/variables.html
 collect <- get_acs(geography = "tract",
                    state = unique(countyList$st),
                    geometry = FALSE,
@@ -60,7 +60,20 @@ collect <- get_acs(geography = "tract",
                                  medValue = "B25077_001E",
                                  medAge = "B25035_001E",
                                  tenureUniverse = "B25003_001E",
-                                 tenureOwn = "B25003_002E"))
+                                 tenureOwn = "B25003_002E",
+                                 comUniverse = "B08012_001E",
+                                 com4 = "B08012_002E",
+                                 com5 = "B08012_003E",
+                                 com10 = "B08012_004E",
+                                 com15 = "B08012_005E",
+                                 com20 = "B08012_006E",
+                                 com25 = "B08012_007E",
+                                 com30 = "B08012_008E",
+                                 com35 = "B08012_009E",
+                                 com40 = "B08012_010E",
+                                 com45 = "B08012_011E",
+                                 com60 = "B08012_012E",
+                                 com90 = "B08012_013E"))
 
 # Clean up fields
 collect <- collect[, -( grep("\\M$" , colnames(collect), perl = TRUE))]
@@ -82,27 +95,55 @@ fullCensus$pctAsn <- fullCensus$racAsian / fullCensus$racUniverse * 100
 fullCensus$pctHisp <- fullCensus$hisp / fullCensus$hispUniverse * 100
 fullCensus$pluWht <- NA
 fullCensus$pluWht <- ifelse(fullCensus$pctWht > fullCensus$pctBlk &
-                               fullCensus$pctWht > fullCensus$pctAsn &
-                               fullCensus$pctWht > fullCensus$pctHisp,
-                             1, 0)
+                              fullCensus$pctWht > fullCensus$pctAsn &
+                              fullCensus$pctWht > fullCensus$pctHisp,
+                            1, 0)
 fullCensus$pluBlk <- ifelse(fullCensus$pctBlk > fullCensus$pctWht &
-                               fullCensus$pctBlk > fullCensus$pctAsn &
-                               fullCensus$pctBlk > fullCensus$pctHisp,
-                             1, 0)
+                              fullCensus$pctBlk > fullCensus$pctAsn &
+                              fullCensus$pctBlk > fullCensus$pctHisp,
+                            1, 0)
 fullCensus$pluAsn <- ifelse(fullCensus$pctAsn > fullCensus$pctBlk &
-                               fullCensus$pctAsn > fullCensus$pctWht &
-                               fullCensus$pctAsn > fullCensus$pctHisp,
-                             1, 0)
+                              fullCensus$pctAsn > fullCensus$pctWht &
+                              fullCensus$pctAsn > fullCensus$pctHisp,
+                            1, 0)
 fullCensus$pluHisp <- ifelse(fullCensus$pctHisp > fullCensus$pctBlk &
-                                fullCensus$pctHisp > fullCensus$pctAsn &
-                                fullCensus$pctHisp > fullCensus$pctWht,
-                              1, 0)
+                               fullCensus$pctHisp > fullCensus$pctAsn &
+                               fullCensus$pctHisp > fullCensus$pctWht,
+                             1, 0)
 fullCensus$logMedRent <- log(fullCensus$medRent)
 fullCensus$hunMedRent <- fullCensus$medRent / 100
 fullCensus$logHousVal <- log(fullCensus$medValue)
 fullCensus$thouHousVal <- fullCensus$medValue / 1000
 fullCensus$medAge <- 2018 - fullCensus$medAge
 fullCensus$pctOwn <- fullCensus$tenureOwn / fullCensus$tenureUniverse * 100
+
+fullCensus$comBl10 <- (fullCensus$com4 + fullCensus$com5) / fullCensus$comUniverse * 100
+fullCensus$com10 <- (fullCensus$com10 + fullCensus$com15) / fullCensus$comUniverse * 100
+fullCensus$com20 <- (fullCensus$com20 + fullCensus$com25) / fullCensus$comUniverse * 100
+fullCensus$com30 <- (fullCensus$com30 + fullCensus$com35) / fullCensus$comUniverse * 100
+fullCensus$com40 <- (fullCensus$com40 + fullCensus$com45) / fullCensus$comUniverse * 100
+fullCensus$com60 <- (fullCensus$com60 + fullCensus$com90) / fullCensus$comUniverse * 100
+
+# Remove unnecessary columns
+excludeVars <- names(fullCensus) %in% c("povUniverse",
+                                        "racUniverse",
+                                        "racWhite",
+                                        "racBlack",
+                                        "racAsian",
+                                        "hispUniverse",
+                                        "hisp",
+                                        "comUniverse",
+                                        "com4",
+                                        "com5",
+                                        "com15",
+                                        "com25",
+                                        "com35",
+                                        "com45",
+                                        "com90",
+                                        "NAME1",
+                                        "GEOID1")
+fullCensus <- fullCensus[!excludeVars]
+
 # Remove rows where population is 0
 fullCensus <- fullCensus[apply(fullCensus[c(5)], 1, function(i) ! any(i == 0)),]
 
