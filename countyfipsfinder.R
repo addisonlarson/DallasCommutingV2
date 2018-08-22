@@ -63,7 +63,7 @@ collect <- get_acs(geography = "tract",
                                  tenureOwn = "B25003_002E"))
 
 # Clean up fields
-collect <- collect[, -( grep("\\M$" , colnames(collect),perl = TRUE))]
+collect <- collect[, -( grep("\\M$" , colnames(collect), perl = TRUE))]
 # Get state/county info so we can split df by MSA
 collect$st <- substr(collect$GEOID, 1, 2)
 collect$cty <- substr(collect$GEOID, 3, 5)
