@@ -49,3 +49,95 @@ fullData$logPctRent <- log(fullData$pctRent)
 testModel3 <- lm(s000dist ~ logPopDens + pct100 + pluWht + pluBlk + loginc +
                    logPctRent + logHousVal + quantScore.y, data = fullData)
 summary(testModel3) # A winner!
+
+# NEW
+# Read in all shapefiles, collapse into a single data frame, OLS
+rm(list=ls())
+pack <- function(pkg){
+  newpkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(newpkg)) 
+    install.packages(newpkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+packages <- c("foreign", "tidycensus", "tidyverse", "rgdal", "raster")
+pack(packages)
+
+setwd("D:/AP LARSON/DallasCommutingV2/tractShps")
+MSAshps <- as.data.frame(list.files(pattern = "\\.shp$")) # list all shapefiles
+colnames(MSAshps) <- "id"; MSAshps$id <- as.character(MSAshps$id)
+MSAshps <- MSAshps[grepl("res", MSAshps$id),] # keep only the MSA ones
+# Got some to remove. yes it's ugly
+drops <- c("res_BOS_MA1.shp", "res_BOS_MA2.shp", "res_CHA_NC1.shp",
+           "res_CHA_NC2.shp", "res_CIN_OH1.shp", "res_CIN_OH2.shp",
+           "res_CIN_OH3.shp", "res_KAN_MO1.shp", "res_KAN_MO2.shp",
+           "res_LOU_KY1.shp", "res_LOU_KY2.shp", "res_MIN_MN1.shp",
+           "res_MIN_MN2.shp", "res_NOR_VA1.shp", "res_NOR_VA2.shp",
+           "res_POR_OR1.shp", "res_POR_OR2.shp", "res_STL_MO1.shp",
+           "res_STL_MO2.shp") 
+MSAshps <- as.data.frame(MSAshps); colnames(MSAshps) <- "id"
+MSAshps <- subset(MSAshps, !(id %in% drops))
+# Must remove .shp extension from end
+MSAshps <- sub("\\.shp$", "", MSAshps$id) 
+
+readShps <- lapply(MSAshps, shapefile)
+datalist <- list()
+for (i in 1:length(readShps)) {
+  dat <- readShps[[i]]@data
+  datalist[[i]] <- dat
+}
+datalist <- lapply(datalist, function(x) { x["layer"] <- NULL; x })
+datalist <- lapply(datalist, function(x) { x["path"] <- NULL; x })
+allJobs <- do.call(rbind, datalist)
+
+allJobs <- allJobs[c(1,8,10)]
+
+# Read in all Census datasets
+setwd("D:/AP LARSON/DallasCommutingV2/censusData")
+MSAcsvs <- list.files(pattern = "*.csv")
+datalist <- lapply(MSAcsvs, read.csv)
+allCensus <- do.call(rbind, datalist)
+
+# Read in all HOLC data
+setwd("D:/AP LARSON/DallasCommutingV2/housingWeightedScr")
+MSAcsvs <- list.files(pattern = "*.csv")
+datalist <- lapply(MSAcsvs, read.csv)
+allHous <- do.call(rbind, datalist)
+
+fullMerge <- merge(allCensus, allJobs, by = "GEOID")
+fullMerge <- merge(fullMerge, allHous, by = "GEOID")
+
+housOnly <- fullMerge[!is.na(fullMerge$quantScore),] # 395 obs
+
+testModel <- lm(thouHousVal ~ quantScore, data = housOnly)
+summary(testModel)
+
+testModel <- lm(pctOwn ~ quantScore, data = housOnly)
+summary(testModel)
+
+housOnly$thouJobs <- housOnly$jobs / 1000
+testModel <- lm(thouJobs ~ quantScore, data = housOnly)
+summary(testModel)
+
+testModel <- lm(com60 ~ quantScore, data = housOnly)
+summary(testModel)
+
+testModel <- lm(thouInc ~ quantScore, data = housOnly)
+summary(testModel)
+
+testModel <- lm(pct100 ~ quantScore, data = housOnly)
+summary(testModel)
+
+testModel <- lm(pctBlk ~ quantScore, data = housOnly)
+summary(testModel)
+
+testModel <- lm(pctWht ~ quantScore, data = housOnly)
+summary(testModel)
+
+testModel <- lm(pctHisp ~ quantScore, data = housOnly)
+summary(testModel)
+
+testModel <- lm(hunMedRent ~ quantScore, data = housOnly)
+summary(testModel)
+
+testModel <- lm(comBl10 ~ quantScore, data = housOnly)
+summary(testModel)
