@@ -106,38 +106,367 @@ allHous <- do.call(rbind, datalist)
 fullMerge <- merge(allCensus, allJobs, by = "GEOID")
 fullMerge <- merge(fullMerge, allHous, by = "GEOID")
 
-housOnly <- fullMerge[!is.na(fullMerge$quantScore),] # 395 obs
+housOnly <- fullMerge[!is.na(fullMerge$quantScore),] # 393 obs
 
-testModel <- lm(thouHousVal ~ quantScore, data = housOnly)
-summary(testModel)
+# SET UP FOR PANEL WOOT!
+namevector <- as.character(unique(housOnly$city))
+for (i in namevector){
+  housOnly[,namevector] <- NA
+}
+for (i in 1:length(namevector)){
+  housOnly[i + 60] <- ifelse(housOnly$city == namevector[[i]], 1, 0)
+}
 
-testModel <- lm(pctOwn ~ quantScore, data = housOnly)
-summary(testModel)
+# add city boolean as controls
+housingValue <- lm(thouHousVal ~ quantScore +
+                     `BIRMINGHAM, AL` +
+                     `SAN DIEGO, CA` +
+                     `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+                     `ATLANTA, GA` +
+                     `ST. LOUIS, MO-IL` +
+                     `INDIANAPOLIS, IN` +
+                     `KANSAS CITY, MO-KS` +
+                     `LOUISVILLE, KY-IN` +
+                     `NEW ORLEANS, LA` +
+                     `BALTIMORE, MD` +
+                     `MINNEAPOLIS-ST. PAUL, MN-WI` +
+                     `BUFFALO-NIAGARA FALLS, NY` +
+                     `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+                     `COLUMBUS, OH` +
+                     `PORTLAND-VANCOUVER,OR-WA` +
+                     `PITTSBURGH, PA` +
+                     `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC` +
+                     bed0 +
+                     bed1 +
+                     bed2 +
+                     bed3 +
+                     bed4 +
+                     medAge +
+                     completePlumb +
+                     completeKitch, data = housOnly)
+summary(housingValue)
+
+tenure <- lm(pctOwn ~ quantScore +
+               `BIRMINGHAM, AL` +
+               `SAN DIEGO, CA` +
+               `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+               `ATLANTA, GA` +
+               `ST. LOUIS, MO-IL` +
+               `INDIANAPOLIS, IN` +
+               `KANSAS CITY, MO-KS` +
+               `LOUISVILLE, KY-IN` +
+               `NEW ORLEANS, LA` +
+               `BALTIMORE, MD` +
+               `MINNEAPOLIS-ST. PAUL, MN-WI` +
+               `BUFFALO-NIAGARA FALLS, NY` +
+               `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+               `COLUMBUS, OH` +
+               `PORTLAND-VANCOUVER,OR-WA` +
+               `PITTSBURGH, PA` +
+               `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(tenure)
 
 housOnly$thouJobs <- housOnly$jobs / 1000
-testModel <- lm(thouJobs ~ quantScore, data = housOnly)
-summary(testModel)
+jobAccess <- lm(thouJobs ~ quantScore +
+                  `BIRMINGHAM, AL` +
+                  `SAN DIEGO, CA` +
+                  `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+                  `ATLANTA, GA` +
+                  `ST. LOUIS, MO-IL` +
+                  `INDIANAPOLIS, IN` +
+                  `KANSAS CITY, MO-KS` +
+                  `LOUISVILLE, KY-IN` +
+                  `NEW ORLEANS, LA` +
+                  `BALTIMORE, MD` +
+                  `MINNEAPOLIS-ST. PAUL, MN-WI` +
+                  `BUFFALO-NIAGARA FALLS, NY` +
+                  `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+                  `COLUMBUS, OH` +
+                  `PORTLAND-VANCOUVER,OR-WA` +
+                  `PITTSBURGH, PA` +
+                  `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(jobAccess)
 
-testModel <- lm(com60 ~ quantScore, data = housOnly)
-summary(testModel)
+income <- lm(thouInc ~ quantScore +
+               `BIRMINGHAM, AL` +
+               `SAN DIEGO, CA` +
+               `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+               `ATLANTA, GA` +
+               `ST. LOUIS, MO-IL` +
+               `INDIANAPOLIS, IN` +
+               `KANSAS CITY, MO-KS` +
+               `LOUISVILLE, KY-IN` +
+               `NEW ORLEANS, LA` +
+               `BALTIMORE, MD` +
+               `MINNEAPOLIS-ST. PAUL, MN-WI` +
+               `BUFFALO-NIAGARA FALLS, NY` +
+               `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+               `COLUMBUS, OH` +
+               `PORTLAND-VANCOUVER,OR-WA` +
+               `PITTSBURGH, PA` +
+               `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC` +
+               edHighSchool +
+               edBach +
+               edGrad, data = housOnly)
+summary(income)
 
-testModel <- lm(thouInc ~ quantScore, data = housOnly)
-summary(testModel)
+singParent <- lm(singParentHH ~ quantScore +
+                    `BIRMINGHAM, AL` +
+                    `SAN DIEGO, CA` +
+                    `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+                    `ATLANTA, GA` +
+                    `ST. LOUIS, MO-IL` +
+                    `INDIANAPOLIS, IN` +
+                    `KANSAS CITY, MO-KS` +
+                    `LOUISVILLE, KY-IN` +
+                    `NEW ORLEANS, LA` +
+                    `BALTIMORE, MD` +
+                    `MINNEAPOLIS-ST. PAUL, MN-WI` +
+                    `BUFFALO-NIAGARA FALLS, NY` +
+                    `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+                    `COLUMBUS, OH` +
+                    `PORTLAND-VANCOUVER,OR-WA` +
+                    `PITTSBURGH, PA` +
+                    `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(singParent)
 
-testModel <- lm(pct100 ~ quantScore, data = housOnly)
-summary(testModel)
+comBl10 <- lm(comBl10 ~ quantScore +
+                `BIRMINGHAM, AL` +
+                `SAN DIEGO, CA` +
+                `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+                `ATLANTA, GA` +
+                `ST. LOUIS, MO-IL` +
+                `INDIANAPOLIS, IN` +
+                `KANSAS CITY, MO-KS` +
+                `LOUISVILLE, KY-IN` +
+                `NEW ORLEANS, LA` +
+                `BALTIMORE, MD` +
+                `MINNEAPOLIS-ST. PAUL, MN-WI` +
+                `BUFFALO-NIAGARA FALLS, NY` +
+                `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+                `COLUMBUS, OH` +
+                `PORTLAND-VANCOUVER,OR-WA` +
+                `PITTSBURGH, PA` +
+                `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(comBl10)
 
-testModel <- lm(pctBlk ~ quantScore, data = housOnly)
-summary(testModel)
+com10 <- lm(com10 ~ quantScore +
+              `BIRMINGHAM, AL` +
+              `SAN DIEGO, CA` +
+              `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+              `ATLANTA, GA` +
+              `ST. LOUIS, MO-IL` +
+              `INDIANAPOLIS, IN` +
+              `KANSAS CITY, MO-KS` +
+              `LOUISVILLE, KY-IN` +
+              `NEW ORLEANS, LA` +
+              `BALTIMORE, MD` +
+              `MINNEAPOLIS-ST. PAUL, MN-WI` +
+              `BUFFALO-NIAGARA FALLS, NY` +
+              `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+              `COLUMBUS, OH` +
+              `PORTLAND-VANCOUVER,OR-WA` +
+              `PITTSBURGH, PA` +
+              `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(com10)
 
-testModel <- lm(pctWht ~ quantScore, data = housOnly)
-summary(testModel)
+com20 <- lm(com20 ~ quantScore +
+              `BIRMINGHAM, AL` +
+              `SAN DIEGO, CA` +
+              `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+              `ATLANTA, GA` +
+              `ST. LOUIS, MO-IL` +
+              `INDIANAPOLIS, IN` +
+              `KANSAS CITY, MO-KS` +
+              `LOUISVILLE, KY-IN` +
+              `NEW ORLEANS, LA` +
+              `BALTIMORE, MD` +
+              `MINNEAPOLIS-ST. PAUL, MN-WI` +
+              `BUFFALO-NIAGARA FALLS, NY` +
+              `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+              `COLUMBUS, OH` +
+              `PORTLAND-VANCOUVER,OR-WA` +
+              `PITTSBURGH, PA` +
+              `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(com20)
 
-testModel <- lm(pctHisp ~ quantScore, data = housOnly)
-summary(testModel)
+com30 <- lm(com30 ~ quantScore +
+              `BIRMINGHAM, AL` +
+              `SAN DIEGO, CA` +
+              `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+              `ATLANTA, GA` +
+              `ST. LOUIS, MO-IL` +
+              `INDIANAPOLIS, IN` +
+              `KANSAS CITY, MO-KS` +
+              `LOUISVILLE, KY-IN` +
+              `NEW ORLEANS, LA` +
+              `BALTIMORE, MD` +
+              `MINNEAPOLIS-ST. PAUL, MN-WI` +
+              `BUFFALO-NIAGARA FALLS, NY` +
+              `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+              `COLUMBUS, OH` +
+              `PORTLAND-VANCOUVER,OR-WA` +
+              `PITTSBURGH, PA` +
+              `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(com30)
 
-testModel <- lm(hunMedRent ~ quantScore, data = housOnly)
-summary(testModel)
+com40 <- lm(com40 ~ quantScore +
+              `BIRMINGHAM, AL` +
+              `SAN DIEGO, CA` +
+              `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+              `ATLANTA, GA` +
+              `ST. LOUIS, MO-IL` +
+              `INDIANAPOLIS, IN` +
+              `KANSAS CITY, MO-KS` +
+              `LOUISVILLE, KY-IN` +
+              `NEW ORLEANS, LA` +
+              `BALTIMORE, MD` +
+              `MINNEAPOLIS-ST. PAUL, MN-WI` +
+              `BUFFALO-NIAGARA FALLS, NY` +
+              `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+              `COLUMBUS, OH` +
+              `PORTLAND-VANCOUVER,OR-WA` +
+              `PITTSBURGH, PA` +
+              `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(com40)
 
-testModel <- lm(comBl10 ~ quantScore, data = housOnly)
-summary(testModel)
+com60 <- lm(com60 ~ quantScore +
+              `BIRMINGHAM, AL` +
+              `SAN DIEGO, CA` +
+              `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+              `ATLANTA, GA` +
+              `ST. LOUIS, MO-IL` +
+              `INDIANAPOLIS, IN` +
+              `KANSAS CITY, MO-KS` +
+              `LOUISVILLE, KY-IN` +
+              `NEW ORLEANS, LA` +
+              `BALTIMORE, MD` +
+              `MINNEAPOLIS-ST. PAUL, MN-WI` +
+              `BUFFALO-NIAGARA FALLS, NY` +
+              `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+              `COLUMBUS, OH` +
+              `PORTLAND-VANCOUVER,OR-WA` +
+              `PITTSBURGH, PA` +
+              `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(com60)
+
+housOnly$allBl149 <- housOnly$pct100 + housOnly$pct149
+poverty <- lm(allBl149 ~ quantScore +
+                `BIRMINGHAM, AL` +
+                `SAN DIEGO, CA` +
+                `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+                `ATLANTA, GA` +
+                `ST. LOUIS, MO-IL` +
+                `INDIANAPOLIS, IN` +
+                `KANSAS CITY, MO-KS` +
+                `LOUISVILLE, KY-IN` +
+                `NEW ORLEANS, LA` +
+                `BALTIMORE, MD` +
+                `MINNEAPOLIS-ST. PAUL, MN-WI` +
+                `BUFFALO-NIAGARA FALLS, NY` +
+                `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+                `COLUMBUS, OH` +
+                `PORTLAND-VANCOUVER,OR-WA` +
+                `PITTSBURGH, PA` +
+                `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(poverty)
+
+deepPoverty <- lm(pct100 ~ quantScore +
+                    `BIRMINGHAM, AL` +
+                    `SAN DIEGO, CA` +
+                    `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+                    `ATLANTA, GA` +
+                    `ST. LOUIS, MO-IL` +
+                    `INDIANAPOLIS, IN` +
+                    `KANSAS CITY, MO-KS` +
+                    `LOUISVILLE, KY-IN` +
+                    `NEW ORLEANS, LA` +
+                    `BALTIMORE, MD` +
+                    `MINNEAPOLIS-ST. PAUL, MN-WI` +
+                    `BUFFALO-NIAGARA FALLS, NY` +
+                    `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+                    `COLUMBUS, OH` +
+                    `PORTLAND-VANCOUVER,OR-WA` +
+                    `PITTSBURGH, PA` +
+                    `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(deepPoverty)
+
+nWht <- lm(pctWht ~ quantScore +
+             `BIRMINGHAM, AL` +
+             `SAN DIEGO, CA` +
+             `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+             `ATLANTA, GA` +
+             `ST. LOUIS, MO-IL` +
+             `INDIANAPOLIS, IN` +
+             `KANSAS CITY, MO-KS` +
+             `LOUISVILLE, KY-IN` +
+             `NEW ORLEANS, LA` +
+             `BALTIMORE, MD` +
+             `MINNEAPOLIS-ST. PAUL, MN-WI` +
+             `BUFFALO-NIAGARA FALLS, NY` +
+             `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+             `COLUMBUS, OH` +
+             `PORTLAND-VANCOUVER,OR-WA` +
+             `PITTSBURGH, PA` +
+             `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(nWht)
+
+nBlk <- lm(pctBlk ~ quantScore +
+             `BIRMINGHAM, AL` +
+             `SAN DIEGO, CA` +
+             `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+             `ATLANTA, GA` +
+             `ST. LOUIS, MO-IL` +
+             `INDIANAPOLIS, IN` +
+             `KANSAS CITY, MO-KS` +
+             `LOUISVILLE, KY-IN` +
+             `NEW ORLEANS, LA` +
+             `BALTIMORE, MD` +
+             `MINNEAPOLIS-ST. PAUL, MN-WI` +
+             `BUFFALO-NIAGARA FALLS, NY` +
+             `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+             `COLUMBUS, OH` +
+             `PORTLAND-VANCOUVER,OR-WA` +
+             `PITTSBURGH, PA` +
+             `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(nBlk)
+
+nHisp <- lm(pctHisp ~ quantScore +
+              `BIRMINGHAM, AL` +
+              `SAN DIEGO, CA` +
+              `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+              `ATLANTA, GA` +
+              `ST. LOUIS, MO-IL` +
+              `INDIANAPOLIS, IN` +
+              `KANSAS CITY, MO-KS` +
+              `LOUISVILLE, KY-IN` +
+              `NEW ORLEANS, LA` +
+              `BALTIMORE, MD` +
+              `MINNEAPOLIS-ST. PAUL, MN-WI` +
+              `BUFFALO-NIAGARA FALLS, NY` +
+              `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+              `COLUMBUS, OH` +
+              `PORTLAND-VANCOUVER,OR-WA` +
+              `PITTSBURGH, PA` +
+              `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(nHisp)
+
+rentCost <- lm(hunMedRent ~ quantScore +
+                 `BIRMINGHAM, AL` +
+                 `SAN DIEGO, CA` +
+                 `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+                 `ATLANTA, GA` +
+                 `ST. LOUIS, MO-IL` +
+                 `INDIANAPOLIS, IN` +
+                 `KANSAS CITY, MO-KS` +
+                 `LOUISVILLE, KY-IN` +
+                 `NEW ORLEANS, LA` +
+                 `BALTIMORE, MD` +
+                 `MINNEAPOLIS-ST. PAUL, MN-WI` +
+                 `BUFFALO-NIAGARA FALLS, NY` +
+                 `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+                 `COLUMBUS, OH` +
+                 `PORTLAND-VANCOUVER,OR-WA` +
+                 `PITTSBURGH, PA` +
+                 `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+summary(rentCost)
