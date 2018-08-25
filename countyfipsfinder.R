@@ -73,7 +73,35 @@ collect <- get_acs(geography = "tract",
                                  com40 = "B08012_010E",
                                  com45 = "B08012_011E",
                                  com60 = "B08012_012E",
-                                 com90 = "B08012_013E"))
+                                 com90 = "B08012_013E",
+                                 bedUniverse = "B25041_001E",
+                                 bed0 = "B25041_002E",
+                                 bed1 = "B25041_003E",
+                                 bed2 = "B25041_004E",
+                                 bed3 = "B25041_005E",
+                                 bed4 = "B25041_006E",
+                                 bed5 = "B25041_007E",
+                                 plumbUniverse = "B25048_001E",
+                                 completePlumb = "B25048_002E",
+                                 kitchUniverse = "B25051_001E",
+                                 completeKitch = "B25051_002E",
+                                 laborUniverse = "B23025_002E",
+                                 unemployed = "B23025_005E",
+                                 edUniverse = "B15003_001E",
+                                 edHighSchool = "B15003_017E",
+                                 edGED = "B15003_018E",
+                                 edSomeColl = "B15003_019E",
+                                 edSomeColl2 = "B15003_020E",
+                                 edBach = "B15003_022E",
+                                 edMast = "B15003_023E",
+                                 edProf = "B15003_024E",
+                                 edDoc = "B15003_025E",
+                                 carUniverse = "B08201_001E",
+                                 zeroCar = "B08201_002E",
+                                 grapi = "B25071_001E",
+                                 famUniverse = "B11001_001E",
+                                 malHH = "B11001_005E",
+                                 femHH = "B11001_006E"))
 
 # Clean up fields
 collect <- collect[, -( grep("\\M$" , colnames(collect), perl = TRUE))]
@@ -87,8 +115,8 @@ fullCensus <- merge(collect, countyList, by = c("st", "cty"))
 fullCensus$logInc <- log(fullCensus$incomeData)
 fullCensus$thouInc <- fullCensus$incomeData / 1000
 fullCensus$pct100 <- fullCensus$pov100 / fullCensus$povUniverse * 100
-fullCensus$pct149 <- fullCensus$pov100 / fullCensus$povUniverse * 100
-fullCensus$pct150 <- fullCensus$pov100 / fullCensus$povUniverse * 100
+fullCensus$pct149 <- fullCensus$pov149 / fullCensus$povUniverse * 100
+fullCensus$pct150 <- fullCensus$pov150 / fullCensus$povUniverse * 100
 fullCensus$pctWht <- fullCensus$racWhite / fullCensus$racUniverse * 100
 fullCensus$pctBlk <- fullCensus$racBlack / fullCensus$racUniverse * 100
 fullCensus$pctAsn <- fullCensus$racAsian / fullCensus$racUniverse * 100
@@ -124,6 +152,30 @@ fullCensus$com30 <- (fullCensus$com30 + fullCensus$com35) / fullCensus$comUniver
 fullCensus$com40 <- (fullCensus$com40 + fullCensus$com45) / fullCensus$comUniverse * 100
 fullCensus$com60 <- (fullCensus$com60 + fullCensus$com90) / fullCensus$comUniverse * 100
 
+fullCensus$bed0 <- fullCensus$bed0 / fullCensus$bedUniverse * 100
+fullCensus$bed1 <- fullCensus$bed1 / fullCensus$bedUniverse * 100
+fullCensus$bed2 <- fullCensus$bed2 / fullCensus$bedUniverse * 100
+fullCensus$bed3 <- fullCensus$bed3 / fullCensus$bedUniverse * 100
+fullCensus$bed4 <- fullCensus$bed4 / fullCensus$bedUniverse * 100
+fullCensus$bed5 <- fullCensus$bed5 / fullCensus$bedUniverse * 100
+
+fullCensus$completePlumb <- fullCensus$completePlumb / fullCensus$plumbUniverse * 100
+
+fullCensus$completeKitch <- fullCensus$completeKitch / fullCensus$plumbUniverse * 100
+
+fullCensus$pctUnemp <- fullCensus$unemployed / fullCensus$laborUniverse * 100
+
+fullCensus$edHighSchool <- (fullCensus$edHighSchool + fullCensus$edGED) / fullCensus$edUniverse * 100
+fullCensus$edSomeColl <- (fullCensus$edSomeColl + fullCensus$edSomeColl2) / fullCensus$edUniverse * 100
+fullCensus$edBach <- fullCensus$edBach / fullCensus$edUniverse * 100
+fullCensus$edGrad <- (fullCensus$edMast + fullCensus$edProf + fullCensus$edDoc) / fullCensus$edUniverse * 100
+
+fullCensus$zeroCar <- fullCensus$zeroCar / fullCensus$carUniverse * 100
+
+fullCensus$singParentHH <- (fullCensus$malHH + fullCensus$femHH) / fullCensus$famUniverse * 100
+
+fullCensus <- fullCensus[which(fullCensus$popData >= 300), ] # DROP LOW POPULATION TRACTS
+
 # Remove unnecessary columns
 excludeVars <- names(fullCensus) %in% c("povUniverse",
                                         "racUniverse",
@@ -141,7 +193,22 @@ excludeVars <- names(fullCensus) %in% c("povUniverse",
                                         "com45",
                                         "com90",
                                         "NAME1",
-                                        "GEOID1")
+                                        "GEOID1",
+                                        "bedUniverse",
+                                        "plumbUniverse",
+                                        "kitchUniverse",
+                                        "laborUniverse",
+                                        "unemployed",
+                                        "edUniverse",
+                                        "edSomeColl2",
+                                        "edGED",
+                                        "edMast",
+                                        "edProf",
+                                        "edDoc",
+                                        "carUniverse",
+                                        "famUniverse",
+                                        "malHH",
+                                        "femHH")
 fullCensus <- fullCensus[!excludeVars]
 
 # Remove rows where population is 0
