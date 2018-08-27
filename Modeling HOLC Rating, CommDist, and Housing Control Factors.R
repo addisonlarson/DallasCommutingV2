@@ -6,7 +6,7 @@ pack <- function(pkg){
     install.packages(newpkg, dependencies = TRUE)
   sapply(pkg, require, character.only = TRUE)
 }
-packages <- c("foreign", "tidycensus", "tidyverse", "rgdal")
+packages <- c("foreign", "tidycensus", "tidyverse", "rgdal", "car")
 pack(packages)
 
 setwd("D:/AP LARSON/DallasCommutingV2")
@@ -59,7 +59,7 @@ pack <- function(pkg){
     install.packages(newpkg, dependencies = TRUE)
   sapply(pkg, require, character.only = TRUE)
 }
-packages <- c("foreign", "tidycensus", "tidyverse", "rgdal", "raster")
+packages <- c("foreign", "tidycensus", "tidyverse", "rgdal", "raster", "car")
 pack(packages)
 
 setwd("D:/AP LARSON/DallasCommutingV2/tractShps")
@@ -135,7 +135,7 @@ housingValue <- lm(thouHousVal ~ quantScore +
                      `COLUMBUS, OH` +
                      `PORTLAND-VANCOUVER,OR-WA` +
                      `PITTSBURGH, PA` +
-                     `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC` +
+                     # `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC` +
                      bed0 +
                      bed1 +
                      bed2 +
@@ -150,6 +150,7 @@ myCols <- c("quantScore", "thouHousVal", "bed0", "bed1",
             "bed2", "bed3", "bed4", "medAge", "completePlumb", "completeKitch")
 testCase <- housOnly[myCols]
 cor(testCase, method = "pearson", use = "complete.obs")
+vif(housingValue)
 
 tenure <- lm(pctOwn ~ quantScore +
                `BIRMINGHAM, AL` +
@@ -167,9 +168,11 @@ tenure <- lm(pctOwn ~ quantScore +
                `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
                `COLUMBUS, OH` +
                `PORTLAND-VANCOUVER,OR-WA` +
-               `PITTSBURGH, PA` +
-               `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+               `PITTSBURGH, PA`,
+             # `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`,
+             data = housOnly)
 summary(tenure)
+vif(tenure)
 
 housOnly$thouJobs <- housOnly$jobs / 1000
 jobAccess <- lm(thouJobs ~ quantScore +
@@ -210,13 +213,15 @@ income <- lm(thouInc ~ quantScore +
                `PORTLAND-VANCOUVER,OR-WA` +
                `PITTSBURGH, PA` +
                `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC` +
-               edHighSchool +
-               edSomeColl +
-               edBach +
-               edGrad, data = housOnly)
+               edHighSchool, data = housOnly)
 summary(income)
 
-unemp <- lm(thouInc ~ quantScore +
+myCols <- c("quantScore", "thouInc", "edHighSchool",
+            "edSomeColl", "edBach", "edGrad")
+testCase <- housOnly[myCols]
+cor(testCase, method = "pearson", use = "complete.obs")
+
+unemp <- lm(pctUnemp ~ quantScore +
               `BIRMINGHAM, AL` +
               `SAN DIEGO, CA` +
               `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
@@ -234,11 +239,13 @@ unemp <- lm(thouInc ~ quantScore +
               `PORTLAND-VANCOUVER,OR-WA` +
               `PITTSBURGH, PA` +
               `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC` +
-              edHighSchool +
-              edSomeColl +
-              edBach +
-              edGrad, data = housOnly)
+              edHighSchool, data = housOnly)
 print(summary(unemp), digits = 3)
+
+myCols <- c("quantScore", "pctUnemp", "edHighSchool",
+            "edSomeColl", "edBach", "edGrad")
+testCase <- housOnly[myCols]
+cor(testCase, method = "pearson", use = "complete.obs")
 
 zeroCar <- lm(zeroCar ~ quantScore +
                 `BIRMINGHAM, AL` +
@@ -265,23 +272,23 @@ testCase <- housOnly[myCols]
 cor(testCase, method = "pearson", use = "complete.obs")
 
 singParent <- lm(singParentHH ~ quantScore +
-                    `BIRMINGHAM, AL` +
-                    `SAN DIEGO, CA` +
-                    `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
-                    `ATLANTA, GA` +
-                    `ST. LOUIS, MO-IL` +
-                    `INDIANAPOLIS, IN` +
-                    `KANSAS CITY, MO-KS` +
-                    `LOUISVILLE, KY-IN` +
-                    `NEW ORLEANS, LA` +
-                    `BALTIMORE, MD` +
-                    `MINNEAPOLIS-ST. PAUL, MN-WI` +
-                    `BUFFALO-NIAGARA FALLS, NY` +
-                    `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
-                    `COLUMBUS, OH` +
-                    `PORTLAND-VANCOUVER,OR-WA` +
-                    `PITTSBURGH, PA` +
-                    `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+                   `BIRMINGHAM, AL` +
+                   `SAN DIEGO, CA` +
+                   `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+                   `ATLANTA, GA` +
+                   `ST. LOUIS, MO-IL` +
+                   `INDIANAPOLIS, IN` +
+                   `KANSAS CITY, MO-KS` +
+                   `LOUISVILLE, KY-IN` +
+                   `NEW ORLEANS, LA` +
+                   `BALTIMORE, MD` +
+                   `MINNEAPOLIS-ST. PAUL, MN-WI` +
+                   `BUFFALO-NIAGARA FALLS, NY` +
+                   `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+                   `COLUMBUS, OH` +
+                   `PORTLAND-VANCOUVER,OR-WA` +
+                   `PITTSBURGH, PA` +
+                   `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
 summary(singParent)
 
 comBl10 <- lm(comBl10 ~ quantScore +
@@ -527,23 +534,23 @@ summary(rentCost)
 
 grapi <- lm(grapi ~ quantScore +
               hunMedRent +
-                 `BIRMINGHAM, AL` +
-                 `SAN DIEGO, CA` +
-                 `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
-                 `ATLANTA, GA` +
-                 `ST. LOUIS, MO-IL` +
-                 `INDIANAPOLIS, IN` +
-                 `KANSAS CITY, MO-KS` +
-                 `LOUISVILLE, KY-IN` +
-                 `NEW ORLEANS, LA` +
-                 `BALTIMORE, MD` +
-                 `MINNEAPOLIS-ST. PAUL, MN-WI` +
-                 `BUFFALO-NIAGARA FALLS, NY` +
-                 `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
-                 `COLUMBUS, OH` +
-                 `PORTLAND-VANCOUVER,OR-WA` +
-                 `PITTSBURGH, PA` +
-                 `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
+              `BIRMINGHAM, AL` +
+              `SAN DIEGO, CA` +
+              `TAMPA-ST. PETERSBURG-CLEARWATER, FL` +
+              `ATLANTA, GA` +
+              `ST. LOUIS, MO-IL` +
+              `INDIANAPOLIS, IN` +
+              `KANSAS CITY, MO-KS` +
+              `LOUISVILLE, KY-IN` +
+              `NEW ORLEANS, LA` +
+              `BALTIMORE, MD` +
+              `MINNEAPOLIS-ST. PAUL, MN-WI` +
+              `BUFFALO-NIAGARA FALLS, NY` +
+              `CHARLOTTE-GASTONIA-ROCK HILL, NC-SC` +
+              `COLUMBUS, OH` +
+              `PORTLAND-VANCOUVER,OR-WA` +
+              `PITTSBURGH, PA` +
+              `NORFOLK-VIRGINIA BEACH-NEWPORT NEWS, VA-NC`, data = housOnly)
 print(summary(grapi), digits = 3)
 myCols <- c("grapi", "hunMedRent")
 testCase <- housOnly[myCols]
