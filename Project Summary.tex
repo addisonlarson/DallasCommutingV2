@@ -54,13 +54,14 @@
 	\newpage
 }
 \listoftables
+\listoffigures
 \blankpage
 % ----------------------------------
 % START PAPER
 % ----------------------------------
 \section{Introduction}
-Zoning and housing policy have been tools of discrimination. The first zoning ordinances from the early 1900s were explicitly designed for racial exclusion. Housing discrimination has persisted ever since, from the practice of redlining to the subprime lending crisis \cite{rothstein}.\par
-By studying digitized redlining maps from the Home Owners' Loan Corporation (HOLC), data on job accessibility via transit, and Census estimates across 17 U.S. metropolitan areas, this project quantifies the impacts of redlining on today's urban landscape. A one-point decrease in HOLC rating corresponds to the following modern-day effects: 
+Historically, zoning and housing policy have been tools of racial discrimination. The first zoning ordinances from the early 1900s were explicitly designed for racial exclusion. (HOLC goes here.)\cite{rothstein}.\par
+This project quantifies the impacts of redlining on today's urban landscape through an analysis of digitized maps of Home Owners' Loan Corporation (HOLC) redlining, data on job accessibility via transit, and Census data in 17 U.S. metropolitan areas. A one-point decrease in HOLC rating correlates with the following modern-day effects: 
 \begin{enumerate}
 	\item \textbf{\$62,175 decrease} in median home value, controlling for size, age, and facilities;
 	\item \textbf{13.962\% decrease} in homeownership;
@@ -70,9 +71,10 @@ By studying digitized redlining maps from the Home Owners' Loan Corporation (HOL
 	\item \textbf{\$3,107 decrease} in annual household income, controlling for education levels; and
 	\item \textbf{10.659\% increase} in household poverty.
 \end{enumerate}
-Many neighborhoods remain racially segregated as they were during HOLC's operation from the 1930s to the 1950s. \textbf{Today, Black residents are 15.153\% more likely, and white residents 16.806\% less likely, to live in a census tract once downgraded by HOLC.}
+Many neighborhoods remain racially segregated, as they were during HOLC's operation from the 1930s to the 1950s. \textbf{Today, Black residents are 15.153\% more likely, and white residents 16.806\% less likely, to live in a census tract once downgraded by HOLC.}
 
-An absence of racially discriminatory housing policies has \textit{not} translated into equity in terms of accessing education or building wealth. If we take equity seriously, we must emphasize proactive and progressive housing policies. 
+An absence of racially discriminatory housing policies has \textit{not} translated into equity in terms of accessing education or building wealth. In a racially segregated city, everybody loses---\textbf{how?}. The results of this project indicate the need for us, as urban planners and policymakers, to both be conscious of the disparate racial impacts of our work and to actively seek racial equity --- not merely the absence of discrimination --- through the implementation of housing policy.\par
+``Without an explicit focus on policy, it is hard to understand patterns of racial/ethnic segregation and mobility.'' \cite{squires}
 
 \section{Problem Statement and Project Objective}
 This study is based on three premises:
@@ -83,7 +85,7 @@ This study is based on three premises:
 \end{enumerate}
 
 \subsection{Racial Segregation in U.S. Cities}
-\textbf{Cities in the U.S. are racially segregated.} I think it would be useful to calculate indices of dissimilarity for the cities in your study area. Take this time also to explain what the index of dissimilarity means, what the minimum and maximum are, and to cite the authors who came up with it.\par
+\textbf{Cities in the U.S. are racially segregated.} The index of dissimilarity is a common measure of spatial segregation. In this case, it measures the percentage of residents that would have to move in order to attain racial equality throughout the study area. Its value can range from 0 to 1, where 1 indicates complete racial segregation. \cite{duncan} Refer to Table 1: \textit{Indices of Black-White Dissimilarity for 17 U.S. Metro Areas} for a measure of racial segregation in 2016.\par
 
 \begin{table}[h]
 	\caption{Indices of Black-White Dissimilarity for 17 U.S. Metro Areas}
@@ -131,13 +133,17 @@ This study is based on three premises:
 Author's calculations from 2016 ACS 5-Year Estimates, Table B02001.
 \end{table}
 
-\subsection{Housing Policy and Racial Segregation}
-\textbf{Racially discriminatory housing policies have facilitated segregation in cities.} From the 1930s to the 1950s, the Home Owners' Loan Corporation (HOLC) provided Americans the opportunity to purchase homes through mortgage lending. However, this federally-created program was racially discriminatory in its administration. HOLC created color-coded maps of U.S. cities, grading neighborhoods along a four-point scale from \textit{A} to \textit{D}. Applications to purchase homes in green neighborhoods --- ``Class A'' --- were nearly guaranteed approval; applications to purchase homes in red neighborhoods --- ``Class D'' --- were subject to immediate denial. ``Class A'' neighborhoods were all-white neighborhoods; ``Class D'' neighborhoods were all-Black neighborhoods. HOLC lending practices gave birth to the term ``redlining,'' after those neighborhoods downgraded by the agency.\par
+Several scholars have sought to explain segregation in U.S. cities, and three primary explanations have emerged from their work. The first is a theory of ``socioeconomic class'': Black residents are typically poorer than white residents and therefore cannot afford to live in wealthy, majority-white neighborhoods. The second is that of ``prejudice'' or ``voluntary segregation'': residents prefer\footnote{There is evidence against this theory in the context of the dissimilarity index. Between 1970 and 1990, the dissimilarity index fell 17\%, coinciding with the elimination of several racially discriminatory barriers to housing after the Fair Housing Act of 1968. \cite{goering2} If residents preferred to segregrate themselves, the dissimilarity index would not have changed so substantially.} to live among people of the same race. The third explanation is ``discrimination'' or ``involuntary segregation'': institutional structures and practices force residents to live in neighborhoods they might not have chosen otherwise, \textit{ceteris paribus}. Galster's review of empirical evidence for these three theories suggests that ``discrimination'' or ``involuntary segregation'' has the most explanatory power. \cite{goering}
 
-HOLC lending practices were as biased in their effects as in their administration. First, redlining enforced racial segregation in cities, because it encouraged white residents to purchase homes in all-white neighborhoods and prevented Black residents from moving into these neighborhoods. Second, redlining encouraged a divergence in wealth between Black and white residents. White residents received a generous opportunity to build generational wealth. Meanwhile, Black residents were systematically discriminated against in the housing market, forced to pay exorbitant prices for substandard rental housing, and barred from the chance to buy homes and invest in their futures. HOLC redlining is but one example among a legacy of racially discriminatory housing policies.\cite{rothstein}\par
+\subsection{Housing Policy and Racial Segregation}
+\textbf{Racially discriminatory housing policies have facilitated segregation in cities.} From the 1930s to the 1950s, the Home Owners' Loan Corporation (HOLC) provided Americans the opportunity to purchase homes through mortgage lending. However, this federally-created program was racially discriminatory in its administration. HOLC created color-coded maps of U.S. cities, grading neighborhoods along a four-point scale from \textit{A} to \textit{D}. Applications to purchase homes in green neighborhoods --- ``Class A'' --- were nearly guaranteed approval; applications to purchase homes in red neighborhoods --- ``Class D'' --- were subject to immediate denial. ``Class A'' neighborhoods were all-white neighborhoods; ``Class D'' neighborhoods were all-Black neighborhoods. HOLC lending practices gave birth to the term ``redlining,'' after those neighborhoods downgraded by the agency. \cite{rothstein}\par
+
+HOLC lending practices were as biased in their effects as in their administration. First, redlining enforced racial segregation in cities, because it encouraged white residents to purchase homes in all-white neighborhoods and prevented Black residents from moving into these neighborhoods. Second, redlining encouraged a divergence in wealth between Black and white residents. White residents received a generous opportunity to build generational wealth by investing in property. Meanwhile, Black residents were systematically discriminated against in the housing market, forced to pay exorbitant prices for substandard rental housing \cite{orfield}, and barred from the chance to buy homes that often serve as a valuable financial investment. HOLC redlining is but one example among a legacy of racially discriminatory housing policies.\par
 
 \subsection{Home as a Platform for (Dis)Opportunity}
-\textbf{The location of one's home sets the stage for one's future prospects, including access to a quality education; workforce preparedness; and access to jobs for which one is qualified. These factors affect one's ability to earn an income and accumulate wealth over time.} Mention and cite a few examples, including the Geography of Opportunity, job search theory, and Raj Chetty.\par
+\textbf{The location of one's home sets the stage for one's future prospects, including access to a quality education; workforce preparedness; and access to jobs for which one is qualified. These factors affect one's ability to earn an income and accumulate wealth over time.} The educational quality of children has lifelong impacts on earnings and educational attainment. Students placed in small classrooms in grades K through 3 had a 1.8\% higher rate of college attendance by age 20 compared to their peers in larger classrooms. \cite{chetty2} In addition, children who moved to low-poverty neighborhoods at a young age had higher rates of college attendance, a 30.8\% increase in annual earnings, and a lifetime income increase of \$302,000. \cite{chetty}.\par
+Access to a job and a steady income is a key component of current well-being and future savings; however, employment access has not achieved racial parity. The suburbanization of American cities brought with it a suburbanization of low-wage and service sector employment --- ``job sprawl'' --- leading to relevant job openings located far from the urban core and from the reach of public transit service. \cite{briggs} Higher rates of unemployment among Black residents in the city center have historically been attributed to prohibitive distance to relevant job opportunities, less information about available opportunities, and employer discrimination. \cite{kain1} YOU MAY HAVE SOME USEFUL STUFF IN THE AFRICAN AMERICAN URBAN EXPERIENCE ABOUT ONGOING NEEDS FOR AFFIRMATIVE ACTION IN EMPLOYMENT. \par
+Whether one considers it consequential or coincidental, the Black-white disparity in wealth is well-documented: in 2011, ``white households could draw on \$92,000 to tide them over the rough times, while black families had to stretch a nest egg of \$4,900.'' \cite{goldfield}\par
 
 \subsection{Project Objective}
 Recognizing the role of racial segregation in housing and the effects of home location on education, income, and wealth, this project has two aims: first, to \textbf{quantify the impact of HOLC redlining} on education, work, income, and wealth today; and second, to \textbf{evaluate redlining's disparate and lingering racial effects} between Black and white residents.\par
@@ -147,7 +153,7 @@ Recognizing the role of racial segregation in housing and the effects of home lo
 \begin{enumerate}
 	\item \textbf{Access to Education:} Current educational attainment will be lower in downgraded HOLC neighborhoods.
 	\item \textbf{Access to Jobs via Transit:} Because downgraded HOLC neighborhoods are typically located close to the city center, more jobs will be accessible via transit.
-	\item \textbf{Wealth Creation:} Current incomes, home value, and homeownership will be lower in downgraded HOLC neighborhoods; poverty, unemployment, and rental burdens will be higher.
+	\item \textbf{Income and Wealth:} Current incomes, home value, and homeownership will be lower in downgraded HOLC neighborhoods; poverty, unemployment, and rental burdens will be higher.
 \end{enumerate}
 \subsection{Variable Selection and Expectation}
 Notes if necessary.\par
@@ -166,7 +172,7 @@ Notes if necessary.\par
 	\textit{Description:} The number of jobs accessible within 30 minutes of a census tract using transit. (All measures at the census tract level.)\\
 	\textit{Expected Relation to HOLC redlining:} As the HOLC neighborhood score decreases, the access to jobs via transit will increase, because redlined neighborhoods, transit service, and jobs are concentrated in the urban core.
 	
-	\item \textbf{Wealth Creation}\\
+	\item \textbf{Income and Wealth}\\
 	\textit{Description:} 1) Median household income, with educational attainment as a control factor. 2) The percentage of owner-occupied housing units. 3) Median home value, with housing age, size, and facilities as control factors. 4) Percentage of households below 100\% and 150\% of the Federal Poverty Level (FPL) respectively. 5) Percentage of unemployed residents in the labor force. 6) Median gross rent as a percentage of annual income. (All measures at the census tract level.)\\
 	\textit{Expected Relation to HOLC redlining:} As the HOLC neighborhood score decreases:
 	\begin{enumerate}
@@ -179,16 +185,16 @@ Notes if necessary.\par
 	\end{enumerate}
 \end{enumerate}
 
-\section{Study Area, Data Sources, and Methodology}
+\section{Study Area, Data Sources, Methodology, and Analysis}
 \subsection{Study Area}
 Two of the data sources used in this study are limited in their geographic coverage. First, the University of Richmond's ``Mapping Inequality'' project has digitized HOLC redlining maps for 128 cities. Some of the digitized maps do not fall within MSAs (e.g. Durham, NC) and others must be merged together to better correspond to one MSA (e.g. St. Louis, MO and East St. Louis, IL). This results in fewer than 128 potential study areas. Second, the University of Minnesota's ``Access Across America'' project has computed job accessibility by transit for 46 of the 50 largest metro areas. Any MSAs with areas present in both the HOLC redlining maps and the job accessibility files were included in the study area (see Figure 1).\par
 \begin{figure}[h]
 	\centering
 	\includegraphics[width = 4.5in]{StudyAreaSelection}\\
-	\caption{All MSAs present in both the digitized HOLC maps and in the transit accessibility files were included in the project.}
+	\caption{Overlap of MSAs present in digitized HOLC maps and transit accessibility files}
 \end{figure}
 These MSAs include: Birmingham, AL; San Diego, CA; Tampa-St. Petersburg-Clearwater, FL; Atlanta, GA; St. Louis, MO-IL; Indianapolis, IN; Kansas City, MO-KS; Louisville, KY-IN; New Orleans, LA; Baltimore, MD; Minneapolis-St. Paul, MN; Buffalo-Niagara Falls, NY; Charlotte-Gastonia-Rock Hill, NC-SC; Columbus, OH; Portland-Vancouver, OR-WA; Pittsburgh, PA; and Norfolk-Virginia Beach-Newport News, VA-NC.
-\subsection{Data Sources and Methodology}
+\subsection{Data Sources, Methodology, and Analysis}
 This project utilizes four primary sources of information:
 \begin{enumerate}
 	\item \textbf{Shapefiles from the Census Bureau's Topologically Integrated Geographic Encoding and Referencing (TIGER/Line) collection.} \cite{tiger17}\\
@@ -206,8 +212,7 @@ This project utilizes four primary sources of information:
 \end{enumerate}
 While all data is available at the city or MSA level, the main point of interest is in national trends. We cannot assume that observations within a city are independent of one another; an inherent hierarchical structure is present in the data. Therefore, multilevel modeling is a preferred analysis approach to OLS. Fixed-coefficient, random-slope multilevel models are used, essentially allowing to control for effects by city.
 
-\section{Results}
-\begin{table}
+\begin{table}[h!]
 	\caption{Summary of Census Tract Characteristics by HOLC Rating}
 	\begin{center}
 		\begin{tabular}{|| l | c c c c ||}
@@ -833,69 +838,57 @@ Author's calculations from the following: \textit{(1)} Nelson, R.K., \& Ayers, E
 Author's calculations from the following: \textit{(1)} Nelson, R.K., \& Ayers, E.L., eds. (n.d.). ``Mapping Inequality.'' \textit{American Panorama}. Accessed August 25, 2018. \textit{(2)} 2016 ACS 5-Year Estimates, Table B02001.
 \end{table}
 
-\subsection{Model Interpretation}
-Words.
-\begin{center}
-	\begin{tabular}{|| p{1.2in} | p{1in} | p{3in} ||}
-		\hline
-		\textbf{Variable} & \textbf{Expectation} & \textbf{Reality}\\
-		\hline\hline
-		Household Size & Positive & Unimportant\\
-		\hline
-		Median Rent & Negative & Negative, \textbf{except} for low-income Dallas residents\\
-		\hline
-		Dist. from CBD & Positive & Positive, \textbf{except} for low-income Dallas residents\\
-		\hline
-		Population Density & Negative & Negative\\
-		\hline
-	\end{tabular}
-\end{center}
-The regression results for low-income residents in Dallas County yield a few surprises. First, a higher median rent is associated with a \textit{much longer} journey to work for Dallas County's residents. Second, proximity to the CBD is associated with a \textit{longer} commute. These two factors hint toward a potential spatial dispersion of low-wage jobs, with more opportunities are located in employment sub-centers away from the CBD. Finally, the only variable that appears to reduce commuting distances for Dallas County's low-income workers is increased population density.
-
-\textbf{Verdict:} Yes, more monocentric cities offer shorter commuting distances to residents regardless of their income. However, regression results indicate that low-wage jobs may be less spatially concentrated in the CBD than other jobs.\par
-
-\textbf{Evidence:} Residents' commuting behavior indicates that low-wage jobs are more dispersed than high-wage jobs, and that low-income residents travel out of their county of residence more frequently. This is the case for two reasons. First, while the SAR models of commuting trends by income bracket for Dallas County and Washington, DC indicate that high-income residents' commute increases as their distance from the CBD increases, the effect is reversed for Dallas County's lowest-income residents. Second, the rudimentary test of within-county versus out-of-county commutes demonstrates that low-income residents travel more frequently out of their county of residence for work.\par
-
-\subsection{Residential Choice}
-\textbf{Hypothesis:} Residential choice factors explain commuting distances better for higher-income residents than for low-income residents.
-
-\textbf{Observed Relationships:}
-\begin{enumerate}
-	\item \textbf{Average Household Size}\\
-	As household size increases, distance from work does not increase for either Dallas County or DC.
-	
-	\item \textbf{Full-Time Workers}\\
-	The percentage of full-time workers is statistically significant in linear models, but the magnitude is infinitesimal.
-	
-	\item \textbf{Median Rent}\\
-	As rent increases, distance from work decreases significantly for Dallas County's and DC's residents overall. However, higher rents are associated with much longer commutes for Dallas County's lowest-income residents, indicating a potential dispersion of low-wage jobs.
-\end{enumerate}
-
-\textbf{Verdict:} Residential choice factors do not explain commuting distances particularly well for any income subset, but they do have some effects for higher-income residents.
-
-\textbf{Evidence:} For high-income residents, residential location is a balance between amenity and proximity. Decisions vary according to individual preference: full-time employees tend to locate closer to work and the CBD, and higher median rents are associated with shorter journeys to work for Dallas County's and DC's residents overall. These variables are significant, but the magnitudes of the variables are smaller than urban structure variables. The same models of residential choice do not explain the residential location decisions of low-income residents at all. Additional income widens the range of residential choice; it is possible that because low-income residents do not have the same level of disposable income, their choices are more limited---rendering a choice-based decision model less relevant.\\
-
+\section{Interpretation}
 \subsection{Lessons Learned}
-\begin{enumerate}
-	\item \textbf{From linear and SAR models:} For low-income Dallas County residents, denser areas are associated with shorter journeys to work, likely because these areas are employment sub-centers.
-	\item \textbf{From analysis of within-county vs. out-of-county commutes:} Low-wage jobs are systematically more dispersed than higher-wage jobs; this partially explains why low-income residents commute farther to work.
-	\item \textbf{From cluster analysis:} Rental units are not far from low-wage jobs; rental units that are \textit{affordable to our lowest-income residents} are.
-\end{enumerate}
+\textbf{Hypotheses and Results.} For the most part, expectations and results align relatively closely. Table 13, \textit{Hypotheses and Results}, lists the expectations of a \textit{decrease} in HOLC rating, and the evidence as seen in multilevel models.
+\begin{table}[h!]
+	\caption{Hypotheses and Results}
+	\begin{center}
+		\begin{tabular}{|| l l l ||}
+			\hline
+			Variable & Expectation & Result \\
+			\hline \hline
+			\multicolumn{3}{|| c ||}{Educational Attainment}\\
+			\hline
+			Pct. HS Degree or Equivalent & Positive & Positive \\ 
+			\hline
+			Pct. Some College, No Degree & Positive & Positive \\ 
+			\hline 
+			Pct. 4-Year College Degree & Negative & Negative \\ 
+			\hline 
+			Pct. Grad./Prof. Degree & Negative & Negative \\ 
+			\hline 
+			\multicolumn{3}{|| c ||}{Access to Jobs via Transit}\\
+			\hline
+			No. Jobs Accessible by Transit & Positive & Positive \\ 
+			\hline
+			\multicolumn{3}{|| c ||}{Income and Wealth}\\
+			\hline
+			Annual Median Household Income & Negative & Negative \\ 
+			\hline
+			Pct. Owner-Occupied Housing Units & Negative & Negative \\ 
+			\hline
+			Median Home Value & Negative & Negative \\ 
+			\hline
+			Pct. Households below 150\% FPL & Positive & Positive \\ 
+			\hline
+			Pct. Unemployed in Labor Force & Positive & ??????? \\ 
+			\hline
+			Median Gross Rent as \% of Ann. Inc & Positive & Positive \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
 
 \subsection{Policy Implications}
-\textbf{What can Dallas County learn from Washington, DC regarding policies that reduce the commuting burden of Dallas County's lowest-income residents?}\par
-Washington, DC takes a multifaceted approach to creating and preserving housing that low-income residents can afford. In addition to federal programs, such as the Housing Choice Voucher Program (HCV) and Low-Income Housing Tax Credits (LIHTC), the District has its own locally-funded program called the Housing Production Trust Fund (HPTF), which spends \$100 million annually to build and preserve affordable housing. It also has a mandatory Inclusionary Zoning program, which requires that 8-10\% of the floor area of new and rehabilitated multifamily housing be set aside at below the market rate \cite{dhcd} \cite{zippel1}. Refer to Figure 3 for an illustration of a type of density bonusing from the Ontario Ministry of Housing \cite{diagram}.\par
+\textbf{Lessons from the Fair Housing Act of 1968.} FIRST, what values and principles did the Fair Housing Act ensconce? However, the iteration of the Fair Housing Act passed by the Senate notoriously conferred no ``teeth'' in enforcement to its administering agency, the U.S. Department of Housing and Urban Development. \par
 
-The City of Dallas already participates in federal programs such as HCV and LIHTC. The City's proposed Voluntary Inclusionary Zoning (VIZ) program would allow multifamily residential developers to increase building height and unit density and reduce the number of required parking spaces if 5-15\% of their developments are affordable to low-income residents \cite{thompson}. One of the major advantages of the VIZ program is that it would not cost anything to the City of Dallas while still facilitating increased residential density and affordable housing development in new areas of the city. These new, affordable units would enable low-income residents to move closer to work and create greater commuting equity in the region. The City of Dallas ought to move forward with the proposed VIZ program.\par
+LOCAL ENFORCEMENT rolf pendall BLACK METROPOLIS IN 21ST CEN john a powell
 
-Some cities, such as New York and Philadelphia, have developed their own affordable housing funds akin to the HPTF in Washington, DC. Developing a locally-funded program for affordable housing development is a noble and worthwhile goal---but it is most likely not in Dallas County's future for the near term.\par
 
-Historically, zoning and housing policy have been tools of discrimination. The first zoning ordinances from the early 1900s were explicitly designed for racial exclusion. Housing discrimination has persisted ever since, from the practice of redlining to the subprime lending crisis \cite{rothstein}. Communities of color are more likely to live in neighborhoods of substandard environmental quality; these disparities have given rise to the study of environmental justice \cite{bullard}. Low-income communities of color are also underserved by grocery stores and other critical retail facilities. Food deserts are prevalent in Dallas and DC alike \cite{wilonsky} \cite{sturdivant}.\par
-
-While our zoning policies have historically been exclusionary, truly inclusionary zoning practices could extend opportunity to more people. These tools, alongside the community's tireless advocacy, are turning the tide of place-based discrimination. In addition to reducing the commuting burdens of Dallas County's lowest-income residents, mixed-income neighborhoods could improve social networks, increase safety, promote abstinence from antisocial behaviors, and attract more development and better public services \cite{silverman}. Prior housing demonstrations such as the Moving to Opportunity experiment have shown that children who move from high-poverty to mixed-income neighborhoods experience lifelong educational and earnings benefits \cite{briggs}.\par
 
 \subsection{Proposed Alterations and Additions}
-\textbf{Disregard transit accessibility files to expand the potential study area.} This study rests on the cusp of statistical invalidity; while it has a decent total sample size (\textit{n} = 395 with HOLC, Census, and transit accessibility data), some individual MSAs have a paltry number of observations. A more robust study would encompass as many MSAs as possible but only keep those with a relatively large number of observations after spatial overlay with HOLC files. A larger within-MSA sample size would enable the use of more robust statistical techniques such as a random effects multilevel model.\par
+\textbf{Disregard transit accessibility files to expand the potential study area.} This study rests on the cusp of statistical invalidity; while it has a decent total sample size (\textit{n} = 395 census tracts), some individual MSAs have a paltry number of observations. A more robust study would encompass as many MSAs as possible but only keep those with a relatively large number of observations after spatial overlay with HOLC files. A larger within-MSA sample size would enable the use of more robust statistical techniques such as a random effects multilevel model.\par
 \textbf{Use raster methods to overlay HOLC shapefiles with census tract shapefiles.} When multiple HOLC neighborhoods intersect with a single census tract, the current overlay method, discussed in \textsection3.2, simply takes the mean of the HOLC ratings and assigns this value to the tract. This method assumes an equal contribution of each HOLC rating when it is plausible that a census tract could share 90\% of its area with a HOLC neighborhood in ``Class B'' and only 10\% of its area with a HOLC neighborhood in ``Class A.'' Rasterizing both spatial layers and computing the zonal mean, where the zone is the census tract, would account for the percentage areal contribution of each HOLC rating to the census tract. \par
 \textbf{Control for housing amenities and compute a spatial overlay with HOLC shapefiles at the parcel level.} Another way to circumvent the problem of spatial overlay mentioned above is to disregard census units altogether. County appraisal shapefiles contain rich information about the amenities and condition of every housing unit at the parcel level. Using appraisal data would confer two benefits: 1) Controlling for more variables, and at the parcel level, would enable more of a causal reading of the influence of HOLC rating than is possible here; and 2) With only a small percentage of exceptions, housing parcels will definitively lie within or outside of a HOLC neighborhood. However, there are drawbacks to using appraisal data: it is incompatible across counties and often requires considerable cleaning.
 
@@ -921,68 +914,44 @@ While our zoning policies have historically been exclusionary, truly inclusionar
 \begin{thebibliography}{9}
 \bibitem{briggs}
 Briggs, X., Popkin, S.J., \& Goering, J.M. (2010). \textit{Moving to opportunity: The story of an American experiment to fight ghetto poverty}. New York: Oxford University Press.
-\bibitem{brueckner}
-Brueckner, J.K., Thisse, J.-F., \& Zenou, Y. (1999). Why is central Paris rich and downtown Detroit poor? An amenity-based theory. \textit{European Economic Review, 43}(1): 91-107.
 \bibitem{bullard}
 Bullard, R.D. (2007). \textit{The Black metropolis in the twenty-first century: Race, power, and politics of place}. Lanham, MD: Rowman \& Littlefield.
-\bibitem{clark}
-Clark, C. (1977). \textit{Population growth and land use} (2nd ed.). London: Macmillan Press.
-\bibitem{communities}
-Communities Foundation of Texas (2018). \textit{Dallas economic opportunity assessment} [PDF document]. Retrieved from \href{https://www.cftexas.org/file/Dallas_Economic_Opportunity_Assessment2018.pdf}{https://www.cftexas.org/file/Dallas\_Economic\_Opportunity\_Assessment2018.pdf}
-\bibitem{dhcd}
-DC Department of Housing and Community Development. (2018). \textit{Inclusionary zoning program fact sheet 2018}. Retrieved from \href{https://dhcd.dc.gov/sites/default/files/dc/sites/dhcd/service_content/attachments/Inclusionary\%20Zoning\%20Program\%20Fact\%20Sheet\%202018.pdf}{https://dhcd.dc.gov/sites/default/files/dc/sites/dhcd/service\_content/attachments/Inclusionary-Zoning-Program-Fact-Sheet-2018.pdf}
+\bibitem{chetty}
+Chetty, R., Hendren, N., \& Katz, L. (2015). \textit{The effects of exposure to better neighborhoods on children: New evidence from the Moving to Opportunity experiment} (NBER Working Paper 21156). Retrieved from \href{http://www.equality-of-opportunity.org/images/mto_paper.pdf}{http://www.equality-of-opportunity.org/images/mto\_paper.pdf}
+\bibitem{chetty2}
+Chetty, R., Friedman, J.N., Hilger, N., Saez, E., Schanzenbach, D.W., \& Yagan, D. (2011). How does your kindergarten classroom affect your earnings? Evidence from Project STAR. \textit{Quarterly Journal of Economics, 126}(4), 1593-1660.
+\bibitem{duncan}
+Duncan, O.D., \& Duncan, B. (1955). A methodological analysis of segregation indexes. \textit{American Sociological Review, 20}(2): 210-217.
 \bibitem{edwards}
 Edwards, M.E. (2007). \textit{Regional and urban economics and economic development: Theory and methods.} New York: Auerbach Publications.
 \bibitem{galster}
 Galster, G.C., \& Hill, E.W. (1992). \textit{The Metropolis in black and white: Place, power, and polarization}. New Brunswick, N.J.: Center for Urban Policy Research.
 \bibitem{glaeser}
 Glaeser, E.L., Kahn, M.E., \& Rappaport, J. (2008). Why do the poor live in cities? The role of public transportation. \textit{Journal of Urban Economics, 63}(1): 1-24.
-\bibitem{hamilton}
-Hamilton, B.W., \& R\"oell, A. (1982). Wasteful commuting. \textit{Journal of Political Economy, 90}(5): 1035-1053.
-\bibitem{horner}
-Horner, M.W., \& Schleith, D. (2012). Analyzing temporal changes in land-use---transportation relationships: A LEHD-based approach. \textit{Applied Geography, 35}(9), 2041-2042.
+\bibitem{goering}
+Galster, G.C. (1986). More than skin deep: The effect of housing discrimination on the extent and pattern of racial segregation in the United States. In Goering, J.M. (Ed.), \textit{Housing desegregation and federal policy} (119-168). Chapel Hill: University of North Carolina Press.
+\bibitem{goering2}
+Goering, J.M. (2007). An overview of key issues in the field of fair housing research. In Goering, J.M. (Ed.), \textit{Fragile rights within cities: Government, housing, and fairness} (21-40). Lanham, MD: Rowman \& Littlefield.
+\bibitem{goldfield}
+Goldfield, D. (2017). \textit{The gifted generation: When government was good}. New York: Bloomsbury.
 \bibitem{kain1}
 Kain, J.F. (1968). Housing segregation, Negro employment, and metropolitan decentralization. \textit{Quarterly Journal of Economics, 82}(2): 175-197.
-\bibitem{kain2}
-Kain, J.F. (1999). The urban transportation problem: A reexamination and update. In J.R. Meyer, J.A. Gomez-Ib\`a\~nez, W.B. Tye, \& W. Clifford (Eds.), \textit{Essays in transportation economics and policy: A handbook in honor of John R. Meyer} (359-401). Washington, DC: Brookings Institution Press.
 \bibitem{kingsley}
 Kingsley, G.T., \& Turner, M.A. (1993). \textit{Housing Markets and residential mobility}. Washington DC: Urban Institute Press.
-\bibitem{manson}
-Manson, S., Schroeder, J., Van Riper, D, \& Ruggles, S. (2017). \textit{IPUMS National Historical Geographic Information System: Version 12.0}. [Data file]. Available from \href{https://www.nhgis.org/}{https://www.nhgis.org/}
-\bibitem{muth}
-Muth, R.F. (1969). \textit{Cities and housing: The spatial pattern of urban residential land use.} Chicago: University of Chicago Press.
-\bibitem{diagram}
-Ontario Ministry of Housing. (2016). \textit{Height and density bonusing (s. 37)}. Retrieved from \href{http://www.mah.gov.on.ca/Page6845.aspx}{http://www.mah.gov.on.ca/Page6845.aspx}
-\bibitem{pickrell}
-Pickrell, D. (1999). Transportation and land use. In J.R. Meyer, J.A. Gomez-Ib\`a\~nez, W.B. Tye, \& W. Clifford (Eds.), \textit{Essays in transportation economics and policy: A handbook in honor of John R. Meyer} (33-84). Washington, DC: Brookings Institution Press.
-\bibitem{simek}
-Simek, P. (2017). \textit{Bombshell report reveals DART's system-wide inadequacy}. Retrieved from \href{https://www.dmagazine.com/frontburner/2017/10/bombshell-report-reveals-darts-system-wide-inadequacy/}{https://www.dmagazine.com/frontburner/2017/10/bombshell-report-reveals-darts-system-wide-inadequacy/}
-\bibitem{steen}
-Steen, R.C. (1986). Nonubiquitous transportation and urban population density gradients. \textit{Journal of Urban Economics, 20}(1): 97-106.
+\bibitem{orfield}
+Orfield, G. (1986). The movement for housing integration: Rationale and the nature of the challenge. In Goering, J.M. (Ed.), \textit{Housing desegregation and federal policy} (18-30). Chapell Hill: University of North Carolina Press. 
 \bibitem{rothstein}
 Rothstein, R. (2017). \textit{The color of law: A forgotten history of how our government segregated America}. New York: Liveright Publishing.
 \bibitem{silverman}
 Silverman, R.M., \& Patterson, K.L. (2012). \textit{Fair and affordable housing in the U.S.: Trends, outcomes, future directions}. Boston: Brill.
-\bibitem{simpson}
-Simpson, W. (1980). ``A simultaneous model of workplace and residential location incorporating job search.'' \textit{Journal of Urban Economics, 8}(3): 330-49.
-\bibitem{sturdivant}
-Sturdivant, C. (2017) \textit{Report: Wards 7 And 8 have three grocery stores for 149,750 people}. Retrieved from \href{http://dcist.com/2017/06/report_wards_7_and_8.php}{http://dcist.com/2017/06/report\_wards\_7\_and\_8.php}
-\bibitem{tatian}
-Tatian, P., Leopold, J., Oo, E., Joseph, G., MacDonald, G., Nichols, A.,\ldots Abazaijan, K. (2015). \textit{Affordable housing needs assessment for the District of Columbia} [PDF Document]. Retrieved from \href{https://www.urban.org/sites/default/files/publication/50151/2000214-affordable-housing-needs-assessment-for-the-district-of-columbia_0.pdf}{https://www.urban.org/sites/default/files/publication/50151/2000214-affordable-housing-needs-assessment-for-the-district-of-columbia\_0.pdf}
-\bibitem{tiger10}
-United States Census Bureau. (2017). TIGER/Line Shapefiles. [Data file]. Available from \href{https://www.census.gov/geo/maps-data/data/tiger-line.html}{https://www.census.gov/geo/maps-data/data/tiger-line.html}
-\bibitem{acs15}
-United States Census Bureau. (2015). American Community Survey 5-Year Estimates. [Data file]. Available from \href{https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t}{https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t}
-\bibitem{lodes}
-United States Census Bureau. (2015). Longitudinal Employer-Household Dynamics Origin-Destination Employment Statistics. [Data file]. Available from \href{https://lehd.ces.census.gov/data/\#lodes}{https://lehd.ces.census.gov/data/\#lodes}
+\bibitem{squires}
+Squires, G.D., \& Kubrin, C.E. (2006). \textit{Privileged places: Race, residence, and the structure of opportunity}. Boulder, CO: Lynne Rienner Publishers.
+%\bibitem{stiglitz}
+%Stiglitz, J.E. (2016). \textit{Rewriting the rules of the American economy: An agenda for growth and shared prosperity}. New York: W.W. Norton.
 \bibitem{acs16}
 United States Census Bureau. (2016). American Community Survey 5-Year Estimates. [Data file]. Available from \href{https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t}{https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t}
 \bibitem{tiger17}
 United States Census Bureau. (2017). TIGER/Line Shapefiles. [Data file]. Available from \href{https://www.census.gov/geo/maps-data/data/tiger-line.html}{https://www.census.gov/geo/maps-data/data/tiger-line.html}
-\bibitem{warner}
-Warner, S.B. (1978). \textit{Streetcar suburbs: The process of growth in Boston, 1870-1900} (2nd ed.). Cambridge, MA: Harvard University Press.
-\bibitem{white}
-White, M.J. (1988). Urban commuting journeys are not `wasteful.' \textit{Journal of Political Economy, 96}(5): 1097-1110.
 \end{thebibliography}
 
 
