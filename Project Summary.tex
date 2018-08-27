@@ -55,37 +55,36 @@
 }
 \listoftables
 \listoffigures
-\blankpage
+%\blankpage
 % ----------------------------------
 % START PAPER
 % ----------------------------------
 \section{Introduction}
-Historically, zoning and housing policy have been tools of racial discrimination. The first zoning ordinances from the early 1900s were explicitly designed for racial exclusion. (HOLC goes here.)\cite{rothstein}.\par
-This project quantifies the impacts of redlining on today's urban landscape through an analysis of digitized maps of Home Owners' Loan Corporation (HOLC) redlining, data on job accessibility via transit, and Census data in 17 U.S. metropolitan areas. A one-point decrease in HOLC rating correlates with the following modern-day effects: 
+Historically, zoning and housing policy have been tools of racial discrimination. The first zoning ordinances from the early 1900s were explicitly designed for racial exclusion. (Describe HOLC. Ensure that your history going forward is correct.)\cite{rothstein}.\par
+This project quantifies the impacts of redlining on today's urban landscape through an analysis of digitized maps of Home Owners' Loan Corporation (HOLC) redlining, data on job accessibility via transit, and 2016 Census estimates for 17 U.S. metropolitan areas. A one-point decrease in HOLC rating correlates with the following modern-day effects: 
 \begin{enumerate}
 	\item \textbf{\$62,175 decrease} in median home value, controlling for size, age, and facilities;
-	\item \textbf{13.962\% decrease} in homeownership;
-	\item \textbf{2.794\% increase} in rent burden;
+	\item \textbf{13.96\% decrease} in homeownership;
+	\item \textbf{2.79\% increase} in rent burden;
 	\item \textbf{25,185 additional jobs} accessible via transit;
-	\item \textbf{10.869\% increase} in transit-dependent households;
+	\item \textbf{10.87\% increase} in transit-dependent households;
 	\item \textbf{\$3,107 decrease} in annual household income, controlling for education levels; and
-	\item \textbf{10.659\% increase} in household poverty.
+	\item \textbf{10.66\% increase} in household poverty.
 \end{enumerate}
-Many neighborhoods remain racially segregated, as they were during HOLC's operation from the 1930s to the 1950s. \textbf{Today, Black residents are 15.153\% more likely, and white residents 16.806\% less likely, to live in a census tract once downgraded by HOLC.}
+Many neighborhoods remain racially segregated along the lines once drawn by HOLC. \textbf{In 2016, Black residents were 15.153\% more likely, and white residents 16.806\% less likely, to live in redlined or downgraded census tracts.}
 
-An absence of racially discriminatory housing policies has \textit{not} translated into equity in terms of accessing education or building wealth. In a racially segregated city, everybody loses---\textbf{how?}. The results of this project indicate the need for us, as urban planners and policymakers, to both be conscious of the disparate racial impacts of our work and to actively seek racial equity --- not merely the absence of discrimination --- through the implementation of housing policy.\par
-``Without an explicit focus on policy, it is hard to understand patterns of racial/ethnic segregation and mobility.'' \cite{squires}
+Though the 1968 Fair Housing Act prohibited housing discrimination on the basis of race, the absence of racially discriminatory housing policies has not translated into equity in terms of accessing education or building wealth through higher incomes or homeownership. The results of this project indicate the need for to both be conscious of the disparate racial impacts of urban planning and policy work and to actively seek racial equity --- and not merely the absence of discrimination --- through the implementation of housing policy.\par
 
 \section{Problem Statement and Project Objective}
 This study is based on three premises:
 \begin{enumerate}
 	\item Cities in the U.S. are racially segregated.
 	\item Racially discriminatory housing policies have facilitated segregation in cities.
-	\item The location of one's home sets the stage for one's future prospects, including access to a quality education; workforce preparedness; and access to jobs for which one is qualified. These factors affect one's ability to earn an income and accumulate wealth over time.
+	\item The location of one's home sets the stage for one's future prospects, including access to a quality education and access to jobs for which one is qualified. These factors affect one's ability to earn an income and accumulate wealth over time.
 \end{enumerate}
 
 \subsection{Racial Segregation in U.S. Cities}
-\textbf{Cities in the U.S. are racially segregated.} The index of dissimilarity is a common measure of spatial segregation. In this case, it measures the percentage of residents that would have to move in order to attain racial equality throughout the study area. Its value can range from 0 to 1, where 1 indicates complete racial segregation. \cite{duncan} Refer to Table 1: \textit{Indices of Black-White Dissimilarity for 17 U.S. Metro Areas} for a measure of racial segregation in 2016.\par
+\textbf{Cities in the U.S. are racially segregated.} The index of dissimilarity is a common measure of spatial segregation. In this case, it measures the percentage of residents that would need to move in order to attain racial parity throughout the metropolitan area. The index value can range from 0 to 1, where 1 indicates complete racial segregation. \cite{duncan} Refer to Table 1: \textit{Indices of Black-White Dissimilarity for 17 U.S. Metro Areas} for a measure of racial segregation in 2016.\par
 
 \begin{table}[h]
 	\caption{Indices of Black-White Dissimilarity for 17 U.S. Metro Areas}
@@ -133,17 +132,17 @@ This study is based on three premises:
 Author's calculations from 2016 ACS 5-Year Estimates, Table B02001.
 \end{table}
 
-Several scholars have sought to explain segregation in U.S. cities, and three primary explanations have emerged from their work. The first is a theory of ``socioeconomic class'': Black residents are typically poorer than white residents and therefore cannot afford to live in wealthy, majority-white neighborhoods. The second is that of ``prejudice'' or ``voluntary segregation'': residents prefer\footnote{There is evidence against this theory in the context of the dissimilarity index. Between 1970 and 1990, the dissimilarity index fell 17\%, coinciding with the elimination of several racially discriminatory barriers to housing after the Fair Housing Act of 1968. \cite{goering2} If residents preferred to segregrate themselves, the dissimilarity index would not have changed so substantially.} to live among people of the same race. The third explanation is ``discrimination'' or ``involuntary segregation'': institutional structures and practices force residents to live in neighborhoods they might not have chosen otherwise, \textit{ceteris paribus}. Galster's review of empirical evidence for these three theories suggests that ``discrimination'' or ``involuntary segregation'' has the most explanatory power. \cite{goering}
+Several scholars have sought to explain segregation in U.S. cities; three primary hypotheses have emerged from their work. The first is a hypothesis of ``socioeconomic class'': Black residents are typically poorer than white residents and therefore cannot afford to live in wealthy, majority-white neighborhoods. The second is that of ``prejudice'' or ``voluntary segregation'': residents prefer\footnote{There is evidence against this theory in the context of the dissimilarity index. Between 1970 and 1990, the dissimilarity index fell 17\%, coinciding with the elimination of several racially discriminatory barriers to housing after the Fair Housing Act of 1968. \cite{goering2} If residents preferred to segregrate themselves, the dissimilarity index would not have changed so substantially.} to live among people of the same race and sort themselves into racially homogeneous neighborhoods. The third explanation is ``discrimination'' or ``involuntary segregation'': institutional structures and practices force residents to live in neighborhoods they might not have chosen otherwise, \textit{ceteris paribus}. Galster's review of empirical evidence for these three theories suggests that ``discrimination'' or ``involuntary segregation'' has the most explanatory power. \cite{goering}
 
 \subsection{Housing Policy and Racial Segregation}
-\textbf{Racially discriminatory housing policies have facilitated segregation in cities.} From the 1930s to the 1950s, the Home Owners' Loan Corporation (HOLC) provided Americans the opportunity to purchase homes through mortgage lending. However, this federally-created program was racially discriminatory in its administration. HOLC created color-coded maps of U.S. cities, grading neighborhoods along a four-point scale from \textit{A} to \textit{D}. Applications to purchase homes in green neighborhoods --- ``Class A'' --- were nearly guaranteed approval; applications to purchase homes in red neighborhoods --- ``Class D'' --- were subject to immediate denial. ``Class A'' neighborhoods were all-white neighborhoods; ``Class D'' neighborhoods were all-Black neighborhoods. HOLC lending practices gave birth to the term ``redlining,'' after those neighborhoods downgraded by the agency. \cite{rothstein}\par
+\textbf{Racially discriminatory housing policies have facilitated segregation in cities.} <\textbf{INSERT APPROPRIATE DATE RANGE AND CORRECT HISTORY AS APPLICABLE}> the Home Owners' Loan Corporation (HOLC) provided Americans the opportunity to purchase homes through mortgage lending. However, this federally-created program was racially discriminatory in its administration. HOLC created color-coded maps of U.S. cities, grading neighborhoods along a four-point scale from \textit{A} to \textit{D}. Applications to purchase homes in green neighborhoods --- ``Class A'' --- were nearly guaranteed approval; applications to purchase homes in red neighborhoods --- ``Class D'' --- were subject to immediate denial. ``Class A'' neighborhoods were all-white neighborhoods; ``Class D'' neighborhoods were home to people of color. HOLC lending practices gave birth to the term ``redlining,'' after those neighborhoods downgraded by the agency. \cite{rothstein}\par
 
-HOLC lending practices were as biased in their effects as in their administration. First, redlining enforced racial segregation in cities, because it encouraged white residents to purchase homes in all-white neighborhoods and prevented Black residents from moving into these neighborhoods. Second, redlining encouraged a divergence in wealth between Black and white residents. White residents received a generous opportunity to build generational wealth by investing in property. Meanwhile, Black residents were systematically discriminated against in the housing market, forced to pay exorbitant prices for substandard rental housing \cite{orfield}, and barred from the chance to buy homes that often serve as a valuable financial investment. HOLC redlining is but one example among a legacy of racially discriminatory housing policies.\par
+HOLC lending practices were as biased in their effects as in their administration. First, redlining enforced racial segregation in cities, because it encouraged white residents to purchase homes in all-white neighborhoods and prevented Black residents from moving into these neighborhoods. Second, redlining encouraged a divergence in wealth between Black and white residents. White residents received a generous opportunity to build generational wealth through home equity. Meanwhile, Black residents were systematically discriminated against in the housing market, forced to pay exorbitant prices for substandard rental housing \cite{orfield}, and barred from the chance to buy homes that often serve as a valuable financial investment. HOLC redlining is but one example among a legacy of racially discriminatory housing policies.\par
 
 \subsection{Home as a Platform for (Dis)Opportunity}
-\textbf{The location of one's home sets the stage for one's future prospects, including access to a quality education; workforce preparedness; and access to jobs for which one is qualified. These factors affect one's ability to earn an income and accumulate wealth over time.} The educational quality of children has lifelong impacts on earnings and educational attainment. Students placed in small classrooms in grades K through 3 had a 1.8\% higher rate of college attendance by age 20 compared to their peers in larger classrooms. \cite{chetty2} In addition, children who moved to low-poverty neighborhoods at a young age had higher rates of college attendance, a 30.8\% increase in annual earnings, and a lifetime income increase of \$302,000. \cite{chetty}.\par
-Access to a job and a steady income is a key component of current well-being and future savings; however, employment access has not achieved racial parity. The suburbanization of American cities brought with it a suburbanization of low-wage and service sector employment --- ``job sprawl'' --- leading to relevant job openings located far from the urban core and from the reach of public transit service. \cite{briggs} Higher rates of unemployment among Black residents in the city center have historically been attributed to prohibitive distance to relevant job opportunities, less information about available opportunities, and employer discrimination. \cite{kain1} YOU MAY HAVE SOME USEFUL STUFF IN THE AFRICAN AMERICAN URBAN EXPERIENCE ABOUT ONGOING NEEDS FOR AFFIRMATIVE ACTION IN EMPLOYMENT. \par
-Whether one considers it consequential or coincidental, the Black-white disparity in wealth is well-documented: in 2011, ``white households could draw on \$92,000 to tide them over the rough times, while black families had to stretch a nest egg of \$4,900.'' \cite{goldfield}\par
+\textbf{The location of one's home sets the stage for one's future prospects, including access to a quality education and access to jobs for which one is qualified. These factors affect one's ability to earn an income and accumulate wealth over time.} The educational quality of children has lifelong impacts on earnings and educational attainment. Students placed in small classrooms in grades K through 3 had a 1.8\% higher rate of college attendance by age 20 compared to their peers in larger classrooms. \cite{chetty2} In addition, children who moved to low-poverty neighborhoods at a young age had higher rates of college attendance, a 30.8\% increase in annual earnings, and a lifetime income boost of \$302,000. \cite{chetty}.\par
+Access to a job and a steady income is a key component of current well-being and future savings; however, employment access has not achieved racial parity. The suburbanization of American cities brought with it a suburbanization of low-wage and service sector employment --- ``job sprawl'' --- leading to relevant job openings located far from the urban core and from the reach of public transit service. \cite{briggs} Higher rates of unemployment among Black residents in the city center have historically been attributed to prohibitive distance to relevant job opportunities, less information about available opportunities, and employer discrimination. \cite{kain1} YOU MAY HAVE SOME USEFUL STUFF IN THE AFRICAN AMERICAN URBAN EXPERIENCE ABOUT ONGOING NEEDS FOR AFFIRMATIVE ACTION IN EMPLOYMENT. OVERALL, THIS PARAGRAPH STILL NEEDS HELP.\par
+Whether one considers it consequential or coincidental, the Black-white disparity in wealth is stark and well-documented: in 2011, ``white households could draw on \$92,000 to tide them over the rough times, while black families had to stretch a nest egg of \$4,900.'' \cite{goldfield}\par
 
 \subsection{Project Objective}
 Recognizing the role of racial segregation in housing and the effects of home location on education, income, and wealth, this project has two aims: first, to \textbf{quantify the impact of HOLC redlining} on education, work, income, and wealth today; and second, to \textbf{evaluate redlining's disparate and lingering racial effects} between Black and white residents.\par
@@ -156,11 +155,10 @@ Recognizing the role of racial segregation in housing and the effects of home lo
 	\item \textbf{Income and Wealth:} Current incomes, home value, and homeownership will be lower in downgraded HOLC neighborhoods; poverty, unemployment, and rental burdens will be higher.
 \end{enumerate}
 \subsection{Variable Selection and Expectation}
-Notes if necessary.\par
 \begin{enumerate}
-	\item \textbf{Educational Attainment}\\
-	\textit{Description:} The percentage of residents who have completed the following: 1) high school diploma or its equivalent; 2) some college; 3) four-year degree; and 4) graduate or professional degrees. (All measures at the census tract level.)\\
-	\textit{Expected Relation to HOLC redlining:} As the HOLC neighborhood score decreases:
+	\item \textbf{Access to Education}\\
+	\textit{Description:} The percentage of residents who have completed the following: 1) high school diploma or its equivalent; 2) some college; 3) four-year degree; and 4) graduate or professional degrees. Note that educational attainment serves here as a rough proxy for access to quality education services in general. (All measures at the census tract level.)\\
+	\textit{Expected Relation to HOLC redlining:} As the HOLC rating decreases:
 	\begin{enumerate}
 		\item The percentage of residents with a high school diploma or its equivalent will increase;
 		\item The percentage of residents with some college will increase;
@@ -169,12 +167,12 @@ Notes if necessary.\par
 	\end{enumerate}
 	
 	\item \textbf{Access to Jobs via Transit}\\
-	\textit{Description:} The number of jobs accessible within 30 minutes of a census tract using transit. (All measures at the census tract level.)\\
-	\textit{Expected Relation to HOLC redlining:} As the HOLC neighborhood score decreases, the access to jobs via transit will increase, because redlined neighborhoods, transit service, and jobs are concentrated in the urban core.
+	\textit{Description:} The number of jobs accessible within 30 minutes of a census tract using transit. Note that the data says nothing about job sector, pay, or skill requirements. (All measures at the census tract level.)\\
+	\textit{Expected Relation to HOLC redlining:} As the HOLC rating decreases, the access to jobs via transit will increase, because redlined neighborhoods, transit service, and jobs are all concentrated in the urban core.
 	
 	\item \textbf{Income and Wealth}\\
 	\textit{Description:} 1) Median household income, with educational attainment as a control factor. 2) The percentage of owner-occupied housing units. 3) Median home value, with housing age, size, and facilities as control factors. 4) Percentage of households below 100\% and 150\% of the Federal Poverty Level (FPL) respectively. 5) Percentage of unemployed residents in the labor force. 6) Median gross rent as a percentage of annual income. (All measures at the census tract level.)\\
-	\textit{Expected Relation to HOLC redlining:} As the HOLC neighborhood score decreases:
+	\textit{Expected Relation to HOLC redlining:} As the HOLC rating decreases:
 	\begin{enumerate}
 		\item Median household income will decrease;
 		\item The percentage of owner-occupied housing units will decrease;
@@ -187,7 +185,7 @@ Notes if necessary.\par
 
 \section{Study Area, Data Sources, Methodology, and Analysis}
 \subsection{Study Area}
-Two of the data sources used in this study are limited in their geographic coverage. First, the University of Richmond's ``Mapping Inequality'' project has digitized HOLC redlining maps for 128 cities. Some of the digitized maps do not fall within MSAs (e.g. Durham, NC) and others must be merged together to better correspond to one MSA (e.g. St. Louis, MO and East St. Louis, IL). This results in fewer than 128 potential study areas. Second, the University of Minnesota's ``Access Across America'' project has computed job accessibility by transit for 46 of the 50 largest metro areas. Any MSAs with areas present in both the HOLC redlining maps and the job accessibility files were included in the study area (see Figure 1).\par
+Two of the data sources used in this study are limited in their geographic coverage. First, the University of Richmond's ``Mapping Inequality'' project has digitized HOLC redlining maps for 128 cities. Some of the digitized maps must be merged together to better correspond to one MSA (e.g. St. Louis, MO and East St. Louis, IL), resulting in fewer than 128 potential study areas. Second, the University of Minnesota's ``Access Across America'' project has computed job accessibility by transit for 46 of the 50 largest metro areas. Any MSAs with areas present in both the HOLC redlining maps and the job accessibility files are included in the study area (see Figure 1).\par
 \begin{figure}[h]
 	\centering
 	\includegraphics[width = 4.5in]{StudyAreaSelection}\\
@@ -198,19 +196,22 @@ These MSAs include: Birmingham, AL; San Diego, CA; Tampa-St. Petersburg-Clearwat
 This project utilizes four primary sources of information:
 \begin{enumerate}
 	\item \textbf{Shapefiles from the Census Bureau's Topologically Integrated Geographic Encoding and Referencing (TIGER/Line) collection.} \cite{tiger17}\\
-	TIGER/Line shapefiles are available for every state at the census tract level. Because some MSAs cross state borders, 21 state shapefiles were used, including AL, CA, FL, GA, IL, IN, KS, KY, LA, MD, MN, MO, NC, NY, OH, OR, PA, SC, VA, WA, and WI. These files were subset by \textit{GEOID} to match the spatial extent of MSAs, and census tracts outside MSA boundaries were removed from the files.
+	TIGER/Line shapefiles are available for every state at the census tract level. Because some MSAs span state borders, 21 state shapefiles are used, including AL, CA, FL, GA, IL, IN, KS, KY, LA, MD, MN, MO, NC, NY, OH, OR, PA, SC, VA, WA, and WI. These files are subset by \textit{GEOID} to match the spatial extent of MSAs, and census tracts outside MSA boundaries are removed from the files to speed computation.
 	\item \textbf{Digitized Shapefiles of HOLC Maps from the University of Richmond's Digital Scholarship Lab.} CITE!!!! \\
-	The University of Richmond's ``Mapping Inequality'' project has digitized HOLC maps from 128 cities and towns. These shapefiles trace over the boundaries of HOLC neighborhoods and include the neighborhood grade as an attribute. Historic HOLC neighborhood boundaries do not align with present-day census tract boundaries. As an approximation of HOLC rating at the census tract level, each HOLC rating is assigned a numeric value (``Class A'' = 4; ``Class D'' = 1). A union operation is performed in GIS with all census tract shapefiles at the MSA level. The union produces three scenarios, which are handled in statistical software:
+	The University of Richmond's ``Mapping Inequality'' project has digitized HOLC maps from 128 cities and towns. These shapefiles trace the boundaries of HOLC neighborhoods and include the HOLC rating as an attribute. Historic HOLC neighborhood boundaries do not align with present-day census tract boundaries. As an approximation of HOLC rating at the census tract level, each HOLC rating is assigned a numeric value (``Class A'' = 4; ``Class D'' = 1). A union operation is performed in GIS with all census tract shapefiles at the MSA level. The union produces three scenarios, which are handled in statistical software:
 	\begin{enumerate}
-		\item When a unique \textit{GEOID} is associated with only one HOLC rating, it is given that rating. These cases occur when the HOLC neighborhood encompasses the entire census tract or when the census tract is located on the periphery of the historic HOLC map.
-		\item When a unique \textit{GEOID} is associated with multiple HOLC ratings, it is assigned the mean of these ratings. Note that this methodology is imperfect and does not account for the area of overlap. One way to account for the area of overlap is to rasterize both the census tract and HOLC rating shapefiles and then to compute the mean HOLC rating by \textit{GEOID}.
+		\item When a unique \textit{GEOID} is associated with only one HOLC rating, it is given that rating. These cases occur when the HOLC neighborhood encompasses the entire census tract or when the census tract is located on the periphery of the historic HOLC map, thereby overlapping with only one HOLC neighborhood.
+		\item When a unique \textit{GEOID} is associated with multiple HOLC ratings, it is assigned the mean of these ratings. Note that this methodology is imperfect and does not account for the area of overlap. One way to account for the area of overlap is to rasterize both the census tract and HOLC rating shapefiles and then to compute the mean HOLC rating by \textit{GEOID}. See \textsection5.3, \textit{Proposed Alterations and Additions}, for a discussion of the proposed raster method.
 		\item When a unique \textit{GEOID} is not associated with any HOLC rating, it is given the value \texttt{NA}. These cases typically occur when the MSA falls outside the periphery of the historic HOLC map or when the MSA is located in the Central Business District.
 	\end{enumerate}
 	\item \textbf{Job Accessibility Files from the University of Minnesota's \textit{Access Across America: Transit 2014} Study.} CITE!!!! \\
 	Include description here. Discuss collapse. Brief overview on how and why you collapse the transit accessibility files.
 	\item \textbf{Demographic and Commuting Characteristics from the Census Bureau's 2016 American Community Survey (ACS) 5-Year Estimates.} \cite{acs16}\\
+	Tables B01001, B06011, B08122, B02001, B03001, B25064, B25077, B25035, B25003, B25041, B25048, B25051, B23025, B15003, B08201, B25071, and B11001 are used in the analysis.
 \end{enumerate}
-While all data is available at the city or MSA level, the main point of interest is in national trends. We cannot assume that observations within a city are independent of one another; an inherent hierarchical structure is present in the data. Therefore, multilevel modeling is a preferred analysis approach to OLS. Fixed-coefficient, random-slope multilevel models are used, essentially allowing to control for effects by city.
+While all data is available at the city or MSA level, the primary aim of the study is to identify trends that are not specific to a single city. This requires that all cities be analyzed simultaneously. However, OLS methods are not suitable because an inherent two-class hierarchical (city, nation) structure is present in the data. Variable coefficient, fixed-slope multilevel models are used because they allow control for within-city correlation.
+
+\clearpage
 
 \begin{table}[h!]
 	\caption{Summary of Census Tract Characteristics by HOLC Rating}
@@ -287,7 +288,7 @@ While all data is available at the city or MSA level, the main point of interest
 \end{table}
 
 \begin{table}
-	\textbf{HOLC Rating and Home Value.} A one-point decrease in HOLC rating corresponds to a \$62,175 decrease in median home value, controlling for housing unit size, age, and facilities. Interestingly, there is a negative relationship between median home values and housing unit size: census tracts with higher percentages of larger homes are associated with lower home values. This may be because smaller homes are more frequently located in the city center, where housing costs are the highest. Going forward, a more reliable method will use appraisal data to relate home value to HOLC rating and control by housing unit characteristics at the parcel level.
+	\textbf{HOLC Rating and Home Value.} A one-point decrease in HOLC rating corresponds to a \$62,175 decrease in median home value, controlling for housing unit size, age, and facilities. Interestingly, there is a negative relationship between median home values and housing unit size: census tracts with higher percentages of larger homes are associated with lower home values. This may be because smaller homes are more frequently located in the city center, where housing costs are the highest. Going forward, a more reliable method will use appraisal data to relate home value to HOLC rating and control by housing unit characteristics at the parcel level. See \textsection5.3, \textit{Proposed Alterations and Additions} for notes on the proposed method.
 	\caption{Multilevel Model: Home Value, \$1000s}
 	\begin{center}
 		\begin{tabular}{|| l | c c c ||}
@@ -513,7 +514,7 @@ Author's calculations from the following: \textit{(1)} Nelson, R.K., \& Ayers, E
 \end{table}
 
 \begin{table}
-	\textbf{HOLC Rating and Zero-Car Households.} A one-point decrease in HOLC rating corresponds to a 10.869\% increase in zero-car households. One way to read this is that these households have better transit access, making it unnecessary to own a car. Another way to read this is these residents are transit-dependent --- which is not necessarily a cause for celebration. The correlation between income and zero-car households for the study area is -0.631. Table 2, \textit{Summary of Census Tract Characteristics by HOLC Rating}, also demonstrates that zero-car households are often poorer households.
+	\textbf{HOLC Rating and Zero-Car Households.} A one-point decrease in HOLC rating corresponds to a 10.869\% increase in zero-car households. One way to read this is that these households have better transit access, making it unnecessary to own a car. Another way to read this is these residents are transit-dependent and would prefer a car if they could afford one. The correlation between income and zero-car households for the study area (-0.631), and Table 2, \textit{Summary of Census Tract Characteristics by HOLC Rating}, both demonstrate that zero-car households are often poorer households.
 	\caption{Multilevel Model: Percentage Zero-Car Households}
 	\begin{center}
 		\begin{tabular}{|| l | c c c ||}
@@ -683,7 +684,7 @@ Author's calculations from the following: \textit{(1)} Nelson, R.K., \& Ayers, E
 \end{table}
 
 \begin{table}
-	\textbf{HOLC Rating and Poverty.} A one-point decrease in HOLC rating corresponds to a 10.659\% increase in households in poverty. Here, poverty is 150\% of the Federal Poverty Level, or an annual household income below \$36,450 for a family of four in 2016.
+	\textbf{HOLC Rating and Poverty.} A one-point decrease in HOLC rating corresponds to a 10.659\% increase in households in poverty. Here, poverty is defined as households making less than 150\% of the Federal Poverty Level, or an annual household income below \$36,450 for a family of four in 2016.
 	\caption{Multilevel Model: Percentage Households Below 150\% FPL}
 	\begin{center}
 		\begin{tabular}{|| l | c c c ||}
@@ -735,7 +736,7 @@ Author's calculations from the following: \textit{(1)} Nelson, R.K., \& Ayers, E
 \end{table}
 
 \begin{table}
-	\textbf{HOLC Rating and Black Residents.} A one-point decrease in HOLC rating corresponds to a 15.153\% increase in the percentage Black residents at the census tract level.
+	\textbf{HOLC Rating and Black Residents.} A one-point decrease in HOLC rating corresponds to a 15.153\% increase in the percentage of Black residents at the census tract level.
 	\caption{Multilevel Model: Percentage Black Residents}
 	\begin{center}
 		\begin{tabular}{|| l | c c c ||}
@@ -787,7 +788,7 @@ Author's calculations from the following: \textit{(1)} Nelson, R.K., \& Ayers, E
 \end{table}
 
 \begin{table}
-	\textbf{HOLC Rating and White Residents.} On the contrary, a one-point decrease in HOLC rating corresponds to a 16.806\% decrease in the percentage white residents at the census tract level. This table and the prior table (Table 11, \textit{Multilevel Model: Percentage Black Residents}) indicate that HOLC policies may relate to the persistence of racial segregation in U.S. neighborhoods.
+	\textbf{HOLC Rating and White Residents.} On the contrary, a one-point decrease in HOLC rating corresponds to a 16.806\% decrease in the percentage of white residents at the census tract level. This table and the prior table (Table 11, \textit{Multilevel Model: Percentage Black Residents}) indicate that HOLC policies may relate to the persistence of racial segregation in U.S. neighborhoods.
 	\caption{Multilevel Model: Percentage White Residents}
 	\begin{center}
 		\begin{tabular}{|| l | c c c ||}
@@ -838,7 +839,7 @@ Author's calculations from the following: \textit{(1)} Nelson, R.K., \& Ayers, E
 Author's calculations from the following: \textit{(1)} Nelson, R.K., \& Ayers, E.L., eds. (n.d.). ``Mapping Inequality.'' \textit{American Panorama}. Accessed August 25, 2018. \textit{(2)} 2016 ACS 5-Year Estimates, Table B02001.
 \end{table}
 
-\section{Interpretation}
+\section{Results and Interpretation}
 \subsection{Lessons Learned}
 \textbf{Hypotheses and Results.} For the most part, expectations and results align relatively closely. Table 13, \textit{Hypotheses and Results}, lists the expectations of a \textit{decrease} in HOLC rating, and the evidence as seen in multilevel models.
 \begin{table}[h!]
@@ -890,7 +891,7 @@ LOCAL ENFORCEMENT rolf pendall BLACK METROPOLIS IN 21ST CEN john a powell
 \subsection{Proposed Alterations and Additions}
 \textbf{Disregard transit accessibility files to expand the potential study area.} This study rests on the cusp of statistical invalidity; while it has a decent total sample size (\textit{n} = 395 census tracts), some individual MSAs have a paltry number of observations. A more robust study would encompass as many MSAs as possible but only keep those with a relatively large number of observations after spatial overlay with HOLC files. A larger within-MSA sample size would enable the use of more robust statistical techniques such as a random effects multilevel model.\par
 \textbf{Use raster methods to overlay HOLC shapefiles with census tract shapefiles.} When multiple HOLC neighborhoods intersect with a single census tract, the current overlay method, discussed in \textsection3.2, simply takes the mean of the HOLC ratings and assigns this value to the tract. This method assumes an equal contribution of each HOLC rating when it is plausible that a census tract could share 90\% of its area with a HOLC neighborhood in ``Class B'' and only 10\% of its area with a HOLC neighborhood in ``Class A.'' Rasterizing both spatial layers and computing the zonal mean, where the zone is the census tract, would account for the percentage areal contribution of each HOLC rating to the census tract. \par
-\textbf{Control for housing amenities and compute a spatial overlay with HOLC shapefiles at the parcel level.} Another way to circumvent the problem of spatial overlay mentioned above is to disregard census units altogether. County appraisal shapefiles contain rich information about the amenities and condition of every housing unit at the parcel level. Using appraisal data would confer two benefits: 1) Controlling for more variables, and at the parcel level, would enable more of a causal reading of the influence of HOLC rating than is possible here; and 2) With only a small percentage of exceptions, housing parcels will definitively lie within or outside of a HOLC neighborhood. However, there are drawbacks to using appraisal data: it is incompatible across counties and often requires considerable cleaning.
+\textbf{Control for housing amenities and compute a spatial overlay with HOLC shapefiles at the parcel level.} Another way to circumvent the problem of spatial overlay mentioned above is to disregard census units altogether. County appraisal shapefiles contain rich information about the amenities and condition of every housing unit at the parcel level. Using appraisal data would confer two benefits: 1) Controlling for more variables and analyzing appraised values at the parcel level would enable a more reliable reading of the influence of HOLC rating than is possible in this project; and 2) With only a small percentage of exceptions, housing parcels will definitively lie within or outside of a HOLC neighborhood.
 
 %\blankpage
 %\newpage
@@ -922,14 +923,12 @@ Chetty, R., Hendren, N., \& Katz, L. (2015). \textit{The effects of exposure to 
 Chetty, R., Friedman, J.N., Hilger, N., Saez, E., Schanzenbach, D.W., \& Yagan, D. (2011). How does your kindergarten classroom affect your earnings? Evidence from Project STAR. \textit{Quarterly Journal of Economics, 126}(4), 1593-1660.
 \bibitem{duncan}
 Duncan, O.D., \& Duncan, B. (1955). A methodological analysis of segregation indexes. \textit{American Sociological Review, 20}(2): 210-217.
-\bibitem{edwards}
-Edwards, M.E. (2007). \textit{Regional and urban economics and economic development: Theory and methods.} New York: Auerbach Publications.
 \bibitem{galster}
 Galster, G.C., \& Hill, E.W. (1992). \textit{The Metropolis in black and white: Place, power, and polarization}. New Brunswick, N.J.: Center for Urban Policy Research.
-\bibitem{glaeser}
-Glaeser, E.L., Kahn, M.E., \& Rappaport, J. (2008). Why do the poor live in cities? The role of public transportation. \textit{Journal of Urban Economics, 63}(1): 1-24.
 \bibitem{goering}
 Galster, G.C. (1986). More than skin deep: The effect of housing discrimination on the extent and pattern of racial segregation in the United States. In Goering, J.M. (Ed.), \textit{Housing desegregation and federal policy} (119-168). Chapel Hill: University of North Carolina Press.
+\bibitem{glaeser}
+Glaeser, E.L., Kahn, M.E., \& Rappaport, J. (2008). Why do the poor live in cities? The role of public transportation. \textit{Journal of Urban Economics, 63}(1): 1-24.
 \bibitem{goering2}
 Goering, J.M. (2007). An overview of key issues in the field of fair housing research. In Goering, J.M. (Ed.), \textit{Fragile rights within cities: Government, housing, and fairness} (21-40). Lanham, MD: Rowman \& Littlefield.
 \bibitem{goldfield}

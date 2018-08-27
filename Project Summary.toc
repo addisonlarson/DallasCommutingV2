@@ -1,17 +1,17 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}Introduction}{4}{section.1}
-\contentsline {section}{\numberline {2}Problem Statement and Project Objective}{4}{section.2}
-\contentsline {subsection}{\numberline {2.1}Racial Segregation in U.S. Cities}{5}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Housing Policy and Racial Segregation}{6}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Home as a Platform for (Dis)Opportunity}{6}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Project Objective}{7}{subsection.2.4}
-\contentsline {section}{\numberline {3}Hypothesized Relationships}{7}{section.3}
-\contentsline {subsection}{\numberline {3.1}Hypotheses}{7}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Variable Selection and Expectation}{7}{subsection.3.2}
-\contentsline {section}{\numberline {4}Study Area, Data Sources, Methodology, and Analysis}{8}{section.4}
-\contentsline {subsection}{\numberline {4.1}Study Area}{8}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Data Sources, Methodology, and Analysis}{8}{subsection.4.2}
-\contentsline {section}{\numberline {5}Interpretation}{10}{section.5}
-\contentsline {subsection}{\numberline {5.1}Lessons Learned}{10}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Policy Implications}{10}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Proposed Alterations and Additions}{10}{subsection.5.3}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}Problem Statement and Project Objective}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Racial Segregation in U.S. Cities}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Housing Policy and Racial Segregation}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Home as a Platform for (Dis)Opportunity}{5}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Project Objective}{6}{subsection.2.4}
+\contentsline {section}{\numberline {3}Hypothesized Relationships}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Hypotheses}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Variable Selection and Expectation}{6}{subsection.3.2}
+\contentsline {section}{\numberline {4}Study Area, Data Sources, Methodology, and Analysis}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}Study Area}{7}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Data Sources, Methodology, and Analysis}{7}{subsection.4.2}
+\contentsline {section}{\numberline {5}Results and Interpretation}{21}{section.5}
+\contentsline {subsection}{\numberline {5.1}Lessons Learned}{21}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Policy Implications}{21}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Proposed Alterations and Additions}{21}{subsection.5.3}
