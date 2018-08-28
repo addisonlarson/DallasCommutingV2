@@ -9,7 +9,7 @@ pack <- function(pkg){
 }
 packages <- c("foreign", "tidycensus", "tidyverse", "rgdal", "stringr")
 pack(packages)
-setwd("C:/Users/alarson/Downloads/DallasCommutingV2-master/DallasCommutingV2-master")
+setwd("D:/AP LARSON/DallasCommutingV2")
 xwalk <- read.csv("cbsatocountycrosswalk.csv")
 statexwalk <- read.csv("ssa_fips_state_county2017.csv")
 qualifyingMSAs <- read.csv("qualifyingMSAs.csv")
@@ -36,7 +36,7 @@ countyList$city <- as.factor(as.character(countyList$city))
 # Instead of running separate queries for each MSA, run in a clump and split later
 # listOfCities <- split(countyList, countyList$city)
 
-setwd("C:/Users/alarson/Downloads/DallasCommutingV2-master/DallasCommutingV2-master/educationByRace")
+setwd("D:/AP LARSON/DallasCommutingV2/educationByRace")
 
 # https://stackoverflow.com/questions/45109241/r-tidycensus-download-all-block-groups
 # "tidycensus can't yet handle multi-state and multi-county calls simultaneously"
@@ -88,7 +88,7 @@ for (i in 1:length(listOfCities)){
   write.csv(listOfCities[[i]], file = paste0("d",myCity,".csv"), row.names = FALSE)
 }
 
-setwd("C:/Users/alarson/Downloads/DallasCommutingV2-master/DallasCommutingV2-master/tractShps")
+setwd("D:/AP LARSON/DallasCommutingV2/tractShps")
 MSAshps <- as.data.frame(list.files(pattern = "\\.shp$")) # list all shapefiles
 colnames(MSAshps) <- "id"; MSAshps$id <- as.character(MSAshps$id)
 MSAshps <- MSAshps[grepl("res", MSAshps$id),] # keep only the MSA ones
@@ -118,13 +118,13 @@ allJobs <- do.call(rbind, datalist)
 allJobs <- allJobs[c(1,8,10)]
 
 # Read in all Census datasets
-setwd("C:/Users/alarson/Downloads/DallasCommutingV2-master/DallasCommutingV2-master/educationByRace")
+setwd("D:/AP LARSON/DallasCommutingV2/educationByRace")
 MSAcsvs <- list.files(pattern = "*.csv")
 datalist <- lapply(MSAcsvs, read.csv)
 allCensus <- do.call(rbind, datalist)
 
 # Read in all HOLC data
-setwd("C:/Users/alarson/Downloads/DallasCommutingV2-master/DallasCommutingV2-master/housingWeightedScr")
+setwd("D:/AP LARSON/DallasCommutingV2/housingWeightedScr")
 MSAcsvs <- list.files(pattern = "*.csv")
 datalist <- lapply(MSAcsvs, read.csv)
 allHous <- do.call(rbind, datalist)
